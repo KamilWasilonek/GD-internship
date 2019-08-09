@@ -24,9 +24,9 @@ module.exports = function (config) {
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
-    autoWatch: true,
+    autoWatch: false,
     browsers: ['Chrome'],
-    singleRun: false,
+    singleRun: true, // Change it to "true" if you want to keep browser open after test finished
     restartOnFileChange: true
   });
 };
