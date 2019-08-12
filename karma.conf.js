@@ -30,7 +30,7 @@ module.exports = function (config) {
     customLaunchers: {
       ChromeHeadlessCI: {
         base: 'ChromeHeadless',
-        flags: ['--no-sandbox']
+        flags: ['--headless', '--no-sandbox']
       }
     },
     singleRun: false, // Change it to "true" if you want to keep browser open after test finished
