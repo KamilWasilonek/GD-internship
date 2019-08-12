@@ -33,7 +33,7 @@ module.exports = function (config) {
         flags: ['--headless', '--no-sandbox']
       }
     },
-    singleRun: false, // Change it to "true" if you want to keep browser open after test finished
+    singleRun: true, // Change it to "false" if you want to keep browser open after test finished
     restartOnFileChange: false
   });
 };
