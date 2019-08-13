@@ -1,0 +1,19 @@
+@import '../../../../../scss/variables.scss'; 
+
+.contact {
+  display: flex;
+  &__box {
+    display: flex;
+    margin-right: 20px;
+  }
+
+  &__icon {
+    width: 15px;
+    margin-right: 10px;
+  }
+
+  &__link {
+    text-decoration: none;
+    color: $font-color-lighter;
+  }
+}
