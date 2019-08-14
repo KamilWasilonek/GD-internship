@@ -1,8 +1,23 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: 'home',
+    loadChildren: '../app/home-page/home-page.module#HomePageModule',
+  },
+  {
+    path: 'products',
+    loadChildren: () => import('./../app/product-list-page/product-list-page.module').then(mod => mod.ProductListPageModule)
+  },
+  {
+    path: '',
+    redirectTo: '/home',
+    pathMatch: 'full'
+  },
+  { path: '**', component: ErrorPageComponent }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
