@@ -1,8 +1,9 @@
 const products = require('../assets/mocks/products.json');
 
 module.exports = {
-    getProducts
-}
+    getProducts,
+    getProductById,
+};
 const PRODUCTS_REDUNDANT_PROPS = ['relatedProducts', 'description'];
 function getProducts(req, res) {
     const productsArrCopy = JSON.parse(JSON.stringify(products));
@@ -71,5 +72,18 @@ function getProducts(req, res) {
 
         return productClone;
     }
+}
+function getProductById(req, res) {
+    let product = products.find((({ id }) => id === req.params.id));
 
+    if (!product) {
+        notFound(req, res);
+        return;
+    };
+
+    product = JSON.parse(JSON.stringify(product));
+
+    product.relatedProducts = products.filter(item => product.relatedProducts.some(id => id === item.id));
+
+    res.json(product);
 }
