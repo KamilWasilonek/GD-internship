@@ -4,10 +4,13 @@ const http = require('http');
 const path = require('path');
 
 const app = express();
+const bodyParser = require('body-parser');
 const routes = require('./router');
-
+const cors = require('cors');
 const config = require('./config');
 
+app.use(cors());
+app.use(bodyParser.json({ limit: '500mb' }));
 app.use(
   '/',
   express.static(
