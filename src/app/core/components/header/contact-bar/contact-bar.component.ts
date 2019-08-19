@@ -6,10 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contact-bar.component.scss']
 })
 export class ContactBarComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
+  constructor() {
   }
 
+  ngOnInit() {}
 }

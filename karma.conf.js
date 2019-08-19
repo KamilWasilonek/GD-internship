@@ -25,7 +25,7 @@ module.exports = function (config) {
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
-    autoWatch: false,
+    autoWatch: true,
     browsers: ['Chrome'],
     customLaunchers: {
       ChromeHeadlessCI: {
@@ -33,7 +33,6 @@ module.exports = function (config) {
         flags: ['--headless', '--no-sandbox']
       }
     },
-    singleRun: true, // Change it to "false" if you want to keep browser open after test finished
-    restartOnFileChange: false
+    singleRun: false, // Change it to "false" if you want to keep browser open after test finished
   });
 };
