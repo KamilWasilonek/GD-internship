@@ -1,7 +1,14 @@
-.social-bar {
+@import "../../../../../scss/mixins.scss";
+
+.contact-bar {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding-top: 25px;
   padding-bottom: 25px;
   border-bottom: 1px solid #ebecee;
+  
+  @include md {
+    flex-direction: column;
+  }
 }

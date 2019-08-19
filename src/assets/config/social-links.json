@@ -5,18 +5,18 @@
     "icon": "../../../assets/icons/facebook-letter-logo.svg"
   },
   {
-    "title": "Linkedin",
-    "url": "https://www.linkedin.com/company/grid-dynamics/",
-    "icon": "../../../assets/icons/facebook-letter-logo.svg"
-  },
-  {
     "title": "Twitter",
     "url": "https://twitter.com/griddynamics,",
-    "icon": "../../../assets/icons/facebook-letter-logo.svg"
+    "icon": "../../../assets/icons/twitter.svg"
   },
   {
     "title": "Google",
     "url": "https://plus.google.com/115302417170674279390",
-    "icon": "../../../assets/icons/facebook-letter-logo.svg"
+    "icon": "../../../assets/icons/google.svg"
+  },
+  {
+    "title": "Linkedin",
+    "url": "https://www.linkedin.com/company/grid-dynamics/",
+    "icon": "../../../assets/icons/instagram.svg"
   }
 ]

@@ -1,0 +1,7 @@
+<div class="socials">
+  <div class="socials__box" *ngFor="let link of socials; let index = index">
+    <a class="socials__link" [ngClass]="{'socials__link--last': index === lastLink}" href="{{ link.url }}" target="_black">
+      <img class="socials__icon" src="{{ link.icon }}" alt="{{ link.title }}" />
+    </a>
+  </div>
+</div>
