@@ -14,11 +14,17 @@ default:
 stages:
   - linting
   - tests
+  - build-aot
 
 linting:
   stage: linting
   script:
     - npm run lint
+
+build-aot:
+  stage: build-aot
+  script: 
+    - npm run build-aot
 
 tests:
   stage: tests
