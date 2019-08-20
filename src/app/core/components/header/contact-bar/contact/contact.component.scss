@@ -1,4 +1,4 @@
-@import '../../../../../../scss/variables.scss'; 
+@import 'variables.scss'; 
 
 .contact {
   font-weight: bold;
@@ -6,13 +6,13 @@
 
   &__box {
     display: flex;
-    align-items: flex-start;
-    margin-right: 15px;
+    align-items: center;
+    margin-right: 1.5rem;
   }
 
   &__icon {
-    width: 18px;
-    margin-right: 10px;
+    width: 1.8rem;
+    margin-right: 1rem;
   }
 
   &__link {

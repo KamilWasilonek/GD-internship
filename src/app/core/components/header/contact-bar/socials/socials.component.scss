@@ -1,24 +1,24 @@
-@import "../../../../../../scss/mixins.scss";
+@import "mixins.scss";
 
 .socials {
   display: flex;
+  list-style: none;
 
   @include md {
-    margin-top: 20px;
+    margin-top: 2rem;
   }
 
-  &__link {
-    display: block;
-    margin-right: 15px;
+  &__list-item {
+    margin-right: 1.5rem;
 
-    &--last {
+    &:last-child {
       margin-right: 0;
     }
   }
 
   &__icon {
-    width: 18px;
-    height: 16px;
+    width: 1.8rem;
+    height: 1.6rem;
 
     &:hover {
      opacity: 0.7;

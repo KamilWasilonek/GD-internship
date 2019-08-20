@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SocialsService } from 'src/app/core/services/socials.service';
+import { SocialsService } from '@core/services/socials.service';
 
 @Component({
   selector: 'app-socials',
