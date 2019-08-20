@@ -1,8 +1,11 @@
 const products = require('../assets/mocks/products.json');
+const filters = require('../assets/mocks/filters.json');
 
 module.exports = {
     getProducts,
     getProductById,
+    getFilters,
+    notFound
 };
 const PRODUCTS_REDUNDANT_PROPS = ['relatedProducts', 'description'];
 function getProducts(req, res) {
@@ -86,4 +89,17 @@ function getProductById(req, res) {
     product.relatedProducts = products.filter(item => product.relatedProducts.some(id => id === item.id));
 
     res.json(product);
+}
+function getFilters(req, res) {
+    const rangeFilter = filters.find(el => el.type === 'range');
+    const productsSorted = JSON.parse(JSON.stringify(products)).sort((a, b) => b.price - a.price);
+
+    const mostExpensive = productsSorted[0].price
+    const cheapest = productsSorted[productsSorted.length - 1].price;
+
+    rangeFilter.range = [cheapest, mostExpensive];
+    res.json(filters);
+}
+function notFound(req, res) {
+    res.status(404).send();
 }
