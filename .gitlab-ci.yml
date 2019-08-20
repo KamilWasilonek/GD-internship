@@ -1,4 +1,7 @@
-image: node:latest
+variables:
+  CLI_VERSION: 8.2.0
+
+image: trion/ng-cli-karma:${CLI_VERSION}
 
 cache:
   paths:
@@ -10,8 +13,14 @@ default:
 
 stages:
   - linting
+  - tests
 
 linting:
   stage: linting
   script:
     - npm run lint
+
+tests:
+  stage: tests
+  script:
+    - npm run headlessTests

@@ -4,7 +4,7 @@ process.env.CHROME_BIN = require('puppeteer').executablePath()
 
 module.exports = function (config) {
   config.set({
-    basePath: '/',
+    basePath: '',
     frameworks: ['jasmine', '@angular-devkit/build-angular'],
     plugins: [
       require('karma-jasmine'),
@@ -30,7 +30,7 @@ module.exports = function (config) {
     customLaunchers: {
       ChromeHeadlessCI: {
         base: 'ChromeHeadless',
-        flags: ['--headless', '--no-sandbox']
+        flags: ['--headless','--no-sandbox']
       }
     },
     singleRun: false, // Change it to "false" if you want to keep browser open after test finished

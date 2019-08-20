@@ -2,17 +2,17 @@
   "name": "gd-internship-angular-project",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
     "start": "node src/server/app.js",
     "build": "ng build",
-    "test": "ng test --no-watch --no-progress --browsers=ChromeHeadlessCI --code-coverage",
+    "headlessTests": "ng test --no-watch --no-progress --browsers=ChromeHeadlessCI --code-coverage",
+    "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "postinstall": "ng build --prod"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint"
+      "pre-commit": "npm run lint & npm run headlessTests"
     }
   },
   "private": true,
