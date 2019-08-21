@@ -1,26 +1,37 @@
 const products = require('../assets/mocks/products.json');
 const filters = require('../assets/mocks/filters.json');
+const banners = require('../assets/mocks/banners.json');
+const slideshow = require('../assets/mocks/slideshow.json');
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+const subscriptions = new Set();
 
 module.exports = {
     getProducts,
     getProductById,
     getFilters,
-    notFound
+    notFound,
+    getHomepage,
+    addSubscription,
+    deleteSubscription
 };
 const PRODUCTS_REDUNDANT_PROPS = ['relatedProducts', 'description'];
+
 function getProducts(req, res) {
     const productsArrCopy = JSON.parse(JSON.stringify(products));
     const responseProducts = {
         total: productsArrCopy.length,
         products: productsArrCopy
-    }
+    };
     const query = req.query;
     let cleanedProducts = productsArrCopy.map(_cleanUpProductProperties);
 
     if (query.ids) {
         const idsArr = req.query.ids.split(',').map(el => parseInt(el));
 
-        const productsArr = cleanedProducts.filter(el => idsArr.some(id => String(id) === el.id))
+        const productsArr = cleanedProducts.filter(el =>
+            idsArr.some(id => String(id) === el.id)
+        );
         responseProducts.products = productsArr;
         res.json(responseProducts);
         return;
@@ -31,70 +42,80 @@ function getProducts(req, res) {
         const fromPrice = Number(rangeArr[0]);
         const toPrice = Number(rangeArr[1]);
 
-        if (rangeArr.length === 1 || (rangeArr.length === 2 && (fromPrice === toPrice))) {
-            cleanedProducts = cleanedProducts.filter(({ price }) => price === fromPrice)
+        if (
+            rangeArr.length === 1 ||
+            (rangeArr.length === 2 && fromPrice === toPrice)
+        ) {
+            cleanedProducts = cleanedProducts.filter(
+                ({ price }) => price === fromPrice
+            );
         }
 
         if (rangeArr.length === 2) {
-            cleanedProducts = cleanedProducts.filter(({ price }) => price >= fromPrice && price <= toPrice)
+            cleanedProducts = cleanedProducts.filter(
+                ({ price }) => price >= fromPrice && price <= toPrice
+            );
         }
     }
 
     if (query.category) {
         const categoriesArr = query.category.split(',');
-        cleanedProducts = cleanedProducts.filter(el => categoriesArr.some(category => category === el.category))
+        cleanedProducts = cleanedProducts.filter(el =>
+            categoriesArr.some(category => category === el.category)
+        );
     }
 
     if (query.gender) {
-        cleanedProducts = cleanedProducts.filter(el => el.sex === query.gender)
+        cleanedProducts = cleanedProducts.filter(el => el.sex === query.gender);
     }
 
     if (query.size) {
         const sizesArr = query.size.split(',');
-        cleanedProducts = cleanedProducts.filter(el => el.sizes.some(size => sizesArr.includes(size.toLowerCase())))
+        cleanedProducts = cleanedProducts.filter(el =>
+            el.sizes.some(size => sizesArr.includes(size.toLowerCase()))
+        );
     }
 
     if (query.brand) {
         const brandsArr = query.brand.split(',');
-        cleanedProducts = cleanedProducts.filter(el => brandsArr.some(brand => brand === el.brand));
+        cleanedProducts = cleanedProducts.filter(el =>
+            brandsArr.some(brand => brand === el.brand)
+        );
     }
 
     const total = cleanedProducts.length;
-    responseProducts.total = total
+    responseProducts.total = total;
 
-
-    cleanedProducts = cleanedProducts.slice(+query.start || 0, +query.end || cleanedProducts.length);
-    responseProducts.products = cleanedProducts
+    cleanedProducts = cleanedProducts.slice(
+        +query.start || 0,
+        +query.end || cleanedProducts.length
+    );
+    responseProducts.products = cleanedProducts;
     res.json(responseProducts);
-
-    function _cleanUpProductProperties(product) {
-        const productClone = JSON.parse(JSON.stringify(product))
-        PRODUCTS_REDUNDANT_PROPS.forEach(property => {
-            delete productClone[property];
-        });
-
-        return productClone;
-    }
 }
 function getProductById(req, res) {
-    let product = products.find((({ id }) => id === req.params.id));
+    let product = products.find(({ id }) => id === req.params.id);
 
     if (!product) {
         notFound(req, res);
         return;
-    };
+    }
 
     product = JSON.parse(JSON.stringify(product));
 
-    product.relatedProducts = products.filter(item => product.relatedProducts.some(id => id === item.id));
+    product.relatedProducts = products.filter(item =>
+        product.relatedProducts.some(id => id === item.id)
+    );
 
     res.json(product);
 }
 function getFilters(req, res) {
     const rangeFilter = filters.find(el => el.type === 'range');
-    const productsSorted = JSON.parse(JSON.stringify(products)).sort((a, b) => b.price - a.price);
+    const productsSorted = JSON.parse(JSON.stringify(products)).sort(
+        (a, b) => b.price - a.price
+    );
 
-    const mostExpensive = productsSorted[0].price
+    const mostExpensive = productsSorted[0].price;
     const cheapest = productsSorted[productsSorted.length - 1].price;
 
     rangeFilter.range = [cheapest, mostExpensive];
@@ -102,4 +123,66 @@ function getFilters(req, res) {
 }
 function notFound(req, res) {
     res.status(404).send();
+}
+
+function getHomepage(req, res) {
+    const randomProducts = new Set();
+    const productClone = JSON.parse(JSON.stringify(products));
+    while (Array.from(randomProducts).length !== 5) {
+        const cleanedUpProduct = _cleanUpProductProperties(
+            productClone[Math.floor(Math.random() * products.length)]
+        );
+        randomProducts.add(cleanedUpProduct);
+    }
+
+    const homePageAggregated = {
+        slideshow,
+        arrivals: Array.from(randomProducts),
+        banners
+    };
+
+    res.json(homePageAggregated);
+}
+
+function addSubscription(req, res) {
+    const { email } = req.body;
+    if (subscriptions.has(email)) {
+        return res.status(409).json({ error: 'Already exists' });
+    }
+
+    if (!_isValidEmail(email)) {
+        return _sendEmailValidationError(res);
+    }
+    subscriptions.add(email);
+    res.status(201).send();
+}
+
+function deleteSubscription(req, res) {
+    const { email } = req.params;
+    if (!_isValidEmail(email)) {
+        return _sendEmailValidationError(res);
+    }
+
+    if (!subscriptions.has(email))
+        return res.status(404).json({ error: 'Email not found' });
+
+    subscriptions.delete(email);
+    res.status(202).send();
+}
+
+function _cleanUpProductProperties(product) {
+    const productClone = JSON.parse(JSON.stringify(product));
+    PRODUCTS_REDUNDANT_PROPS.forEach(property => {
+        delete productClone[property];
+    });
+
+    return productClone;
+}
+
+function _sendEmailValidationError(res) {
+    return res.status(400).json({ error: 'Not valid Email' });
+}
+
+function _isValidEmail(email) {
+    return !!(email && email.match(EMAIL_PATTERN));
 }
