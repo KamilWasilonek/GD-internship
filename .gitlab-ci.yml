@@ -37,5 +37,4 @@ deploy:
   only: 
     - dev
   script: 
-    - git remote add heroku https://heroku:$HEROKU_API_KEY@git.heroku.com/project-angular-gd.git
-    - git push -f heroku master
+    - git push -f https://heroku:$KEY@git.heroku.com/project-angular-gd.git HEAD:master
