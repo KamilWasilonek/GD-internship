@@ -1,0 +1,25 @@
+.actions {
+  display: flex;
+  align-items: center;
+
+  &__action-container {
+    width: 2rem;
+
+    &:not(:last-child) {
+      margin-right: 3.4rem;
+    }
+
+    & img {
+      display: block;
+      width: 100%;
+    }
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+
+  &__action-link {
+    cursor: pointer;
+  }
+}

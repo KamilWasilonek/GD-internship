@@ -1,0 +1,26 @@
+@import '../../../../../../scss/variables';
+
+.nav {
+  &__list {
+    display: flex;
+  }
+
+  &__list-item {
+    list-style: none;
+    font-size: $font-size-main;
+    text-align: right;
+    color: #49525d;
+
+    &:not(:last-child) {
+      margin-right: 4rem;
+    }
+
+    &:hover {
+      color: $title-color;
+    }
+  }
+
+  &__link {
+    cursor: pointer;
+  }
+}

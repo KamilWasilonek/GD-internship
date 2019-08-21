@@ -10,6 +10,9 @@ import { ContactBarComponent } from './core/components/header/contact-bar/contac
 import { SocialsComponent } from './core/components/header/contact-bar/socials/socials.component';
 import { CustomErrorHandler } from './shared/services/error-handler/custom-error-handler';
 import { ServerErrorsInterceptor } from './shared/services/error-handler/server-errors.interceptor';
+import { MenuComponent } from './core/components/header/menu/menu.component';
+import { NavigationComponent } from './core/components/header/menu/navigation/navigation.component';
+import { ActionsComponent } from './core/components/header/menu/actions/actions.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +21,9 @@ import { ServerErrorsInterceptor } from './shared/services/error-handler/server-
     ContactComponent,
     ContactBarComponent,
     SocialsComponent,
+    MenuComponent,
+    NavigationComponent,
+    ActionsComponent
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [
