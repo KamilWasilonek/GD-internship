@@ -1,12 +1,12 @@
-@import '../../../../../../scss/variables';
+@import 'variables.scss';
 
 .nav {
   &__list {
     display: flex;
+    list-style: none;
   }
 
   &__list-item {
-    list-style: none;
     font-size: $font-size-main;
     text-align: right;
     color: #49525d;
