@@ -9,18 +9,19 @@
   &__list-item {
     font-size: $font-size-main;
     text-align: right;
-    color: #49525d;
-
+   
     &:not(:last-child) {
       margin-right: 4rem;
     }
-
+  }
+  &__link {
+    color: #49525d;
+    text-decoration:none;
     &:hover {
       color: $title-color;
     }
-  }
-
-  &__link {
-    cursor: pointer;
+    &--active{
+      color:$title-color;
+    }
   }
 }
