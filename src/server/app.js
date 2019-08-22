@@ -17,7 +17,7 @@ app.use(
     path.join(__dirname, '../../dist/GD-internship-angularProject')
   )
 );
-app.use('/', routes);
+app.use('/api', routes);
 
 app.get('/*', (req, res) => {
   res.sendFile(path.resolve('dist/GD-internship-angularProject/index.html'));
