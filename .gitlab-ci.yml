@@ -20,7 +20,7 @@ stages:
 linting:
   stage: linting
   script:
-    - npm run lint
+    - npm run lint && npm run prettier
 
 build-aot:
   stage: build-aot

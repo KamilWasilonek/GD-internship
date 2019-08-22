@@ -1,4 +1,4 @@
-@import "mixins.scss";
+@import 'mixins.scss';
 
 .socials {
   display: flex;
@@ -21,7 +21,7 @@
     height: 1.6rem;
 
     &:hover {
-     opacity: 0.7;
+      opacity: 0.7;
     }
   }
 }

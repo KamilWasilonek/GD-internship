@@ -8,13 +8,24 @@
     "headlessTests": "ng test --no-watch --no-progress --browsers=ChromeHeadlessCI --code-coverage",
     "test": "ng test",
     "lint": "ng lint",
+    "prettier": "prettier --check src/**/*.{scss,ts,json,html}",
     "e2e": "ng e2e",
     "postinstall": "ng build --prod"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint & npm run headlessTests"
+      "pre-commit": "lint-staged && npm run headlessTests"
     }
+  },
+  "lint-staged": {
+    "*.{scss,ts,json,html}": [
+      "prettier --write src/**/*.{scss,ts,json,html}",
+      "git add"
+    ],
+    "*.{js,ts}": [
+      "tslint --fix",
+      "git add"
+    ]
   },
   "private": true,
   "dependencies": {
@@ -32,6 +43,7 @@
     "chrome-launcher": "^0.11.2",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "prettier": "^1.18.2",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
@@ -43,6 +55,7 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
     "codelyzer": "^5.0.0",
+    "eslint": "^6.2.1",
     "husky": "^3.0.4",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
@@ -51,10 +64,12 @@
     "karma-coverage-istanbul-reporter": "~2.0.1",
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.0",
+    "lint-staged": "^9.2.3",
     "protractor": "~5.4.0",
     "puppeteer": "^1.19.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
+    "tslint-config-prettier": "^1.18.0",
     "typescript": "~3.5.3"
   },
   "engines": {
