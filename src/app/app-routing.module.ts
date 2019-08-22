@@ -5,7 +5,7 @@ import { ErrorPageComponent } from './error-page/error-page.component';
 
 const routes: Routes = [
   { path: 'home',
-    loadChildren: '../app/home-page/home-page.module#HomePageModule',
+    loadChildren: () => import('./../app/home-page/home-page.module').then(mod => mod.HomePageModule)
   },
   {
     path: 'products',
