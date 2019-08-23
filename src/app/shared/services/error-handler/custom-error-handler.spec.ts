@@ -8,22 +8,11 @@ class MockedNotificationService {
   }
 }
 
-class ConsoleSpy {
-  public logs: string[] = [];
-  log(...args) {
-    this.logs.push(args.join(' '));
-  }
-}
-
 describe('CustomErrorHandler', () => {
   let handler: CustomErrorHandler;
-  let originalConsole;
-  let fakeConsole;
 
   beforeEach(() => {
-    fakeConsole = new ConsoleSpy();
-    originalConsole = window.console;
-    console = fakeConsole;
+    spyOn(console, 'log');
 
     TestBed.configureTestingModule({
       providers: [CustomErrorHandler, MockedNotificationService]
@@ -32,18 +21,15 @@ describe('CustomErrorHandler', () => {
     handler = new CustomErrorHandler(new MockedNotificationService());
   });
 
-  afterAll(() => (console = originalConsole));
-
   it('should be created', () => {
     expect(handler).toBeTruthy();
   });
 
   it('should handle Error', () => {
     handler.handleError(new Error('error'));
-    spyOnProperty(Navigator.prototype, 'onLine').and.returnValue(false);
 
-    // expect(fakeConsole.logs.length).toBe(1);
-    expect(fakeConsole.logs).toContain('Client error: error');
+    expect(console.log).toHaveBeenCalled();
+    expect(console.log).toHaveBeenCalledWith('Client error: error');
   });
 
   it('should handle HttpError', () => {
@@ -51,15 +37,15 @@ describe('CustomErrorHandler', () => {
       new HttpErrorResponse({ error: 'Http error', status: 3 })
     );
 
-    expect(fakeConsole.logs.length).toBe(1);
-    expect(fakeConsole.logs).toContain('Status: 3, Message: Http error');
+    expect(console.log).toHaveBeenCalled();
+    expect(console.log).toHaveBeenCalledWith('Status: 3, Message: Http error');
   });
 
   it('should handle HttpError with no internet connection', () => {
     spyOnProperty(Navigator.prototype, 'onLine').and.returnValue(false);
     handler.handleError(new HttpErrorResponse({}));
 
-    expect(fakeConsole.logs.length).toBe(1);
-    expect(fakeConsole.logs).toContain('No internet connection');
+    expect(console.log).toHaveBeenCalled();
+    expect(console.log).toHaveBeenCalledWith('No internet connection');
   });
 });
