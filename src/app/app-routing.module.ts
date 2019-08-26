@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core'
-import { Routes, RouterModule } from '@angular/router'
-import { ErrorPageComponent } from './error-page/error-page.component'
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 const routes: Routes = [
   { path: 'home', loadChildren: () => import('./../app/home-page/home-page.module').then(mod => mod.HomePageModule) },
@@ -14,7 +14,7 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   { path: '**', component: ErrorPageComponent },
-]
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
