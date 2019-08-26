@@ -11,9 +11,7 @@ export class CustomErrorHandler implements ErrorHandler {
       if (!navigator.onLine) {
         this.notificationService.showError(`No internet connection`);
       } else {
-        this.notificationService.showError(
-          `Status: ${error.status}, Message: ${error.error}`
-        );
+        this.notificationService.showError(`Status: ${error.status}, Message: ${error.error}`);
       }
     } else {
       this.notificationService.showError(`Client error: ${error.message}`);

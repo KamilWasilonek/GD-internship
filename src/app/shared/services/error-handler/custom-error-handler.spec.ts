@@ -15,7 +15,7 @@ describe('CustomErrorHandler', () => {
     spyOn(console, 'log');
 
     TestBed.configureTestingModule({
-      providers: [CustomErrorHandler, MockedNotificationService]
+      providers: [CustomErrorHandler, MockedNotificationService],
     });
 
     handler = new CustomErrorHandler(new MockedNotificationService());
@@ -33,9 +33,7 @@ describe('CustomErrorHandler', () => {
   });
 
   it('should handle HttpError', () => {
-    handler.handleError(
-      new HttpErrorResponse({ error: 'Http error', status: 3 })
-    );
+    handler.handleError(new HttpErrorResponse({ error: 'Http error', status: 3 }));
 
     expect(console.log).toHaveBeenCalled();
     expect(console.log).toHaveBeenCalledWith('Status: 3, Message: Http error');

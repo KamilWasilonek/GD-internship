@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { SocialIcon } from '@app/shared/interfaces/social-icon.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SocialsService {
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
-  public getSocialLinks(): Observable<any> {
-    return this.http.get('../../../assets/config/social-links.json');
+  public getSocialLinks(): Observable<SocialIcon[]> {
+    return this.http.get<SocialIcon[]>('../../../assets/config/social-links.json');
   }
 }

@@ -23,20 +23,20 @@ import { ActionsComponent } from './core/components/header/menu/actions/actions.
     SocialsComponent,
     MenuComponent,
     NavigationComponent,
-    ActionsComponent
+    ActionsComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [
     {
       provide: ErrorHandler,
-      useClass: CustomErrorHandler
+      useClass: CustomErrorHandler,
     },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ServerErrorsInterceptor,
-      multi: true
-    }
+      multi: true,
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

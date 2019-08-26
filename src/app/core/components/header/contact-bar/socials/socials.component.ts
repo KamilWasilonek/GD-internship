@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { SocialsService } from '@core/services/socials.service';
+import { SocialIcon } from '@app/shared/interfaces/social-icon.interface';
 
 @Component({
   selector: 'app-socials',
   templateUrl: './socials.component.html',
-  styleUrls: ['./socials.component.scss']
+  styleUrls: ['./socials.component.scss'],
 })
 export class SocialsComponent implements OnInit {
-  socials: Array<object>;
+  socials: SocialIcon[];
   lastLink: number;
   constructor(private socialsService: SocialsService) {}
 

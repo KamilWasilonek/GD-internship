@@ -2,21 +2,9 @@ $font-color-lighter: #606974;
 $font-color-darker: #515a63;
 $title-color: #e36f23;
 
-$font-size-mainTitle: calc(
-  45px + (52 - 45) * ((100vw - 320px) / (1550 - 320))
-); //base font-size 52px
-$font-size-subTitleBig: calc(
-  32px + (36 - 32) * ((100vw - 320px) / (1550 - 320))
-); //base font-size 36px
-$font-size-subTitleSmall: calc(
-  16px + (18 - 16) * ((100vw - 320px) / (1550 - 320))
-); //base font-size 18px
-$font-size-main: calc(
-  14px + (16 - 14) * ((100vw - 320px) / (1550 - 320))
-); //base font-size 16px
-$font-size-middle: calc(
-  12px + (14 - 12) * ((100vw - 320px) / (1550 - 320))
-); //base font-size 14px
-$font-size-small: calc(
-  10px + (12 - 10) * ((100vw - 320px) / (1550 - 320))
-); //base font-size 12px
+$font-size-mainTitle: calc(45px + (52 - 45) * ((100vw - 320px) / (1550 - 320))); //base font-size 52px
+$font-size-subTitleBig: calc(32px + (36 - 32) * ((100vw - 320px) / (1550 - 320))); //base font-size 36px
+$font-size-subTitleSmall: calc(16px + (18 - 16) * ((100vw - 320px) / (1550 - 320))); //base font-size 18px
+$font-size-main: calc(14px + (16 - 14) * ((100vw - 320px) / (1550 - 320))); //base font-size 16px
+$font-size-middle: calc(12px + (14 - 12) * ((100vw - 320px) / (1550 - 320))); //base font-size 14px
+$font-size-small: calc(10px + (12 - 10) * ((100vw - 320px) / (1550 - 320))); //base font-size 12px

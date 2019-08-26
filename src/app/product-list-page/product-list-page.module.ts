@@ -4,12 +4,8 @@ import { ProductListPageComponent } from './components/product-list-page.compone
 import { ProductListPageRoutingModule } from './product-list-page-routing.module';
 import { ProductDetailsPageComponent } from '../product-details-page/components/product-details-page.component';
 
-
 @NgModule({
   declarations: [ProductListPageComponent, ProductDetailsPageComponent],
-  imports: [
-    CommonModule,
-    ProductListPageRoutingModule
-  ],
+  imports: [CommonModule, ProductListPageRoutingModule],
 })
-export class ProductListPageModule { }
+export class ProductListPageModule {}
