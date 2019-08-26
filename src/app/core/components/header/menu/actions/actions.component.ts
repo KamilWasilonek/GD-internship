@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, ViewEncapsulation, Renderer2 } from '@angular/core';
 import { actionSvg } from '../../../../../../assets/config/actions-svg.js';
 
 @Component({
@@ -12,11 +12,11 @@ export class ActionsComponent implements OnInit {
   @ViewChild('user', { static: true }) user: ElementRef;
   @ViewChild('card', { static: true }) card: ElementRef;
 
-  constructor() {}
+  constructor(private renderer: Renderer2) {}
   ngOnInit() {
     for (const key in actionSvg) {
       if (actionSvg.hasOwnProperty(key)) {
-        this[key].nativeElement.innerHTML = actionSvg[key].svg;
+        this.renderer.setProperty(this[key].nativeElement, 'innerHTML', actionSvg[key].svg);
       }
     }
   }
