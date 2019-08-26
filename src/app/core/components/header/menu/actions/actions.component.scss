@@ -9,18 +9,28 @@
     &:not(:last-child) {
       margin-right: 3.4rem;
     }
+  }
 
-    & img {
-      display: block;
-      width: 100%;
-    }
-
-    &:hover {
-      opacity: 0.7;
-    }
+  & svg {
+    display: block;
+    width: 100%;
   }
 
   &__action-link {
     cursor: pointer;
+
+    &:hover svg path {
+      fill: #e36f23;
+    }
+  }
+
+  &__action-container {
+    &:last-child svg {
+      filter: brightness(15%);
+
+      &:hover {
+        filter: brightness(1);
+      }
+    }
   }
 }
