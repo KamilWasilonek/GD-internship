@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-product-details-page',
@@ -7,11 +9,9 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./product-details-page.component.scss'],
 })
 export class ProductDetailsPageComponent implements OnInit {
-  id: string;
+  id: Observable<string>;
   constructor(private route: ActivatedRoute) {
-    route.params.subscribe(params => {
-      this.id = params.id;
-    });
+    this.id = route.params.pipe(map(params => params.id));
   }
 
   ngOnInit() {}

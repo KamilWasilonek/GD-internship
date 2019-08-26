@@ -10,6 +10,10 @@ https://project-angular-gd.herokuapp.com
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
+## REST Endpoints
+
+List of supported REST endpoint is [here](src/server/README.md)
+
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
