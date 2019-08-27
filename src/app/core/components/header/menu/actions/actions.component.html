@@ -1,11 +1,11 @@
 <ul class="actions">
-  <li class="actions__action-container">
-    <a class="actions__action-link" (click)="searchOnClick()" [routerLink]="" #search> </a>
+  <li class="actions__action-container" (click)="searchOnClick()">
+    <fa-icon class="actions__icon" [icon]="searchIcon"></fa-icon>
   </li>
-  <li class="actions__action-container">
-    <a class="actions__action-link" (click)="userOnClick()" [routerLink]="" #user> </a>
+  <li class="actions__action-container" (click)="userOnClick()">
+    <fa-icon class="actions__icon" [icon]="userIcon"></fa-icon>
   </li>
-  <li class=" actions__action-container">
-    <a class="actions__action-link actions--special-svg" (click)="cardOnClick()" [routerLink]="" #card> </a>
+  <li class=" actions__action-container " (click)="cardOnClick()">
+    <fa-icon class="actions__icon" [icon]="cardIcon"></fa-icon>
   </li>
 </ul>

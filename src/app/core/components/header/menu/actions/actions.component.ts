@@ -1,35 +1,31 @@
-import { Component, OnInit, ViewChild, ElementRef, ViewEncapsulation, Renderer2 } from '@angular/core';
-import { actionSvg } from '../../../../../../assets/config/actions-svg.js';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { faUser, faShoppingBasket, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-actions',
   templateUrl: './actions.component.html',
   styleUrls: ['./actions.component.scss'],
-  encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class ActionsComponent implements OnInit {
-  @ViewChild('search', { static: true }) search: ElementRef;
-  @ViewChild('user', { static: true }) user: ElementRef;
-  @ViewChild('card', { static: true }) card: ElementRef;
-
-  constructor(private renderer: Renderer2) {}
-  ngOnInit() {
-    for (const key in actionSvg) {
-      if (actionSvg.hasOwnProperty(key)) {
-        this.renderer.setProperty(this[key].nativeElement, 'innerHTML', actionSvg[key].svg);
-      }
-    }
-  }
+  searchIcon = faSearch;
+  userIcon = faUser;
+  cardIcon = faShoppingBasket;
+  constructor(private router: Router) {}
+  ngOnInit() {}
 
   searchOnClick() {
+    this.router.navigate(['/']);
     console.log('search icon active');
   }
 
   userOnClick() {
+    this.router.navigate(['/']);
     console.log('user icon active');
   }
 
   cardOnClick() {
+    this.router.navigate(['/']);
     console.log('card icon active');
   }
 }
