@@ -1,7 +1,14 @@
+@import 'mixins.scss';
+
 .actions {
   display: flex;
   align-items: center;
   list-style: none;
+
+  @include lg {
+    padding: 0;
+    margin: 0;
+  }
 
   &__action-container {
     width: 2rem;
