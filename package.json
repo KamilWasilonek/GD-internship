@@ -4,7 +4,7 @@
   "scripts": {
     "start": "node src/server/app.js",
     "build": "ng build",
-    "build:prod":"ng build --prod --aot",
+    "build-aot": "ng build --aot",
     "headlessTests": "ng test --no-watch --no-progress --browsers=ChromeHeadlessCI --code-coverage",
     "test": "ng test",
     "lint": "ng lint",
