@@ -1,0 +1,58 @@
+// @import 'mixins.scss';
+@import 'variables.scss';
+
+.banner {
+  display: flex;
+  background: lightgray;
+  line-height: 4rem;
+  padding-top: 23rem;
+  padding-bottom: 23rem;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  &__buttons-container {
+    margin-right: 10rem;
+  }
+
+  &__slide-btn {
+    width: 1rem;
+    height: 1.8rem;
+    border: none;
+    display: block;
+
+    &--bigger {
+      height: 3.6rem;
+      background: $title-color;
+      margin: 1rem 0;
+      outline: none;
+    }
+
+    &--prev,
+    &--next {
+      cursor: pointer;
+    }
+  }
+
+  &__proposition,
+  &__price,
+  &__order {
+    font-size: $font-size-subTitleSmall;
+  }
+
+  &__desc {
+    font-size: $font-size-main;
+  }
+
+  &__box {
+    margin-top: 4.5rem;
+    display: flex;
+  }
+
+  &__price {
+    margin-right: 3rem;
+  }
+
+  &__order {
+    color: $title-color;
+  }
+}

@@ -1,1 +1,16 @@
-<section class="banner"></section>
+<section class="container banner" [ngStyle]="{ 'background-image': 'url(' + backgroundImage + ')' }">
+  <div class="banner__buttons-container">
+    <button class="banner__slide-btn banner__slide-btn--prev" (click)="showPrevSlide()"></button>
+    <button class="banner__slide-btn banner__slide-btn--bigger"></button>
+    <button class="banner__slide-btn banner__slide-btn--next" (click)="showNextSlide()"></button>
+  </div>
+  <div class="banner__content">
+    <h2 class="main-title">{{ slides[currentSlideIndex].title }}</h2>
+    <h4 class="banner__proposition">{{ slides[currentSlideIndex].proposition }}</h4>
+    <p class="banner__desc">{{ slides[currentSlideIndex].description }}</p>
+    <div class="banner__box">
+      <p class="banner__price">Price: {{ slides[currentSlideIndex].price }}$</p>
+      <p class="banner__order" (click)="makeOrder()">Order Now</p>
+    </div>
+  </div>
+</section>
