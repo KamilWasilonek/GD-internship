@@ -7,14 +7,12 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./navigation.component.scss'],
 })
 export class NavigationComponent implements OnInit {
-  isMenuOpen: boolean;
+  isMenuOpen = false;
   mobileIcon = faBars;
 
-  constructor() {
-    this.isMenuOpen = false;
-  }
+  constructor() {}
 
-  openMenu() {
+  toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
