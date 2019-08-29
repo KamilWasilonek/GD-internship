@@ -1,0 +1,73 @@
+@import 'variables.scss';
+
+.product-item {
+  padding: 3rem;
+  width: 20%;
+  background-color: rgba(212, 224, 224, 0.76);
+
+  &__img {
+    & img {
+      width: 100%;
+      display: block;
+    }
+
+    &--hovered {
+      margin: 0 auto;
+      width: 70%;
+    }
+  }
+
+  &__details {
+    margin-top: 2rem;
+  }
+
+  &__title {
+    cursor: pointer;
+  }
+
+  &__price {
+    margin-top: 3rem;
+  }
+
+  &__actions-container,
+  &__sizes-container {
+    width: 70%;
+  }
+
+  &__sizes-container {
+    margin: 2rem auto 0 auto;
+  }
+
+  &__actions-container {
+    margin: 20% auto 0 auto;
+  }
+
+  &__sizes-list {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    font-size: $font-size-middle;
+    color: #49525d;
+  }
+
+  &__size {
+    position: relative;
+    cursor: pointer;
+  }
+
+  &__actions-list {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    font-size: 2rem;
+  }
+
+  &__action-icon {
+    color: #49525d;
+
+    &:hover {
+      color: $title-color;
+      cursor: pointer;
+    }
+  }
+}
