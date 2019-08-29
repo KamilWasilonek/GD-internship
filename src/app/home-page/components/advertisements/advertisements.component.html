@@ -1,1 +1,23 @@
-<section class="advertisements"></section>
+<section class="adv">
+  <div class="adv__content-box">
+    <app-spinner [spinner]="spinner" *ngIf="isDataLoading" class="adv__spinner"></app-spinner>
+
+    <div *ngIf="!isDataLoading" class="adv__sale-box">
+      <!-- Sale icon -->
+      <img class="adv__sale-icon" src="../../../../assets/img/sale.png" alt="Sale" />
+
+      <!-- Details -->
+      <div class="adv__details">
+        <h2 class="adv__title">{{ advertisments[currentIndex].title }}</h2>
+        <h4 class="adv__description">{{ advertisments[currentIndex].description }}</h4>
+      </div>
+
+      <!-- Price -->
+      <div class="adv__order-box">
+        <img class="adv__order-icon" src="../../../../assets/icons/add-to-cart-ico@3x.png" alt="Order" />
+        <h2 class="adv__price">{{ advertisments[currentIndex].price }}$</h2>
+      </div>
+    </div>
+  </div>
+  <img class="adv__free-area" src="../../../../assets/img/adv_area.png" alt="Order" />
+</section>

@@ -1,0 +1,17 @@
+[
+  {
+    "title": "FULL WINTER KIT",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry",
+    "price": 120
+  },
+  {
+    "title": "SUMMER SHIRT",
+    "description": "There are many variations of passages of Lorem Ipsum available",
+    "price": 300
+  },
+  {
+    "title": "WINTER SHOES",
+    "description": "All the Lorem Ipsum generators on the Internet tend to repeat predefined",
+    "price": 450
+  }
+]
