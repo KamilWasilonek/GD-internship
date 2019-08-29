@@ -1,9 +1,12 @@
+@import 'mixins.scss';
 @import 'variables.scss';
-
+:host {
+  display: block;
+}
 .product-item {
   padding: 3rem;
-  width: 20%;
-  background-color: rgba(212, 224, 224, 0.76);
+  width: 100%;
+  background-color: #fff;
 
   &__img {
     & img {
@@ -32,6 +35,10 @@
   &__actions-container,
   &__sizes-container {
     width: 70%;
+
+    @include sm {
+      width: 50%;
+    }
   }
 
   &__sizes-container {
@@ -39,7 +46,7 @@
   }
 
   &__actions-container {
-    margin: 20% auto 0 auto;
+    margin: 6rem auto 0 auto;
   }
 
   &__sizes-list {
@@ -51,7 +58,6 @@
   }
 
   &__size {
-    position: relative;
     cursor: pointer;
   }
 

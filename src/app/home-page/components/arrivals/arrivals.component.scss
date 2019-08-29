@@ -1,0 +1,48 @@
+@import 'mixins.scss';
+@import 'variables.scss';
+
+.arrivals {
+  padding-top: 12rem;
+  padding-bottom: 12rem;
+  background-color: #f6f8f9;
+
+  @include lg {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
+
+  &__heading {
+    @include heading;
+    font-size: $font-size-subTitleBig;
+
+    & span {
+      color: $title-color;
+    }
+  }
+
+  &__paragraph {
+    @include paragraph;
+    margin-top: 3rem;
+    text-align: center;
+  }
+
+  &__product-items {
+    margin-top: 8rem;
+    display: grid;
+    grid-gap: 2rem;
+    grid-template: 1fr / repeat(4, 1fr);
+
+    @include lg {
+      margin-top: 5rem;
+      grid-template: 1fr / repeat(3, 1fr);
+    }
+
+    @include md {
+      grid-template: 1fr / repeat(2, 1fr);
+    }
+
+    @include sm {
+      grid-template: 1fr / 1fr;
+    }
+  }
+}
