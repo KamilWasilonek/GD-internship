@@ -7,9 +7,10 @@ import { HomePageRoutingModule } from './home-page-routing.module';
 import { BannerComponent } from './components/banner/banner.component';
 import { ArrivalsComponent } from './components/arrivals/arrivals.component';
 import { AdvertisementsComponent } from './components/advertisements/advertisements.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [HomePageComponent, BannerComponent, ArrivalsComponent, AdvertisementsComponent],
-  imports: [CommonModule, HomePageRoutingModule, HttpClientModule],
+  imports: [CommonModule, HomePageRoutingModule, HttpClientModule, SharedModule],
 })
 export class HomePageModule {}
