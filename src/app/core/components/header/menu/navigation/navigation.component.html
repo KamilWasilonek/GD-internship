@@ -1,9 +1,9 @@
 <nav class="nav">
-  <button class="nav__mobile-btn" (click)="openMenu()">
-    <img src="../../../../../../assets/icons/menu-button-of-three-horizontal-lines.png" alt="Mobile" />
+  <button class="nav__mobile-btn" (click)="toggleMenu()">
+    <fa-icon class="nav__mobile-icon" [icon]="mobileIcon"></fa-icon>
   </button>
 
-  <ul class="nav__list" *ngIf="isMenuOpen">
+  <ul class="nav__list" [ngClass]="{ 'nav__list--active': isMenuOpen }">
     <li class="nav__list-item"><a class="nav__link" routerLink="home" routerLinkActive="nav__link--active">Home</a></li>
     <li class="nav__list-item"><a class="nav__link" routerLink="products" routerLinkActive="nav__link--active">Products</a></li>
     <li class="nav__list-item"><a class="nav__link" routerLink="hot-deals" routerLinkActive="nav__link--active">Hot Deals</a></li>

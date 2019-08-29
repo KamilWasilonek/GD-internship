@@ -1,4 +1,5 @@
 import { Component, OnInit, HostListener } from '@angular/core';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-navigation',
@@ -6,33 +7,13 @@ import { Component, OnInit, HostListener } from '@angular/core';
   styleUrls: ['./navigation.component.scss'],
 })
 export class NavigationComponent implements OnInit {
-  isMenuOpen: boolean;
-  scrWidth: number;
-  mobileScreenSize: number;
+  isMenuOpen = false;
+  mobileIcon = faBars;
 
-  @HostListener('window:resize', ['$event'])
-  getScreenWidth(event?) {
-    this.scrWidth = window.innerWidth;
-    this.changeMenuVisibility();
-  }
+  constructor() {}
 
-  changeMenuVisibility() {
-    if (this.scrWidth <= this.mobileScreenSize) {
-      this.isMenuOpen = false;
-    } else {
-      this.isMenuOpen = true;
-    }
-  }
-
-  openMenu() {
+  toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
-  }
-
-  constructor() {
-    this.mobileScreenSize = 992;
-    this.isMenuOpen = true;
-    this.getScreenWidth();
-    this.changeMenuVisibility();
   }
 
   ngOnInit() {}

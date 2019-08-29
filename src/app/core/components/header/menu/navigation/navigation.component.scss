@@ -11,10 +11,10 @@
     @include lg {
       display: block;
     }
+  }
 
-    img {
-      width: 2.2rem;
-    }
+  &__mobile-icon {
+    font-size: 2rem;
   }
 
   &__list {
@@ -22,8 +22,12 @@
     list-style: none;
 
     @include lg {
-      display: block;
+      display: none;
       margin-top: 1rem;
+
+      &--active {
+        display: block;
+      }
     }
   }
 
