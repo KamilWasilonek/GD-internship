@@ -1,10 +1,14 @@
 <nav class="nav">
-  <ul class="nav__list">
+  <button class="nav__mobile-btn" (click)="toggleMenu()">
+    <fa-icon class="nav__mobile-icon" [icon]="mobileIcon"></fa-icon>
+  </button>
+
+  <ul class="nav__list" [ngClass]="{ 'nav__list--active': isMenuOpen }">
     <li class="nav__list-item"><a class="nav__link" routerLink="home" routerLinkActive="nav__link--active">Home</a></li>
     <li class="nav__list-item"><a class="nav__link" routerLink="products" routerLinkActive="nav__link--active">Products</a></li>
     <li class="nav__list-item"><a class="nav__link" routerLink="hot-deals" routerLinkActive="nav__link--active">Hot Deals</a></li>
     <li></li>
     <li class="nav__list-item"><a class="nav__link" routerLink="about" routerLinkActive="nav__link--active">About </a></li>
-    <li class="nav__list-item"><a class="nav__link" routerLink="contact" g routerLinkActive="nav__link--active">Contact</a></li>
+    <li class="nav__list-item"><a class="nav__link" routerLink="contact" routerLinkActive="nav__link--active">Contact</a></li>
   </ul>
 </nav>
