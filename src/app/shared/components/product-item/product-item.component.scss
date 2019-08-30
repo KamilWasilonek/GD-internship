@@ -23,12 +23,12 @@
     padding: 1rem;
   }
 
-  &:hover .product-details {
-    color: $title-color;
-  }
-
   &:hover &__price {
     display: none;
+  }
+
+  &:hover &__title {
+    color: $title-color;
   }
 
   &:hover &__actions-container,
@@ -69,11 +69,12 @@
   }
 
   &__title {
-    cursor: pointer;
+    color: #49525d;
   }
 
   &__price {
     margin-top: 5%;
+    color: $title-color;
 
     @include md {
       margin-top: 2%;

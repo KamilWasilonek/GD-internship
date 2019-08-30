@@ -10,15 +10,7 @@ export class ProductItemComponent implements OnInit {
   shareIcon = faShare;
   shoppingIcon = faShoppingCart;
   heartIcon = faHeart;
-  hoverSide = false;
 
   constructor() {}
-  onProductMouseOver() {
-    this.hoverSide = true;
-  }
-
-  onProductMouseOut() {
-    this.hoverSide = false;
-  }
   ngOnInit() {}
 }
