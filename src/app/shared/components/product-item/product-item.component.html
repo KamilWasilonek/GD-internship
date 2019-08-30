@@ -1,5 +1,5 @@
-<div class="product-item" (mouseover)="onProductMouseOver()" (mouseleave)="onProductMouseOut()">
-  <figure class="product-item__img" [ngClass]="{ 'product-item__img--hovered': hoverSide }">
+<div class="product-item">
+  <figure class="product-item__img">
     <img
       src="https://assets.reebok.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/a951d20352de4195a2bfa9760155038b_9366/Training_ACTIVCHILL_Move_Tee_Blue_DU3945_21_model.jpg"
       alt="product-image"
@@ -7,11 +7,11 @@
   </figure>
   <div class="product-item__details">
     <a class="product-item__title">
-      <h3 class="product-details" [ngClass]="{ 'product-details--light': hoverSide }">Product name</h3>
+      <h3 class="product-details">Product name</h3>
     </a>
-    <p *ngIf="!hoverSide" class="product-item__price product-details product-details--light">$Price</p>
+    <p class="product-item__price product-details product-details--light">$Price</p>
   </div>
-  <div *ngIf="hoverSide" class="product-item__options-container">
+  <div class="product-item__options-container">
     <ul class="product-item__sizes-list">
       <li>Size:</li>
       <li class="product-item__size">s</li>
@@ -29,8 +29,7 @@
       <span class="product-item__color-icon"></span>
     </div>
   </div>
-
-  <div *ngIf="hoverSide" class="product-item__actions-container">
+  <div class="product-item__actions-container">
     <ul class="product-item__actions-list">
       <li class="product-item__action-icon">
         <fa-icon [icon]="shareIcon"></fa-icon>

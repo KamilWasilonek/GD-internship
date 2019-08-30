@@ -23,6 +23,35 @@
     padding: 1rem;
   }
 
+  &:hover .product-details {
+    color: $title-color;
+  }
+
+  &:hover &__price {
+    display: none;
+  }
+
+  &:hover &__actions-container,
+  &:hover &__options-container {
+    display: block;
+  }
+
+  &:hover &__img {
+    margin: 0 auto;
+    width: 70%;
+
+    & img {
+      width: 12rem;
+
+      @include xxl {
+        width: 70%;
+      }
+      @include sm {
+        width: 60%;
+      }
+    }
+  }
+
   &__img {
     & img {
       margin: 0 auto;
@@ -35,22 +64,6 @@
 
       @include sm {
         width: 24rem;
-      }
-    }
-
-    &--hovered {
-      margin: 0 auto;
-      width: 70%;
-
-      & img {
-        width: 12rem;
-
-        @include xxl {
-          width: 70%;
-        }
-        @include sm {
-          width: 60%;
-        }
       }
     }
   }
@@ -80,6 +93,7 @@
   &__options-container {
     margin: 0 auto;
     width: 50%;
+    display: none;
 
     @include xl {
       width: 70%;
