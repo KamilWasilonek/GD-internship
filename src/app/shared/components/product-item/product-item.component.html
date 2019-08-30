@@ -11,7 +11,7 @@
     </a>
     <p *ngIf="!hoverSide" class="product-item__price product-details product-details--light">$Price</p>
   </div>
-  <div *ngIf="hoverSide" class="product-item__sizes-container">
+  <div *ngIf="hoverSide" class="product-item__options-container">
     <ul class="product-item__sizes-list">
       <li>Size:</li>
       <li class="product-item__size">s</li>
@@ -22,7 +22,14 @@
       <li>-</li>
       <li class="product-item__size">xl</li>
     </ul>
+    <div class="product-item__colors-option">
+      <span class="product-item__color-icon"></span>
+      <span class="product-item__color-icon"></span>
+      <span class="product-item__color-icon"></span>
+      <span class="product-item__color-icon"></span>
+    </div>
   </div>
+
   <div *ngIf="hoverSide" class="product-item__actions-container">
     <ul class="product-item__actions-list">
       <li class="product-item__action-icon">

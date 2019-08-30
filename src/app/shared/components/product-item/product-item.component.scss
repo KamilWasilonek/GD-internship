@@ -48,6 +48,9 @@
         @include xxl {
           width: 70%;
         }
+        @include sm {
+          width: 60%;
+        }
       }
     }
   }
@@ -64,8 +67,18 @@
     }
   }
 
+  &__actions-container {
+    padding-top: 2rem;
+    border-top: 1px solid #f5f6f9;
+
+    @include sm {
+      padding-top: 1.5rem;
+    }
+  }
+
   &__actions-container,
-  &__sizes-container {
+  &__options-container {
+    margin: 0 auto;
     width: 50%;
 
     @include xl {
@@ -76,15 +89,16 @@
     }
   }
 
-  &__sizes-container,
-  &__actions-container {
-    margin: 0 auto;
-  }
-
-  &__sizes-list {
+  &__sizes-list,
+  &__actions-list {
     display: flex;
     justify-content: space-between;
     list-style: none;
+    font-size: $font-size-middle;
+    color: #49525d;
+  }
+
+  &__sizes-list {
     font-size: $font-size-middle;
     color: #49525d;
   }
@@ -94,10 +108,7 @@
   }
 
   &__actions-list {
-    display: flex;
-    justify-content: space-between;
-    list-style: none;
-    font-size: 2rem;
+    font-size: $font-size-subTitleSmall;
   }
 
   &__action-icon {
@@ -107,5 +118,28 @@
       color: $title-color;
       cursor: pointer;
     }
+  }
+
+  &__colors-option {
+    margin: 5% auto 0 auto;
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+
+    @include xxl {
+      width: 80%;
+    }
+    @include sm {
+      width: 60%;
+    }
+  }
+
+  &__color-icon {
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    background-color: red;
   }
 }
