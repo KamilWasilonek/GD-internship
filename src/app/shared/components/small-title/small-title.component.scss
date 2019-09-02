@@ -1,0 +1,13 @@
+@import 'fonts.scss';
+@import 'variables.scss';
+
+.product-title {
+  :host {
+    display: block;
+  }
+  font-family: HarmoniaSansProCyr-bold;
+  font-size: $font-size-subTitleSmall;
+  text-transform: capitalize;
+  text-align: center;
+  cursor: pointer;
+}

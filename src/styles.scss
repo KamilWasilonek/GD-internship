@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import './scss/fonts.scss';
+@import './scss/variables';
 
 * {
   margin: 0;
@@ -8,7 +9,7 @@
 }
 
 body {
-  font-family: HarmoniaSansProCyr-regular;
+  font-family: $font-regular;
 }
 
 html {
@@ -18,4 +19,10 @@ html {
 
 .container {
   padding: 0 10%;
+}
+
+.main-title {
+  font-size: $font-size-mainTitle;
+  color: $title-color;
+  font-family: $font-bold;
 }

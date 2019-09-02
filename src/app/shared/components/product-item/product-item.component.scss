@@ -1,0 +1,160 @@
+@import 'mixins.scss';
+@import 'variables.scss';
+
+:host {
+  display: block;
+}
+.product-item {
+  padding: 2rem;
+  width: 100%;
+  height: 36rem;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+
+  @include xl {
+    height: 31rem;
+  }
+  @include md {
+    height: 36rem;
+  }
+  @include sm {
+    padding: 1rem;
+  }
+
+  &:hover &__price {
+    display: none;
+  }
+
+  &:hover &__title {
+    color: $title-color;
+  }
+
+  &:hover &__actions-container,
+  &:hover &__options-container {
+    display: block;
+  }
+
+  &:hover &__img {
+    margin: 0 auto;
+    width: 70%;
+
+    & img {
+      width: 12rem;
+
+      @include xxl {
+        width: 70%;
+      }
+      @include sm {
+        width: 60%;
+      }
+    }
+  }
+
+  &__img {
+    & img {
+      margin: 0 auto;
+      width: 20rem;
+      display: block;
+
+      @include xxl {
+        width: 100%;
+      }
+
+      @include sm {
+        width: 24rem;
+      }
+    }
+  }
+
+  &__title {
+    color: #49525d;
+  }
+
+  &__price {
+    margin-top: 5%;
+    color: $title-color;
+
+    @include md {
+      margin-top: 2%;
+    }
+  }
+
+  &__actions-container {
+    padding-top: 2rem;
+    border-top: 1px solid #f5f6f9;
+
+    @include sm {
+      padding-top: 1.5rem;
+    }
+  }
+
+  &__actions-container,
+  &__options-container {
+    margin: 0 auto;
+    width: 50%;
+    display: none;
+
+    @include xl {
+      width: 70%;
+    }
+    @include sm {
+      width: 50%;
+    }
+  }
+
+  &__sizes-list,
+  &__actions-list {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    font-size: $font-size-middle;
+    color: #49525d;
+  }
+
+  &__sizes-list {
+    font-size: $font-size-middle;
+    color: #49525d;
+  }
+
+  &__size {
+    cursor: pointer;
+  }
+
+  &__actions-list {
+    font-size: $font-size-subTitleSmall;
+  }
+
+  &__action-icon {
+    color: #49525d;
+
+    &:hover {
+      color: $title-color;
+      cursor: pointer;
+    }
+  }
+
+  &__colors-option {
+    margin: 5% auto 0 auto;
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+
+    @include xxl {
+      width: 80%;
+    }
+    @include sm {
+      width: 60%;
+    }
+  }
+
+  &__color-icon {
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    background-color: red;
+  }
+}

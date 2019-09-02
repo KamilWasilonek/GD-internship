@@ -1,19 +1,59 @@
 @import 'variables.scss';
+@import 'mixins.scss';
 
 .nav {
+  &__mobile-btn {
+    display: none;
+    width: 2.2rem;
+    background: none;
+    border: none;
+
+    @include lg {
+      display: block;
+    }
+  }
+
+  &__mobile-icon {
+    font-size: 2rem;
+  }
+
   &__list {
     display: flex;
     list-style: none;
+
+    @include lg {
+      display: none;
+      margin-top: 1rem;
+
+      &--active {
+        display: block;
+      }
+    }
   }
 
   &__list-item {
     font-size: $font-size-main;
     text-align: right;
 
+    @include lg {
+      padding: 1rem 0;
+      text-align: left;
+      width: fit-content;
+
+      &:not(:last-child) {
+        border-bottom: 1px dotted $font-color-lighter;
+      }
+    }
+
     &:not(:last-child) {
       margin-right: 4rem;
+
+      @include lg {
+        margin-right: 0;
+      }
     }
   }
+
   &__link {
     color: #49525d;
     text-decoration: none;

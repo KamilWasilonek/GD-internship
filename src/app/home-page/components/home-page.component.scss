@@ -1,0 +1,13 @@
+@import 'variables';
+@import 'mixins';
+.adv {
+  background-color: $main-background-color;
+}
+.view-more {
+  display: block;
+  background: $main-background-color;
+  padding-bottom: 12rem;
+  @include lg {
+    padding-bottom: 8rem;
+  }
+}

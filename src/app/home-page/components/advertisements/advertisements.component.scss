@@ -1,0 +1,85 @@
+@import 'mixins.scss';
+@import 'variables.scss';
+
+:host {
+  display: block;
+}
+
+.adv {
+  display: flex;
+
+  @include xl {
+    display: block;
+  }
+
+  @include sm {
+    display: none;
+  }
+
+  &__content-box {
+    flex-basis: 100%;
+    margin-right: 2%;
+    min-height: 10rem;
+    background: #ffffff;
+
+    @include xl {
+      margin-right: 0;
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__spinner {
+    padding: 0;
+  }
+
+  &__sale-box {
+    display: flex;
+    align-items: center;
+    padding: 1rem 3rem;
+  }
+
+  &__sale-icon {
+    width: 8rem;
+  }
+
+  &__details {
+    margin: 0 4rem;
+  }
+
+  &__title {
+    font-family: $font-bold;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+  }
+
+  &__description {
+    font-size: $font-size-middle;
+  }
+
+  &__order-box {
+    margin-left: auto;
+    display: flex;
+    align-items: flex-start;
+  }
+
+  &__order-icon {
+    width: 2rem;
+    margin-right: 1.5rem;
+    cursor: pointer;
+  }
+
+  &__price {
+    color: $title-color;
+    font-size: 2.5rem;
+    font-family: $font-bold;
+  }
+
+  &__free-area {
+    display: block;
+    max-width: 55rem;
+
+    @include xl {
+      margin: 0 auto;
+    }
+  }
+}

@@ -1,0 +1,9 @@
+@import 'variables';
+
+:host {
+  display: block;
+  padding-top: 10rem;
+  padding-bottom: 10rem;
+  font-size: $font-size-subTitleSmall;
+  text-align: center;
+}
