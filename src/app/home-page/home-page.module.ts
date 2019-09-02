@@ -11,7 +11,7 @@ import { ViewMoreComponent } from './components/view-more/view-more.component';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  declarations: [HomePageComponent, BannerComponent, ArrivalsComponent, AdvertisementsComponent,ViewMoreComponent],
+  declarations: [HomePageComponent, BannerComponent, ArrivalsComponent, AdvertisementsComponent, ViewMoreComponent],
   imports: [CommonModule, HomePageRoutingModule, HttpClientModule, SharedModule],
 })
 export class HomePageModule {}
