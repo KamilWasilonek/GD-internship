@@ -1,9 +1,6 @@
 @import 'variables.scss';
+@import 'mixins.scss';
 .view-more {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
-  background: $main-background-color;
-
   &__container {
     height: 6rem;
     background: $secondary-background-color;
