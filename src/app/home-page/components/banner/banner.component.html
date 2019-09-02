@@ -1,1 +1,20 @@
-<section class="banner"></section>
+<section>
+  <app-spinner [spinner]="spinner" *ngIf="isDataLoading"></app-spinner>
+
+  <div *ngIf="!isDataLoading" class="container banner" [style.background-image]="sanitizeImage(backgroundImage)">
+    <div class="banner__buttons-container">
+      <button class="banner__slide-btn banner__slide-btn--prev" (click)="showPrevSlide($event)"></button>
+      <button class="banner__slide-btn banner__slide-btn--bigger"></button>
+      <button class="banner__slide-btn banner__slide-btn--next" (click)="showNextSlide($event)"></button>
+    </div>
+    <div class="banner__content">
+      <h2 class="main-title">{{ slides[currentSlideIndex].title }}</h2>
+      <h4 class="banner__proposition">{{ slides[currentSlideIndex].proposition }}</h4>
+      <p class="banner__desc">{{ slides[currentSlideIndex].description }}</p>
+      <div class="banner__box">
+        <p class="banner__price">Price: {{ slides[currentSlideIndex].price }}$</p>
+        <p class="banner__order" (click)="makeOrder()">Order Now</p>
+      </div>
+    </div>
+  </div>
+</section>

@@ -2,6 +2,10 @@ $font-color-lighter: #606974;
 $font-color-darker: #515a63;
 $title-color: #e36f23;
 
+$font-regular: HarmoniaSansProCyr-regular;
+$font-bold: HarmoniaSansProCyr-bold;
+$font-italic: HarmoniaSansProCyr-italic;
+
 $font-size-mainTitle: calc(45px + (52 - 45) * ((100vw - 320px) / (1550 - 320))); //base font-size 52px
 $font-size-subTitleBig: calc(32px + (36 - 32) * ((100vw - 320px) / (1550 - 320))); //base font-size 36px
 $font-size-subTitleSmall: calc(16px + (18 - 16) * ((100vw - 320px) / (1550 - 320))); //base font-size 18px
