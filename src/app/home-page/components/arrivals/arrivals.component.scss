@@ -1,16 +1,10 @@
 @import 'mixins.scss';
 @import 'variables.scss';
 
+:host {
+  display: block;
+}
 .arrivals {
-  padding-top: 12rem;
-  padding-bottom: 12rem;
-  background-color: #f6f8f9;
-
-  @include lg {
-    padding-top: 8rem;
-    padding-bottom: 8rem;
-  }
-
   &__heading {
     @include heading;
     font-size: $font-size-subTitleBig;

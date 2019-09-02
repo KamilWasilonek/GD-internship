@@ -16,3 +16,20 @@
     padding-bottom: 8rem;
   }
 }
+
+.join-us {
+  display: block;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.arrivals {
+  padding-top: 12rem;
+  padding-bottom: 8rem;
+  background-color: $main-background-color;
+
+  @include lg {
+    padding-top: 8rem;
+    padding-bottom: 6rem;
+  }
+}
