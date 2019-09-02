@@ -1,17 +1,11 @@
 @import 'variables.scss';
 @import 'mixins.scss';
-:host {
-  display: block;
-  background: $main-background-color;
-  padding-bottom: 12rem;
-  @include lg {
-    padding-bottom: 8rem;
+.view-more {
+  &__container {
+    height: 6rem;
+    background: $secondary-background-color;
+    position: relative;
   }
-}
-.view-more__container {
-  height: 6rem;
-  background: $secondary-background-color;
-  position: relative;
 }
 
 .view-more__dots {
