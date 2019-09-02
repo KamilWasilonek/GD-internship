@@ -11,7 +11,11 @@ import { ViewMoreComponent } from './components/view-more/view-more.component';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
+<<<<<<< HEAD
   declarations: [HomePageComponent, BannerComponent, ArrivalsComponent, AdvertisementsComponent, ViewMoreComponent],
+=======
+  declarations: [HomePageComponent, BannerComponent, ArrivalsComponent, AdvertisementsComponent,ViewMoreComponent],
+>>>>>>>  Fix view more component
   imports: [CommonModule, HomePageRoutingModule, HttpClientModule, SharedModule],
 })
 export class HomePageModule {}
