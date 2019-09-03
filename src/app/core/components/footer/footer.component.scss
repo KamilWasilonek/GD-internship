@@ -5,11 +5,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
 
   @include md {
     display: block;
   }
 }
+
 .footer__logo {
   flex-basis: 20%;
   &-text {
@@ -17,12 +20,6 @@
     @include md {
       display: none;
     }
-  }
-}
-.footer__logo {
-  flex-basis: 20%;
-  &-text {
-    font-size: $font-size-middle;
   }
 }
 .footer__list {
