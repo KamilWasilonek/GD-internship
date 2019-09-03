@@ -1,5 +1,10 @@
 @import 'variables';
 @import 'mixins';
+:host {
+  display: block;
+  background: #f6f8f9;
+}
+
 .adv {
   background-color: $main-background-color;
 }
@@ -10,4 +15,10 @@
   @include lg {
     padding-bottom: 8rem;
   }
+}
+
+.join-us {
+  display: block;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
 }
