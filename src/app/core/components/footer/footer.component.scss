@@ -1,0 +1,33 @@
+@import 'variables.scss';
+@import 'mixins.scss';
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+.footer__list {
+  display: flex;
+  justify-content: center;
+  flex-basis: 50%;
+  &-item {
+    font-size: $font-size-subTitleSmall;
+    padding-right: 2rem;
+    list-style: none;
+  }
+}
+.footer__item-link {
+  color: $font-links-color;
+  text-decoration: none;
+}
+.footer__payments {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 30%;
+
+  &-image {
+    width: 100%;
+  }
+}
