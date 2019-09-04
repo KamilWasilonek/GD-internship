@@ -6,7 +6,7 @@
   <form [formGroup]="subscriptionForm" (ngSubmit)="onSubmit()" class="join__sign-form">
     <div class="join__email-box">
       <img src="../../../../assets/icons/mail-icon.png" alt="Email" class="join__email-icon" />
-      <input formControlName="email" class="join__email-field" type="email" placeholder="type you email here" />
+      <input formControlName="email" class="join__email-field" type="email" placeholder="type you email here" #email />
       <p *ngIf="submitted && subscriptionForm.controls.email.errors?.required" class="join__email-error">
         Email is required
       </p>
