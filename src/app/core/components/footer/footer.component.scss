@@ -1,14 +1,10 @@
 @import 'variables.scss';
 @import 'mixins.scss';
-:host {
-  display: block;
-}
+
 .footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 3rem;
-  padding-bottom: 3rem;
 
   @include md {
     display: block;
