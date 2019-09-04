@@ -4,7 +4,7 @@
   <div *ngIf="!isDataLoading" class="container banner" [style.background-image]="sanitizeImage(backgroundImage)">
     <div class="banner__buttons-container">
       <button class="banner__slide-btn banner__slide-btn--prev" (click)="showPrevSlide($event)"></button>
-      <button class="banner__slide-btn banner__slide-btn--bigger"></button>
+      <div class="banner__slide-btn banner__slide-btn--bigger"></div>
       <button class="banner__slide-btn banner__slide-btn--next" (click)="showNextSlide($event)"></button>
     </div>
     <div class="banner__content">
