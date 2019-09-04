@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { JoinUserService } from './join-user.service';
 import { UserSubscription } from './user-subscription';
 import { validateEmail } from '@app/shared/functions/validations';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-join-us',
   templateUrl: './join-us.component.html',
   styleUrls: ['./join-us.component.scss'],
 })
-export class JoinUsComponent implements OnInit {
+export class JoinUsComponent implements OnInit, DoCheck, OnDestroy {
+  @ViewChild('email', { static: false }) email: ElementRef;
+
   subscriptionForm: FormGroup;
   submitted = false;
   userSubscription: UserSubscription;
@@ -17,7 +20,8 @@ export class JoinUsComponent implements OnInit {
   isSubscriptionCreated = false;
 
   constructor(private fb: FormBuilder, private joinService: JoinUserService) {}
-
+  private addToSubscription = false;
+  subscription: Subscription;
   ngOnInit() {
     this.subscriptionForm = this.fb.group({
       email: ['', [Validators.required, validateEmail]],
@@ -42,5 +46,20 @@ export class JoinUsComponent implements OnInit {
         }
       );
     }
+  }
+  onReceivedClick() {
+    if (this.addToSubscription) {
+      this.email.nativeElement.focus();
+    }
+  }
+  ngDoCheck() {
+    this.subscription = this.joinService.linkIsClicked.subscribe(click => {
+      this.addToSubscription = click;
+    });
+    this.onReceivedClick();
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }
