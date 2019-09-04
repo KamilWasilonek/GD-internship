@@ -29,3 +29,12 @@
     }
   }
 }
+
+.best-sales {
+  padding-top: 12rem;
+  display: block;
+  background-color: $main-background-color;
+  @include sm {
+    padding-top: 0;
+  }
+}
