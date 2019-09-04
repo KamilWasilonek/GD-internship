@@ -1,4 +1,4 @@
-// @import 'mixins.scss';
+@import 'mixins.scss';
 @import 'variables.scss';
 
 .banner {
@@ -40,6 +40,14 @@
         outline: 2px solid $title-color;
       }
     }
+  }
+
+  &__title {
+    @include heading;
+    color: $title-color;
+    font-size: $font-size-mainTitle;
+    font-family: $font-bold;
+    text-align: left;
   }
 
   &__proposition,

@@ -1,9 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Slide } from '@app/shared/interfaces/banner.interface';
+import { Component, OnDestroy } from '@angular/core';
+import { ISlide } from '@app/shared/interfaces/banner.interface';
 import { interval, Subscription } from 'rxjs';
-import { LatestProductsService } from '@app/shared/services/latest-products.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { delay } from 'rxjs/operators';
+import { HomepageService } from '@app/shared/services/homepage.service';
 
 @Component({
   selector: 'app-banner',
@@ -12,7 +12,7 @@ import { delay } from 'rxjs/operators';
 })
 export class BannerComponent implements OnDestroy {
   isDataLoading = true;
-  slides: Slide[];
+  slides: ISlide[];
   currentSlideIndex: number;
   backgroundImage: string;
   sliderInterval: Subscription;
@@ -21,13 +21,13 @@ export class BannerComponent implements OnDestroy {
     isError: false,
   };
 
-  constructor(private latestProductsService: LatestProductsService, private sanitizer: DomSanitizer) {
-    this.latestProductsService
-      .getSlides()
+  constructor(private homepageService: HomepageService, private sanitizer: DomSanitizer) {
+    this.homepageService
+      .getHompageData()
       .pipe(delay(3000))
       .subscribe(
-        slidesItems => {
-          this.slides = slidesItems;
+        homepageData => {
+          this.slides = homepageData.slideshow;
         },
         error => {
           this.spinner = {

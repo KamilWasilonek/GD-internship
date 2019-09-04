@@ -1,6 +1,5 @@
-const banners = require('../assets/mocks/banners.json');
-const filters = require('../assets/mocks/filters.json');
 const products = require('../assets/mocks/products.json');
+const filters = require('../assets/mocks/filters.json');
 const slideshow = require('../assets/mocks/slideshow.json');
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -111,9 +110,11 @@ function getHomepage(req, res) {
     randomProducts.add(cleanedUpProduct);
   }
 
+  const bestSales = productClone.slice(0,3);
+
   const homePageAggregated = {
     arrivals: Array.from(randomProducts),
-    banners,
+    bestSales: bestSales,
     slideshow,
   };
 

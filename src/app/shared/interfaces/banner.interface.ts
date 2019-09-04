@@ -1,7 +1,7 @@
-export interface Slide {
+export interface ISlide {
   title: string;
   proposition?: string;
-  description?: string;
-  price: number;
-  img: string;
+  description: string;
+  price: string;
+  img?: string;
 }
