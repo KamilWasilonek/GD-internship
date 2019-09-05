@@ -1,0 +1,77 @@
+@import 'variables.scss';
+@import 'mixins.scss';
+:host {
+  display: block;
+}
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+
+  @include md {
+    display: block;
+  }
+}
+.footer__logo {
+  flex-basis: 20%;
+  &-text {
+    font-size: $font-size-middle;
+    @include md {
+      display: none;
+    }
+  }
+}
+.footer__list {
+  display: flex;
+  justify-content: center;
+  flex-basis: 50%;
+  &-item {
+    font-size: $font-size-subTitleSmall;
+    padding-right: 2rem;
+    list-style: none;
+  }
+}
+.footer__item-link {
+  color: $font-links-color;
+  text-decoration: none;
+  &:last-child {
+    cursor: pointer;
+  }
+  &:hover {
+    color: $title-color;
+  }
+}
+.footer__payment {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 20%;
+  @include md {
+    padding-top: 1rem;
+  }
+
+  &-title {
+    padding-bottom: 1rem;
+    font-family: $font-bold;
+    font-size: $font-size-main;
+    color: $title-color;
+    @include md {
+      text-align: center;
+    }
+  }
+  &-container {
+    @include md {
+      display: block;
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  &-image {
+    width: 100%;
+    @include md {
+      width: 30%;
+    }
+  }
+}
