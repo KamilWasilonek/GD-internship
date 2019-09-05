@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
@@ -16,6 +17,7 @@ import { NavigationComponent } from './core/components/header/menu/navigation/na
 import { ActionsComponent } from './core/components/header/menu/actions/actions.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FooterComponent } from './core/components/footer/footer.component';
+import { JoinUsComponent } from '@core/components/join-us/join-us.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,8 +29,9 @@ import { FooterComponent } from './core/components/footer/footer.component';
     NavigationComponent,
     ActionsComponent,
     FooterComponent,
+    JoinUsComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FontAwesomeModule, SharedModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FontAwesomeModule, SharedModule, ReactiveFormsModule],
   providers: [
     {
       provide: ErrorHandler,

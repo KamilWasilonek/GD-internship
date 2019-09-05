@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { JoinUserService } from '@app/home-page/components/join-us/join-user.service';
+import { JoinUserService } from '@app/shared/services/join-user.service';
 
 @Component({
   selector: 'app-footer',

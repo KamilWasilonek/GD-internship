@@ -1,6 +1,6 @@
 import { Component, OnInit, DoCheck, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
-import { JoinUserService } from './join-user.service';
+import { JoinUserService } from '../../../shared/services/join-user.service';
 import { UserSubscription } from './user-subscription';
 import { validateEmail } from '@app/shared/functions/validations';
 import { Subscription } from 'rxjs';
