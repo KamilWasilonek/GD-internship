@@ -21,8 +21,8 @@ export class BannerComponent implements OnDestroy {
     isError: false,
   };
 
-  constructor(private homepageService: SliderService, private sanitizer: DomSanitizer) {
-    this.homepageService
+  constructor(private sliderService: SliderService, private sanitizer: DomSanitizer) {
+    this.sliderService
       .getSlideshow()
       .pipe(delay(3000))
       .subscribe(

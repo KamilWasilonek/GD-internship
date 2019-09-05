@@ -19,8 +19,8 @@ export class AdvertisementsComponent implements OnDestroy {
   currentIndex = 0;
   isDataLoading = true;
 
-  constructor(private homepageService: AdvertismentsService) {
-    this.homepageService
+  constructor(private advertismentsService: AdvertismentsService) {
+    this.advertismentsService
       .getAdvertisments()
       .pipe(delay(2000))
       .subscribe(
