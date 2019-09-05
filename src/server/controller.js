@@ -27,7 +27,7 @@ function getProducts(req, res) {
   let cleanedProducts = productsArrCopy.map(_cleanUpProductProperties);
 
   if (query.ids) {
-    const idsArr = req.query.ids.split(',').map(el => parseInt(el, radix));
+    const idsArr = req.query.ids.split(',').map(el => parseInt(el, 10));
 
     const productsArr = cleanedProducts.filter(el => idsArr.some(id => String(id) === el.id));
     responseProducts.products = productsArr;
@@ -36,7 +36,7 @@ function getProducts(req, res) {
   }
 
   if (query.price) {
-    const rangeArr = req.query.price.split(',').map(el => parseInt(el, radix));
+    const rangeArr = req.query.price.split(',').map(el => parseInt(el, 10));
     const fromPrice = Number(rangeArr[0]);
     const toPrice = Number(rangeArr[1]);
 
