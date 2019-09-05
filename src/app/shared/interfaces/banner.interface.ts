@@ -1,7 +1,7 @@
 export interface ISlide {
   title: string;
-  proposition?: string;
+  proposition: string;
   description: string;
   price: string;
-  img?: string;
+  img: string;
 }

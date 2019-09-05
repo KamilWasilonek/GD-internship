@@ -3,7 +3,7 @@ import { ISlide } from '@app/shared/interfaces/banner.interface';
 import { interval, Subscription } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
 import { delay } from 'rxjs/operators';
-import { HomepageService } from '@app/shared/services/homepage.service';
+import { SliderService } from '@app/shared/services/slider.service';
 
 @Component({
   selector: 'app-banner',
@@ -21,13 +21,13 @@ export class BannerComponent implements OnDestroy {
     isError: false,
   };
 
-  constructor(private homepageService: HomepageService, private sanitizer: DomSanitizer) {
+  constructor(private homepageService: SliderService, private sanitizer: DomSanitizer) {
     this.homepageService
-      .getHompageData()
+      .getSlideshow()
       .pipe(delay(3000))
       .subscribe(
-        homepageData => {
-          this.slides = homepageData.slideshow;
+        slideshow => {
+          this.slides = slideshow;
         },
         error => {
           this.spinner = {

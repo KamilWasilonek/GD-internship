@@ -1,3 +1,4 @@
-const homePageURL = 'http://localhost:3000/api/homepage';
+const slideshowURL = 'http://localhost:3000/api/slideshow';
+const advertismentsURL = 'http://localhost:3000/api/advertisments';
 
-export { homePageURL };
+export { slideshowURL, advertismentsURL };

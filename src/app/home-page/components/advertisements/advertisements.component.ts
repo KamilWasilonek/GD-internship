@@ -2,7 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { IAdvertisment } from '@app/shared/interfaces/adv.interface';
 import { delay } from 'rxjs/operators';
 import { Subscription, interval } from 'rxjs';
-import { HomepageService } from '@app/shared/services/homepage.service';
+import { AdvertismentsService } from '@app/shared/services/advertisments.service';
 
 @Component({
   selector: 'app-advertisements',
@@ -19,13 +19,13 @@ export class AdvertisementsComponent implements OnDestroy {
   currentIndex = 0;
   isDataLoading = true;
 
-  constructor(private homepageService: HomepageService) {
+  constructor(private homepageService: AdvertismentsService) {
     this.homepageService
-      .getHompageData()
+      .getAdvertisments()
       .pipe(delay(2000))
       .subscribe(
-        advItem => {
-          this.advertisments = advItem.slideshow;
+        advertisments => {
+          this.advertisments = advertisments;
         },
         error => {
           this.spinner = {
