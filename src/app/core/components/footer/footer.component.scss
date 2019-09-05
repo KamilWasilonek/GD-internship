@@ -2,6 +2,7 @@
 @import 'mixins.scss';
 :host {
   display: block;
+  background: $secondary-background-color;
 }
 .footer {
   display: flex;
