@@ -6,6 +6,7 @@
     "deprecation": {
       "severity": "warning"
     },
+    "radix": false,
     "semicolon": [true, "always"],
     "prefer-conditional-expression": false,
     "no-object-literal-type-assertion": false,
