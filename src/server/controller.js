@@ -1,7 +1,8 @@
 const products = require('../assets/mocks/products.json');
 const filters = require('../assets/mocks/filters.json');
 const slideshow = require('../assets/mocks/slideshow.json');
-const advertisments = require("../assets/mocks/adv.json")
+const advertisments = require('../assets/mocks/adv.json');
+const socials = require('../assets/config/social-links.json');
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const subscriptions = new Set();
@@ -15,6 +16,7 @@ module.exports = {
   getProductById,
   getProducts,
   getSlideshow,
+  getSocials,
   notFound,
 };
 const PRODUCTS_REDUNDANT_PROPS = ['relatedProducts', 'description'];
@@ -130,6 +132,10 @@ function getSlideshow(req, res) {
 
 function getAdvertisments(req, res) {
   res.json(advertisments);
+}
+
+function getSocials(req, res) {
+  res.json(socials);
 }
 
 function addSubscription(req, res) {
