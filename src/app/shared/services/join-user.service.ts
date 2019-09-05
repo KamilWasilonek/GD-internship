@@ -8,7 +8,7 @@ import { UserSubscription } from '@core/components/join-us/user-subscription';
   providedIn: 'root',
 })
 export class JoinUserService {
-  public linkWasClicked = false;
+  // public linkWasClicked = false;
   public linkIsClicked = new Subject<boolean>();
 
   constructor(private http: HttpClient) {}
@@ -17,6 +17,6 @@ export class JoinUserService {
     return this.http.post(subscriptionsURL, userSubscription);
   }
   sendClick() {
-    return this.linkIsClicked.next((this.linkWasClicked = true));
+    return this.linkIsClicked.next();
   }
 }
