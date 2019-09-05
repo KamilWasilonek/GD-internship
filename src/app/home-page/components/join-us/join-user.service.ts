@@ -21,7 +21,4 @@ export class JoinUserService {
   sendClick() {
     return this.linkIsClicked.next((this.linkWasClicked = true));
   }
-  receiveClick() {
-    return this.linkWasClicked;
-  }
 }

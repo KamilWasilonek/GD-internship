@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './join-us.component.html',
   styleUrls: ['./join-us.component.scss'],
 })
-export class JoinUsComponent implements OnInit, DoCheck, OnDestroy {
+export class JoinUsComponent implements OnInit, OnDestroy {
   @ViewChild('email', { static: false }) email: ElementRef;
 
   subscriptionForm: FormGroup;
@@ -20,13 +20,13 @@ export class JoinUsComponent implements OnInit, DoCheck, OnDestroy {
   isSubscriptionCreated = false;
 
   constructor(private fb: FormBuilder, private joinService: JoinUserService) {}
-  private addToSubscription = false;
-  private isFocused = false;
-
   subscription: Subscription;
   ngOnInit() {
     this.subscriptionForm = this.fb.group({
       email: ['', [Validators.required, validateEmail]],
+    });
+    this.subscription = this.joinService.linkIsClicked.subscribe(() => {
+      this.email.nativeElement.focus();
     });
   }
 
@@ -48,24 +48,6 @@ export class JoinUsComponent implements OnInit, DoCheck, OnDestroy {
         }
       );
     }
-  }
-  onReceivedClick() {
-    if (this.addToSubscription) {
-      this.email.nativeElement.focus();
-      this.isFocused = true;
-    }
-  }
-  onBlur() {
-    if (this.isFocused) {
-      this.email.nativeElement.blur();
-      this.isFocused = false;
-    }
-  }
-  ngDoCheck() {
-    this.subscription = this.joinService.linkIsClicked.subscribe(click => {
-      this.addToSubscription = click;
-    });
-    this.onReceivedClick();
   }
 
   ngOnDestroy() {
