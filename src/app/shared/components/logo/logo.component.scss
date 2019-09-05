@@ -3,11 +3,6 @@
 
 .logo {
   width: 12rem;
-  @include md {
-    width: 8rem;
-    margin: 0 auto;
-    padding-bottom: 2rem;
-  }
   &__image {
     width: 100%;
   }
