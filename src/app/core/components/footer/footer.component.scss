@@ -10,7 +10,6 @@
     display: block;
   }
 }
-
 .footer__logo {
   flex-basis: 20%;
   &-text {
@@ -18,12 +17,6 @@
     @include md {
       display: none;
     }
-  }
-}
-.footer__logo {
-  flex-basis: 20%;
-  &-text {
-    font-size: $font-size-middle;
   }
 }
 .footer__list {
