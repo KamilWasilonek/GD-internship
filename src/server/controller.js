@@ -1,7 +1,7 @@
 const products = require('../assets/mocks/products.json');
 const filters = require('../assets/mocks/filters.json');
 const slideshow = require('../assets/mocks/slideshow.json');
-const advertisments = require("../assets/mocks/adv.json")
+const advertisments = require('../assets/mocks/adv.json');
 const socials = require('../assets/config/social-links.json');
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -135,10 +135,14 @@ function getAdvertisments(req, res) {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 function getSocials(req, res) {
 =======
 function getSocials(req,res) {
 >>>>>>> 24c75af5114dd3ab0cbed9880121db2355f57ead
+=======
+function getSocials(req, res) {
+>>>>>>> Change :host and homepage html
   res.json(socials);
 }
 

@@ -2,34 +2,36 @@
 @import 'mixins';
 :host {
   display: block;
-  background: #f6f8f9;
-}
-
-.adv {
-  background-color: $main-background-color;
-}
-.view-more {
-  display: block;
   background: $main-background-color;
-  padding-bottom: 12rem;
-  @include lg {
-    padding-bottom: 8rem;
-  }
 }
 
-.join-us {
-  display: block;
-  padding-top: 4rem;
-  padding-bottom: 4rem;
-}
-
-.arrivals {
+.homepage {
   padding-top: 12rem;
-  padding-bottom: 8rem;
-  background-color: $main-background-color;
 
   @include lg {
     padding-top: 8rem;
-    padding-bottom: 6rem;
+  }
+
+  &__view-more {
+    display: block;
+    margin-bottom: 12rem;
+    @include lg {
+      margin-bottom: 8rem;
+    }
+  }
+
+  &__join-us {
+    display: block;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  &__arrivals {
+    margin-bottom: 8rem;
+    display: block;
+
+    @include lg {
+      margin-bottom: 6rem;
+    }
   }
 }

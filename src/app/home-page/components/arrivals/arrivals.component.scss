@@ -1,9 +1,6 @@
 @import 'mixins.scss';
 @import 'variables.scss';
 
-:host {
-  display: block;
-}
 .arrivals {
   &__heading {
     @include heading;
