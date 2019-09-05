@@ -1,7 +1,7 @@
-const banners = require('../assets/mocks/banners.json');
-const filters = require('../assets/mocks/filters.json');
 const products = require('../assets/mocks/products.json');
+const filters = require('../assets/mocks/filters.json');
 const slideshow = require('../assets/mocks/slideshow.json');
+const advertisments = require("../assets/mocks/adv.json")
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const subscriptions = new Set();
@@ -9,10 +9,12 @@ const subscriptions = new Set();
 module.exports = {
   addSubscription,
   deleteSubscription,
+  getAdvertisments,
   getFilters,
   getHomepage,
   getProductById,
   getProducts,
+  getSlideshow,
   notFound,
 };
 const PRODUCTS_REDUNDANT_PROPS = ['relatedProducts', 'description'];
@@ -111,13 +113,23 @@ function getHomepage(req, res) {
     randomProducts.add(cleanedUpProduct);
   }
 
+  const bestSales = productClone.slice(0, 3);
+
   const homePageAggregated = {
     arrivals: Array.from(randomProducts),
-    banners,
+    bestSales: bestSales,
     slideshow,
   };
 
   res.json(homePageAggregated);
+}
+
+function getSlideshow(req, res) {
+  res.json(slideshow);
+}
+
+function getAdvertisments(req, res) {
+  res.json(advertisments);
 }
 
 function addSubscription(req, res) {

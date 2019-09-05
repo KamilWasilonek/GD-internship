@@ -16,6 +16,32 @@ route which returns home-page data
 }
 ```
 
+### GET api/slideshow
+route which returns banner slider data
+
+**Response**
+
+*Status Code: 200*
+
+```ts
+{
+  slideshow: ISlide[]
+}
+```
+
+### GET api/advertisments
+route which returns advertisments
+
+**Response**
+
+*Status Code: 200*
+
+```ts
+{
+  slideshow: IAdvertisment[]
+}
+```
+
 ### POST api/subscriptions
 add email to subscriptions
 
