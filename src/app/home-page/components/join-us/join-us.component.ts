@@ -21,6 +21,8 @@ export class JoinUsComponent implements OnInit, DoCheck, OnDestroy {
 
   constructor(private fb: FormBuilder, private joinService: JoinUserService) {}
   private addToSubscription = false;
+  private isFocused = false;
+
   subscription: Subscription;
   ngOnInit() {
     this.subscriptionForm = this.fb.group({
@@ -50,6 +52,13 @@ export class JoinUsComponent implements OnInit, DoCheck, OnDestroy {
   onReceivedClick() {
     if (this.addToSubscription) {
       this.email.nativeElement.focus();
+      this.isFocused = true;
+    }
+  }
+  onBlur() {
+    if (this.isFocused) {
+      this.email.nativeElement.blur();
+      this.isFocused = false;
     }
   }
   ngDoCheck() {
