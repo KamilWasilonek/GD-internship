@@ -101,9 +101,17 @@
     }
   }
 
-  &__star-icon {
+  &__star-icon,
+  &__star-icon-light {
     font-size: $font-size-main;
+  }
+
+  &__star-icon {
     color: #dfe3e6;
+  }
+
+  &__star-icon-light {
+    color: $title-color;
   }
 
   &__shopping-icon {

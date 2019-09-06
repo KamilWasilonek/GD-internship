@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductsService } from '../../../shared/services/products.service';
+import { BestsellersService } from '../../../shared/services/bestsellers.service';
 import { IBestsellerItem } from '../../../shared/interfaces/bestseller-item.interface';
 
 @Component({
@@ -9,9 +9,9 @@ import { IBestsellerItem } from '../../../shared/interfaces/bestseller-item.inte
 })
 export class BestSalesComponent implements OnInit {
   products: IBestsellerItem[];
-  constructor(private productsService: ProductsService) {}
+  constructor(private bestsellersService: BestsellersService) {}
 
   ngOnInit() {
-    this.productsService.getProducts().subscribe(data => (this.products = data.slice(0, 3)));
+    this.bestsellersService.getBestsellers().subscribe(data => (this.products = data.products));
   }
 }

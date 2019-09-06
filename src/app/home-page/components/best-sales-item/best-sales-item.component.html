@@ -3,13 +3,12 @@
     <img src="{{ product.thumbnailImageSrc }}" alt="product-image" />
   </figure>
   <div class="best-sales-item__details">
-    <app-small-title class="best-sales-item__title" description="{{ product.name }}"></app-small-title>
+    <app-small-title class="best-sales-item__title" [description]="product.name"></app-small-title>
     <div class="best-sales-item__container">
       <div class="best-sales-item__icons-container">
         <fa-icon
-          *ngFor="let number of [1, 2, 3, 4, 5]"
-          [ngStyle]="{ color: number > product.rating ? '#dfe3e6' : '#e36f23' }"
-          class="best-sales-item__star-icon"
+          *ngFor="let number of ratingStarsArr"
+          [ngClass]="number > product.rating ? 'best-sales-item__star-icon' : 'best-sales-item__star-icon-light'"
           [icon]="starIcon"
         >
         </fa-icon>

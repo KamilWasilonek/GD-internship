@@ -11,6 +11,7 @@ export class BestSalesItemComponent implements OnInit {
   @Input() product: IBestsellerItem;
   starIcon = faStar;
   shoppingIcon = faCartPlus;
+  ratingStarsArr: number[] = [1, 2, 3, 4, 5];
   constructor() {}
 
   ngOnInit() {}

@@ -6,10 +6,10 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class ProductsService {
+export class BestsellersService {
   constructor(private http: HttpClient) {}
 
-  public getProducts(): Observable<IBestsellerItem[]> {
-    return this.http.get<IBestsellerItem[]>('../../../assets/mocks/products.json');
+  public getBestsellers(): Observable<{ products: IBestsellerItem[] }> {
+    return this.http.get<{ products: IBestsellerItem[] }>('https://project-angular-gd.herokuapp.com/api/products?ids=1,3,6');
   }
 }
