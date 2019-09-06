@@ -1,7 +1,7 @@
-<app-banner></app-banner>
+<app-banner *ngIf="flags.isBannerVisible"></app-banner>
 <div class="container homepage">
-  <app-arrivals class="homepage__arrivals"></app-arrivals>
-  <app-view-more class="homepage__view-more"></app-view-more>
-  <app-advertisements class="homepage__adv"></app-advertisements>
-  <app-best-sales class="homepage__best-sales"></app-best-sales>
+  <app-arrivals *ngIf="flags.isArrivalsVisible" class="homepage__arrivals"></app-arrivals>
+  <app-view-more *ngIf="flags.isViewMoreVisible" class="homepage__view-more"></app-view-more>
+  <app-advertisements *ngIf="flags.isAdvertismentsVisible" class="homepage__adv"></app-advertisements>
+  <app-best-sales *ngIf="flags.isBestSalesVisible" class="homepage__best-sales"></app-best-sales>
 </div>
