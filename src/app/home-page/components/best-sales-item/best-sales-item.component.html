@@ -1,0 +1,21 @@
+<div class="best-sales-item">
+  <figure class="best-sales-item__img">
+    <img src="{{ product.thumbnailImageSrc }}" alt="product-image" />
+  </figure>
+  <div class="best-sales-item__details">
+    <app-small-title class="best-sales-item__title" [description]="product.name"></app-small-title>
+    <div class="best-sales-item__container">
+      <div class="best-sales-item__icons-container">
+        <fa-icon
+          *ngFor="let number of ratingStarsArr"
+          [ngClass]="number > product.rating ? 'best-sales-item__star-icon' : 'best-sales-item__star-icon-light'"
+          [icon]="starIcon"
+        >
+        </fa-icon>
+      </div>
+      <app-small-title class="best-sales-item__price" description="${{ product.price }}"></app-small-title>
+      <fa-icon class="best-sales-item__shopping-icon" [icon]="shoppingIcon"></fa-icon>
+      <app-small-title class="best-sales-item__add-to-card" description="add to cart"></app-small-title>
+    </div>
+  </div>
+</div>

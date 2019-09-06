@@ -28,4 +28,13 @@
       margin-bottom: 6rem;
     }
   }
+
+  &__best-sales {
+    margin-top: 12rem;
+    display: block;
+
+    @include sm {
+      margin-top: 0;
+    }
+  }
 }
