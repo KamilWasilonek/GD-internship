@@ -2,17 +2,30 @@
 @import 'mixins';
 :host {
   display: block;
-  background: #f6f8f9;
+  background: $main-background-color;
 }
 
-.adv {
-  background-color: $main-background-color;
-}
-.view-more {
-  display: block;
-  background: $main-background-color;
-  padding-bottom: 12rem;
+.homepage {
+  padding-top: 12rem;
+
   @include lg {
-    padding-bottom: 8rem;
+    padding-top: 8rem;
+  }
+
+  &__view-more {
+    display: block;
+    margin-bottom: 12rem;
+    @include lg {
+      margin-bottom: 8rem;
+    }
+  }
+
+  &__arrivals {
+    margin-bottom: 8rem;
+    display: block;
+
+    @include lg {
+      margin-bottom: 6rem;
+    }
   }
 }

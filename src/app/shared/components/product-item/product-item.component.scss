@@ -23,6 +23,10 @@
     padding: 1rem;
   }
 
+  &:hover {
+    box-shadow: 0.3rem 0.3rem 0.7rem $font-color-lighter;
+  }
+
   &:hover &__price {
     display: none;
   }

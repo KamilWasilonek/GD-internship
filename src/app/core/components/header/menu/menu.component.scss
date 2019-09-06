@@ -1,5 +1,9 @@
 @import 'mixins.scss';
 
+:host {
+  display: block;
+  background: $secondary-background-color;
+}
 .menu {
   padding-top: 4.2rem;
   padding-bottom: 4.2rem;
