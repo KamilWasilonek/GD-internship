@@ -134,15 +134,7 @@ function getAdvertisments(req, res) {
   res.json(advertisments);
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 function getSocials(req, res) {
-=======
-function getSocials(req,res) {
->>>>>>> 24c75af5114dd3ab0cbed9880121db2355f57ead
-=======
-function getSocials(req, res) {
->>>>>>> Change :host and homepage html
   res.json(socials);
 }
 
