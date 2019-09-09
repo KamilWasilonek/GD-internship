@@ -161,15 +161,15 @@
     border-radius: 50%;
   }
   &__color-icon:nth-child(1) {
-    background-color: #ca4850;
+    background-color: $product-color-first;
   }
   &__color-icon:nth-child(2) {
-    background-color: #49525d;
+    background-color: $product-color-second;
   }
   &__color-icon:nth-child(3) {
-    background-color: #79c0fd;
+    background-color: $product-color-third;
   }
   &__color-icon:nth-child(4) {
-    background-color: #81db7f;
+    background-color: $product-color-fourth;
   }
 }

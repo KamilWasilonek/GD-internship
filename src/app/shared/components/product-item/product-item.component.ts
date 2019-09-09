@@ -9,6 +9,7 @@ import { IArrivals } from '@app/shared/interfaces/arrivals.interface';
 })
 export class ProductItemComponent implements OnInit {
   @Input() product: IArrivals;
+  description: string;
   shareIcon = faShare;
   shoppingIcon = faShoppingCart;
   heartIcon = faHeart;
