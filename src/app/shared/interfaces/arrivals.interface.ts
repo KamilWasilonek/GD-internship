@@ -3,4 +3,5 @@ export interface IArrivals {
   price: number;
   sizes: string[];
   thumbnailImageSrc: string;
+  swatches?: [];
 }

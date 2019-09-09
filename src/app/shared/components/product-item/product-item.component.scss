@@ -143,7 +143,7 @@
     margin: 5% auto 0 auto;
     width: 70%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     cursor: pointer;
 
     @include xxl {
@@ -159,17 +159,5 @@
     width: 1.5rem;
     height: 1.5rem;
     border-radius: 50%;
-  }
-  &__color-icon:nth-child(1) {
-    background-color: $product-color-first;
-  }
-  &__color-icon:nth-child(2) {
-    background-color: $product-color-second;
-  }
-  &__color-icon:nth-child(3) {
-    background-color: $product-color-third;
-  }
-  &__color-icon:nth-child(4) {
-    background-color: $product-color-fourth;
   }
 }

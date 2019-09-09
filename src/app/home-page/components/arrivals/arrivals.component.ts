@@ -10,6 +10,7 @@ import { map } from 'rxjs/internal/operators/map';
 })
 export class ArrivalsComponent implements OnInit {
   products: IArrivals[];
+
   constructor(private arrivals: ArrivalsService) {}
 
   ngOnInit() {
@@ -17,7 +18,7 @@ export class ArrivalsComponent implements OnInit {
       .getArrivals()
       .pipe(map(data => data.products))
       .subscribe(newArrivals => {
-        return (this.products = newArrivals);
+        this.products = newArrivals;
       });
   }
 }

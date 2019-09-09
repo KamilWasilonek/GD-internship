@@ -1,6 +1,6 @@
 <div class="product-item">
   <figure class="product-item__img">
-    <img src="{{ product.thumbnailImageSrc }}" alt="product-image" />
+    <img src="{{ product.thumbnailImageSrc }}" alt="product-image" #image />
   </figure>
   <div class="product-item__details">
     <app-small-title class="product-item__title" [description]="product.name"></app-small-title>
@@ -12,10 +12,12 @@
       <li class="product-item__size" *ngFor="let size of product.sizes">{{ size | lowercase }}</li>
     </ul>
     <div class="product-item__colors-option">
-      <span class="product-item__color-icon"></span>
-      <span class="product-item__color-icon"></span>
-      <span class="product-item__color-icon"></span>
-      <span class="product-item__color-icon"></span>
+      <span
+        class="product-item__color-icon"
+        *ngFor="let item of swatches"
+        [ngStyle]="{ 'background-color': item.color }"
+        (click)="onChangeImage(item)"
+      ></span>
     </div>
   </div>
   <div class="product-item__actions-container">
