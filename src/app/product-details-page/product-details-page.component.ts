@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewChecked, AfterContentChecked } from '@angular/core';
+import { Component, OnInit, AfterViewChecked, AfterContentChecked, OnChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, delay } from 'rxjs/operators';
@@ -12,7 +12,7 @@ import { IProductOptions } from '@app/shared/interfaces/product-detail/product-o
   templateUrl: './product-details-page.component.html',
   styleUrls: ['./product-details-page.component.scss'],
 })
-export class ProductDetailsPageComponent implements AfterViewChecked {
+export class ProductDetailsPageComponent implements OnChanges {
   id: Observable<string>;
   productDetails: IProductDetails;
   productDescription: IProductDescription;
@@ -22,7 +22,7 @@ export class ProductDetailsPageComponent implements AfterViewChecked {
     gallery: false,
     description: false,
     options: false,
-    addTOCart: false,
+    addToCart: false,
   };
 
   spinnerMessage = {
@@ -33,46 +33,52 @@ export class ProductDetailsPageComponent implements AfterViewChecked {
   constructor(private route: ActivatedRoute, private productDetailsService: ProductDetailsService) {
     this.id = route.params.pipe(map(params => params.id));
 
-    this.productDetailsService
-      .getProductDetails()
-      .pipe(delay(2000))
-      .subscribe(
-        details => {
-          this.productDetails = details;
+    this.productDetailsService.getProductDetails().subscribe(
+      details => {
+        this.productDetails = details;
 
-          this.productDescription = {
-            name: this.productDetails.name,
-            title: this.productDetails.title,
-            description: this.productDetails.description,
-          };
-          this.productOptions = {
-            sizes: this.productDetails.sizes,
-            amountInStock: this.productDetails.amountInStock,
-          };
-        },
-        error => {
-          console.log('Loading error.');
-        },
-        () => {
-          this.isDataLoading = false;
-        }
-      );
+        this.productDescription = {
+          name: this.productDetails.name,
+          title: this.productDetails.title,
+          description: this.productDetails.description,
+        };
+        this.productOptions = {
+          sizes: this.productDetails.sizes,
+          amountInStock: this.productDetails.amountInStock,
+        };
+      },
+      error => {
+        console.log('Loading error.');
+      },
+      () => {
+        this.isDataLoading = false;
+      }
+    );
   }
 
   checkChildStatus() {
-    console.log(this.childComponentsLoadingStatus);
-    console.log(
-      Object.values(this.childComponentsLoadingStatus).every(value => {
-        return value === true;
-      })
-    );
+    return Object.values(this.childComponentsLoadingStatus).every(value => {
+      return value === true;
+    });
   }
 
   changeGalleryStatus(status: boolean) {
     this.childComponentsLoadingStatus.gallery = status;
   }
 
-  ngAfterViewChecked() {
-    this.checkChildStatus();
+  changeDescriptionStatus(status: boolean) {
+    this.childComponentsLoadingStatus.description = status;
+  }
+
+  changeOptionsStatus(status: boolean) {
+    this.childComponentsLoadingStatus.options = status;
+  }
+
+  changeAddToCartStatus(status: boolean) {
+    this.childComponentsLoadingStatus.addToCart = status;
+  }
+
+  ngOnChanges() {
+    this.isDataLoading = this.checkChildStatus();
   }
 }

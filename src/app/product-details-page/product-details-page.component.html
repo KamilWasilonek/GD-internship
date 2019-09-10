@@ -4,9 +4,9 @@
   <div *ngIf="!isDataLoading" class="details__container">
     <app-gallery (imagesStatus)="changeGalleryStatus($event)" [productImages]="productDetails.thumbnailImageSrc"></app-gallery>
     <div class="details__content">
-      <app-description [productDescription]="productDescription"></app-description>
-      <app-options [productOptions]="productOptions"></app-options>
-      <app-add-to-cart [productPrice]="productDetails.price"></app-add-to-cart>
+      <app-description (descriptionStatus)="changeDescriptionStatus($event)" [productDescription]="productDescription"></app-description>
+      <app-options (optionsStatus)="changeOptionsStatus($event)" [productOptions]="productOptions"></app-options>
+      <app-add-to-cart (addToCartStatus)="changeAddToCartStatus($event)" [productPrice]="productDetails.price"></app-add-to-cart>
     </div>
   </div>
 </section>

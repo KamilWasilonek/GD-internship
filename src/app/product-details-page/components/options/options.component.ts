@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, AfterViewInit } from '@angular/core';
 import { IProductOptions } from '@app/shared/interfaces/product-detail/product-options.interface';
 
 @Component({
@@ -6,10 +6,15 @@ import { IProductOptions } from '@app/shared/interfaces/product-detail/product-o
   templateUrl: './options.component.html',
   styleUrls: ['./options.component.scss'],
 })
-export class OptionsComponent implements OnInit {
+export class OptionsComponent implements AfterViewInit {
   @Input() productOptions: IProductOptions;
+  @Output() optionsStatus = new EventEmitter<boolean>();
 
   constructor() {}
 
-  ngOnInit() {}
+  ngAfterViewInit() {
+    if (this.productOptions) {
+      this.optionsStatus.emit(true);
+    }
+  }
 }

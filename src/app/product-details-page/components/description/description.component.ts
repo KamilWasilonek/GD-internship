@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, AfterViewInit } from '@angular/core';
 import { IProductDescription } from '@app/shared/interfaces/product-detail/product-description.interface';
 
 @Component({
@@ -6,10 +6,15 @@ import { IProductDescription } from '@app/shared/interfaces/product-detail/produ
   templateUrl: './description.component.html',
   styleUrls: ['./description.component.scss'],
 })
-export class DescriptionComponent implements OnInit {
+export class DescriptionComponent implements AfterViewInit {
   @Input() productDescription: IProductDescription;
+  @Output() descriptionStatus = new EventEmitter<boolean>();
 
   constructor() {}
 
-  ngOnInit() {}
+  ngAfterViewInit() {
+    if (this.productDescription) {
+      this.descriptionStatus.emit(true);
+    }
+  }
 }

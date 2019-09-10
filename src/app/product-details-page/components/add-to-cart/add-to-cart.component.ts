@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-add-to-cart',
@@ -7,8 +7,13 @@ import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 })
 export class AddToCartComponent implements AfterViewInit {
   @Input() productPrice: number;
+  @Output() addToCartStatus = new EventEmitter<boolean>();
 
   constructor() {}
 
-  ngAfterViewInit() {}
+  ngAfterViewInit() {
+    if (this.productPrice) {
+      this.addToCartStatus.emit(true);
+    }
+  }
 }
