@@ -1,0 +1,3 @@
+<div *ngIf="productImages" class="gallery">
+  <img class="gallery__image" src="{{ productImages }}" (load)="changeImageStatus()" />
+</div>

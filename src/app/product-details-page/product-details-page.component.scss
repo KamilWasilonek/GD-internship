@@ -1,0 +1,19 @@
+@import 'variables.scss';
+
+.details {
+  padding-top: 10rem;
+  padding-bottom: 10rem;
+  background: $secondary-background-color;
+  border-top: 1px solid $section-border;
+
+  &__container {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    grid-column-gap: 6rem;
+  }
+
+  &__content {
+    display: grid;
+    grid-template-rows: 40% 30% 30%;
+  }
+}
