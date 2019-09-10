@@ -1,4 +1,4 @@
-// @import 'mixins.scss';
+@import 'mixins.scss';
 @import 'variables.scss';
 
 .banner {
@@ -31,13 +31,23 @@
       height: 3.6rem;
       background: $title-color;
       margin: 1rem 0;
-      outline: none;
     }
 
     &--prev,
     &--next {
       cursor: pointer;
+      &:focus {
+        outline: 2px solid $title-color;
+      }
     }
+  }
+
+  &__title {
+    @include heading;
+    color: $title-color;
+    font-size: $font-size-mainTitle;
+    font-family: $font-bold;
+    text-align: left;
   }
 
   &__proposition,

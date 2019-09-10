@@ -1,0 +1,115 @@
+@import 'mixins.scss';
+@import 'variables.scss';
+
+.join {
+  padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+  background: #fff;
+
+  @include xl {
+    display: block;
+  }
+
+  &__description,
+  &__sign-form {
+    display: flex;
+    align-items: center;
+    flex-basis: 50%;
+  }
+
+  &__description {
+    flex-basis: 50%;
+
+    @include xl {
+      justify-content: center;
+    }
+  }
+
+  &__title {
+    @include heading;
+    margin-right: 2rem;
+    color: $title-color;
+    font-size: $font-size-subTitleSmall;
+    text-align: left;
+  }
+
+  &__sub-title {
+    font-family: $font-italic;
+    font-size: $font-size-middle;
+  }
+
+  &__sign-form {
+    justify-content: space-between;
+
+    @include xl {
+      display: block;
+      text-align: center;
+    }
+  }
+
+  &__email-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include xl {
+      margin: 2rem 0;
+    }
+  }
+
+  &__email-icon {
+    width: 2.5rem;
+    margin-right: 1rem;
+  }
+
+  &__email-field {
+    padding: 0.5rem 0.5rem 0.5rem 1rem;
+    border: none;
+    font-size: $font-size-small;
+
+    &::placeholder {
+      font-style: italic;
+    }
+
+    &:focus,
+    &:active {
+      outline-color: $title-color;
+    }
+  }
+
+  &__email-error,
+  &__email-success {
+    margin-left: 1rem;
+    padding: 0.8rem;
+    font-size: $font-size-small;
+    text-align: center;
+  }
+
+  &__email-error {
+    background: #ffbaba;
+    color: #d8000c;
+  }
+
+  &__email-success {
+    background: #5aa944;
+    color: #fff;
+  }
+
+  &__sign-btn {
+    padding: 2rem;
+    background: $title-color;
+    color: #fff;
+    font-size: $font-size-small;
+    border: none;
+
+    &:active,
+    &:focus {
+      outline-color: $title-color;
+    }
+
+    @include xl {
+      padding: 1.5rem;
+    }
+  }
+}

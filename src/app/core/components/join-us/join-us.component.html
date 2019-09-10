@@ -1,0 +1,22 @@
+<section class="join">
+  <div class="join__description">
+    <h2 class="join__title">news letter</h2>
+    <p class="join__sub-title">join us now to get all news and special offers</p>
+  </div>
+  <form [formGroup]="subscriptionForm" (ngSubmit)="onSubmit()" class="join__sign-form">
+    <div class="join__email-box">
+      <img src="../../../../assets/icons/mail-icon.png" alt="Email" class="join__email-icon" />
+      <input formControlName="email" class="join__email-field" type="email" placeholder="type you email here" #email />
+      <p *ngIf="submitted && subscriptionForm.controls.email.errors?.required" class="join__email-error">
+        Email is required
+      </p>
+      <p *ngIf="submitted && subscriptionForm.controls.email.errors?.validEmail" class="join__email-error">
+        Email is invalid
+      </p>
+      <p *ngIf="serverMessage" class="join__email-error" [ngClass]="{ 'join__email-success': isSubscriptionCreated }">
+        {{ serverMessage }}
+      </p>
+    </div>
+    <button type="submit" class="join__sign-btn">join us</button>
+  </form>
+</section>

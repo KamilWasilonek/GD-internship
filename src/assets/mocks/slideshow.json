@@ -1,6 +1,23 @@
 [
-  "assets/img/slideshow/banner-main1-1540x650.jpg",
-  "assets/img/slideshow/banner-main2-1540x650.jpg",
-  "assets/img/slideshow/forged-ground-featured-official-merch-es-1540x650.jpg",
-  "assets/img/slideshow/viking-medieval-escudos-cascos-cuernos-espadass-accesorios-forgedground-1540x650.jpg"
+  {
+    "title": "FULL WINTER KIT",
+    "proposition": "Half Jacket + Skiny Trousers + Boot leather",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry",
+    "price": 120,
+    "img": "../../../../assets/img/slideshow/slide-1.jpg"
+  },
+  {
+    "title": "SUMMER SHIRT",
+    "proposition": "Skiny Trousers + Boot leather",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Dummy text of the printing and typesetting industry",
+    "price": 300,
+    "img": "../../../../assets/img/slideshow/slide-2.jpg"
+  },
+  {
+    "title": "WINTER SHOES",
+    "proposition": "Skiny Trousers + Boot leather",
+    "description": "Lorem Ipsum is simply",
+    "price": 450,
+    "img": "../../../../assets/img/slideshow/slide-3.jpg"
+  }
 ]

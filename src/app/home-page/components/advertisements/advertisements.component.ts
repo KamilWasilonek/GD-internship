@@ -1,8 +1,8 @@
 import { Component, OnDestroy } from '@angular/core';
-import { AdvService } from '@app/shared/services/adv.service';
-import { Advertisment } from '@app/shared/interfaces/adv.interface';
+import { IAdvertisment } from '@app/shared/interfaces/adv.interface';
 import { delay } from 'rxjs/operators';
 import { Subscription, interval } from 'rxjs';
+import { AdvertismentsService } from '@app/shared/services/advertisments.service';
 
 @Component({
   selector: 'app-advertisements',
@@ -10,7 +10,7 @@ import { Subscription, interval } from 'rxjs';
   styleUrls: ['./advertisements.component.scss'],
 })
 export class AdvertisementsComponent implements OnDestroy {
-  advertisments: Advertisment[];
+  advertisments: IAdvertisment[];
   sliderInterval: Subscription;
   spinner = {
     message: 'Loading latest products',
@@ -19,13 +19,13 @@ export class AdvertisementsComponent implements OnDestroy {
   currentIndex = 0;
   isDataLoading = true;
 
-  constructor(private advService: AdvService) {
-    this.advService
-      .getAdv()
+  constructor(private advertismentsService: AdvertismentsService) {
+    this.advertismentsService
+      .getAdvertisments()
       .pipe(delay(2000))
       .subscribe(
-        advItem => {
-          this.advertisments = advItem;
+        advertisments => {
+          this.advertisments = advertisments;
         },
         error => {
           this.spinner = {
