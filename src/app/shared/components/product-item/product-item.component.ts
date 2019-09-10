@@ -10,6 +10,7 @@ import { IArrivals } from '@app/shared/interfaces/arrivals.interface';
 export class ProductItemComponent implements OnInit {
   @Input() product: IArrivals;
   @ViewChild('image', { static: false }) image: ElementRef;
+  price: string;
   swatches = [];
   description: string;
   shareIcon = faShare;
@@ -20,6 +21,7 @@ export class ProductItemComponent implements OnInit {
 
   ngOnInit() {
     this.swatches = this.product.swatches;
+    this.price = `${this.product.price} $`;
     console.log(this.swatches);
   }
 
