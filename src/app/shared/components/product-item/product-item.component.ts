@@ -22,7 +22,6 @@ export class ProductItemComponent implements OnInit {
   ngOnInit() {
     this.swatches = this.product.swatches;
     this.price = `${this.product.price} $`;
-    console.log(this.swatches);
   }
 
   onChangeImage(item) {
