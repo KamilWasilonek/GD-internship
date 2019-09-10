@@ -2,13 +2,48 @@
 @import 'variables.scss';
 
 .banner {
+  position: relative;
   display: flex;
-  line-height: 4rem;
-  padding-top: 20rem;
-  padding-bottom: 20rem;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+  height: 650px;
+  align-items: center;
+  overflow: hidden;
+
+  @include lg {
+    height: 550px;
+  }
+
+  @include md {
+    height: 500px;
+  }
+
+  @include sm {
+    display: none;
+  }
+
+  &__spinner {
+    margin: 0 auto;
+  }
+
+  &__bg {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+
+    @include xl {
+      height: 100%;
+    }
+  }
+
+  &__details {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    right: 10%;
+    transform: translate(0, -50%);
+    z-index: 2;
+    display: flex;
+    line-height: 4rem;
+  }
 
   &__loading-icon {
     padding-top: 10rem;

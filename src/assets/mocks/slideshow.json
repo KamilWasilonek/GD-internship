@@ -9,15 +9,15 @@
   {
     "title": "SUMMER SHIRT",
     "proposition": "Skiny Trousers + Boot leather",
-    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Dummy text of the printing and typesetting industry",
+    "description": "Explicabo sequi laudantium omnis adipisci, aspernatur dolor saepe eum accusantium consectetur nemo.",
     "price": 300,
-    "img": "../../../../assets/img/slideshow/slide-2.jpg"
+    "img": "../../../../assets/img/slideshow/slide-2.jpeg"
   },
   {
     "title": "WINTER SHOES",
     "proposition": "Skiny Trousers + Boot leather",
-    "description": "Lorem Ipsum is simply",
+    "description": "Lorem Ipsum is simply,aspernatur dolor saepe eum accusantium",
     "price": 450,
-    "img": "../../../../assets/img/slideshow/slide-3.jpg"
+    "img": "../../../../assets/img/slideshow/slide-3.jpeg"
   }
 ]
