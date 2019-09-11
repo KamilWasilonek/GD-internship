@@ -31,10 +31,8 @@ export class ProductDetailsPageComponent {
     private stateService: ProductStateService
   ) {
     this.id = route.params.pipe(map(params => params.id));
-
     this.stateService.currentState.subscribe(state => {
       this.isDataLoading = !state;
-      console.log(this.isDataLoading);
     });
 
     this.productDetailsService.getProductDetails().subscribe(
@@ -53,8 +51,7 @@ export class ProductDetailsPageComponent {
       },
       error => {
         console.log('Loading error.');
-      },
-      () => {}
+      }
     );
   }
 }
