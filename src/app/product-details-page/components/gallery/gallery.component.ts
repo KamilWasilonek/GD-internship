@@ -1,4 +1,5 @@
-import { Component, Input, AfterViewInit, AfterViewChecked, Output, EventEmitter } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { ProductStateService } from '@app/shared/services/product-details/product-state.service';
 
 @Component({
   selector: 'app-gallery',
@@ -7,11 +8,10 @@ import { Component, Input, AfterViewInit, AfterViewChecked, Output, EventEmitter
 })
 export class GalleryComponent {
   @Input() productImages: string;
-  @Output() imagesStatus = new EventEmitter<boolean>();
 
-  constructor() {}
+  constructor(private stateService: ProductStateService) {}
 
   changeImageStatus() {
-    this.imagesStatus.emit(true);
+    this.stateService.changeGalleryState(true);
   }
 }

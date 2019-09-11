@@ -1,19 +1,19 @@
-import { Component, OnInit, Input, AfterViewInit, EventEmitter, Output } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
+import { ProductStateService } from '@app/shared/services/product-details/product-state.service';
 
 @Component({
   selector: 'app-add-to-cart',
   templateUrl: './add-to-cart.component.html',
   styleUrls: ['./add-to-cart.component.scss'],
 })
-export class AddToCartComponent implements AfterViewInit {
+export class AddToCartComponent implements OnChanges {
   @Input() productPrice: number;
-  @Output() addToCartStatus = new EventEmitter<boolean>();
 
-  constructor() {}
+  constructor(private stateService: ProductStateService) {}
 
-  ngAfterViewInit() {
+  ngOnChanges() {
     if (this.productPrice) {
-      this.addToCartStatus.emit(true);
+      this.stateService.changeAddToCartState(true);
     }
   }
 }

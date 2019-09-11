@@ -1,20 +1,20 @@
-import { Component, OnInit, Input, EventEmitter, Output, AfterViewInit } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { IProductOptions } from '@app/shared/interfaces/product-detail/product-options.interface';
+import { ProductStateService } from '@app/shared/services/product-details/product-state.service';
 
 @Component({
   selector: 'app-options',
   templateUrl: './options.component.html',
   styleUrls: ['./options.component.scss'],
 })
-export class OptionsComponent implements AfterViewInit {
+export class OptionsComponent implements OnChanges {
   @Input() productOptions: IProductOptions;
-  @Output() optionsStatus = new EventEmitter<boolean>();
 
-  constructor() {}
+  constructor(private stateService: ProductStateService) {}
 
-  ngAfterViewInit() {
+  ngOnChanges() {
     if (this.productOptions) {
-      this.optionsStatus.emit(true);
+      this.stateService.changeOptionsState(true);
     }
   }
 }
