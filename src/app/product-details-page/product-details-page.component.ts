@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { IProductDetails } from '@app/shared/interfaces/product-detail/product-datails.interface';
 import { IProductDescription } from '@app/shared/interfaces/product-detail/product-description.interface';
@@ -13,12 +13,13 @@ import { ProductStateService } from '@app/shared/services/product-details/produc
   templateUrl: './product-details-page.component.html',
   styleUrls: ['./product-details-page.component.scss'],
 })
-export class ProductDetailsPageComponent {
+export class ProductDetailsPageComponent implements OnDestroy {
   id: Observable<string>;
   productDetails: IProductDetails;
   productDescription: IProductDescription;
   productOptions: IProductOptions;
   isDataLoading = true;
+  loadingStateObserver: Subscription;
 
   spinnerMessage = {
     message: 'Loading product details',
@@ -31,7 +32,8 @@ export class ProductDetailsPageComponent {
     private stateService: ProductStateService
   ) {
     this.id = route.params.pipe(map(params => params.id));
-    this.stateService.currentState.subscribe(state => {
+
+    this.loadingStateObserver = this.stateService.currentState.subscribe(state => {
       this.isDataLoading = !state;
     });
 
@@ -53,5 +55,11 @@ export class ProductDetailsPageComponent {
         console.log('Loading error.');
       }
     );
+  }
+
+  ngOnDestroy() {
+    if (this.loadingStateObserver) {
+      this.loadingStateObserver.unsubscribe();
+    }
   }
 }

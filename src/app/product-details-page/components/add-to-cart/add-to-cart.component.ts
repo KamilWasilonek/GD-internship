@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ProductStateService } from '@app/shared/services/product-details/product-state.service';
 
 @Component({
@@ -6,12 +6,12 @@ import { ProductStateService } from '@app/shared/services/product-details/produc
   templateUrl: './add-to-cart.component.html',
   styleUrls: ['./add-to-cart.component.scss'],
 })
-export class AddToCartComponent implements OnChanges {
+export class AddToCartComponent implements OnInit {
   @Input() productPrice: number;
 
   constructor(private stateService: ProductStateService) {}
 
-  ngOnChanges() {
+  ngOnInit() {
     if (this.productPrice) {
       this.stateService.changeAddToCartState(true);
     }

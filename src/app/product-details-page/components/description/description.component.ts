@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { IProductDescription } from '@app/shared/interfaces/product-detail/product-description.interface';
 import { ProductStateService } from '@app/shared/services/product-details/product-state.service';
 
@@ -7,12 +7,12 @@ import { ProductStateService } from '@app/shared/services/product-details/produc
   templateUrl: './description.component.html',
   styleUrls: ['./description.component.scss'],
 })
-export class DescriptionComponent implements OnChanges {
+export class DescriptionComponent implements OnInit {
   @Input() productDescription: IProductDescription;
 
   constructor(private stateService: ProductStateService) {}
 
-  ngOnChanges() {
+  ngOnInit() {
     if (this.stateService) {
       this.stateService.changeDescriptionState(true);
     }

@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { IProductOptions } from '@app/shared/interfaces/product-detail/product-options.interface';
 import { ProductStateService } from '@app/shared/services/product-details/product-state.service';
 
@@ -7,12 +7,12 @@ import { ProductStateService } from '@app/shared/services/product-details/produc
   templateUrl: './options.component.html',
   styleUrls: ['./options.component.scss'],
 })
-export class OptionsComponent implements OnChanges {
+export class OptionsComponent implements OnInit {
   @Input() productOptions: IProductOptions;
 
   constructor(private stateService: ProductStateService) {}
 
-  ngOnChanges() {
+  ngOnInit() {
     if (this.productOptions) {
       this.stateService.changeOptionsState(true);
     }
