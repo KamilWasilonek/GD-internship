@@ -1,1 +1,7 @@
-<h2>Price: {{ productPrice }}</h2>
+<div class="order-actions">
+  <p class="order-actions__price">Price: {{ productPrice }}$</p>
+  <div class="order-actions__actions">
+    <app-action-icons class="order-actions__action-icons"></app-action-icons>
+    <button type="submit" class="order-actions__order-btn">Order now</button>
+  </div>
+</div>

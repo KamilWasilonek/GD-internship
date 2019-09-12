@@ -108,8 +108,7 @@
     }
   }
 
-  &__sizes-list,
-  &__actions-list {
+  &__sizes-list {
     display: flex;
     justify-content: space-between;
     list-style: none;
@@ -117,26 +116,8 @@
     color: #49525d;
   }
 
-  &__sizes-list {
-    font-size: $font-size-middle;
-    color: #49525d;
-  }
-
   &__size {
     cursor: pointer;
-  }
-
-  &__actions-list {
-    font-size: $font-size-subTitleSmall;
-  }
-
-  &__action-icon {
-    color: #49525d;
-
-    &:hover {
-      color: $title-color;
-      cursor: pointer;
-    }
   }
 
   &__colors-option {

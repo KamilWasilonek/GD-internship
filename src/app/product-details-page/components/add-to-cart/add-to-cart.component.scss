@@ -1,0 +1,62 @@
+@import 'mixins.scss';
+@import 'variables.scss';
+
+.order-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @include md {
+    display: block;
+  }
+
+  &__price {
+    font-family: $font-bold;
+    font-size: $font-size-subTitleSmall;
+    text-align: left;
+    color: #49525d;
+  }
+
+  &__actions {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @include xl {
+      width: 55%;
+    }
+
+    @include lg {
+      width: 70%;
+    }
+
+    @include md {
+      margin-top: 1rem;
+      width: 100%;
+    }
+  }
+
+  &__action-icons {
+    width: 40%;
+    display: block;
+  }
+
+  &__order-btn {
+    padding: 0.8rem 2.5rem;
+    background: $title-color;
+    color: #fff;
+    font-size: $font-size-subTitleSmall;
+    border-color: $title-color;
+    border-radius: 2rem;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.8;
+    }
+    &:active,
+    &:focus {
+      outline-color: $title-color;
+    }
+  }
+}
