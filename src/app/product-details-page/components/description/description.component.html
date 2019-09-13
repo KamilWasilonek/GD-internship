@@ -1,5 +1,5 @@
-<div>
-  <h1>{{ productDescription.name }}</h1>
-  <h2>{{ productDescription.title }}</h2>
-  <p>{{ productDescription.description }}</p>
+<div class="description">
+  <h1 class="description__name">{{ productDescription.name }}</h1>
+  <h2 class="description__title">{{ productDescription.title | lowercase }}</h2>
+  <p class="description__details">{{ productDescription.description }}</p>
 </div>

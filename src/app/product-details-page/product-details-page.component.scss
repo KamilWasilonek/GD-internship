@@ -1,5 +1,5 @@
 @import 'variables.scss';
-
+@import 'mixins.scss';
 .hidden {
   visibility: hidden;
 }
@@ -9,14 +9,16 @@
   padding-bottom: 10rem;
   background: $secondary-background-color;
   border-top: 1px solid $section-border;
-
-  &__container {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    grid-column-gap: 3rem;
+  @include lg {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
   }
 
-  // &__content {
-  //   display: grid;
-  // }
+  &__container {
+    display: flex;
+  }
+}
+.gallery {
+  flex-basis: 40%;
+  margin-right: 10%;
 }
