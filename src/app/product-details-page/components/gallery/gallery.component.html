@@ -1,11 +1,11 @@
 <div class="gallery">
   <figure class="gallery__primary-image">
-    <img src="{{ productImages }}" alt="product image primary" title="{{ curPrimaryImageTitle }}" (load)="changeImageStatus()" />
+    <img src="{{ productImage }}" alt="product image primary" title="{{ curPrimaryImageTitle }}" (load)="changeImageStatus()" />
   </figure>
   <div class="gallery__small-images-container">
     <img
       *ngFor="let &quot;small-image&quot; of smallImagesArr; let i = index"
-      src="{{ productImages }}"
+      src="{{ productImage }}"
       alt="product image small"
       title="product image nr {{ i + 1 }}"
       class="gallery__small-image"

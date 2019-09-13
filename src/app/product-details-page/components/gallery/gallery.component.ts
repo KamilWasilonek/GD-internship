@@ -7,7 +7,7 @@ import { ProductStateService } from '@app/shared/services/product-details/produc
   styleUrls: ['./gallery.component.scss'],
 })
 export class GalleryComponent {
-  @Input() productImages: string;
+  @Input() productImage: string;
   smallImagesArr: number[] = [0, 1, 2];
   curPrimaryImageTitle = 'product image nr 1';
 
