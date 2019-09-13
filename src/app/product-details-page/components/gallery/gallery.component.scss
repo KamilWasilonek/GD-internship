@@ -1,5 +1,25 @@
 .gallery {
-  &__image {
+  &__primary-image {
+    margin: 0 auto;
+    width: 70%;
+    cursor: pointer;
+  }
+
+  &__small-images-container {
+    display: grid;
+    grid-template: 1fr / repeat(3, 1fr);
+    grid-column-gap: 3rem;
+  }
+
+  &__small-image {
+    &:hover {
+      cursor: pointer;
+      opacity: 0.6;
+    }
+  }
+
+  & img {
     width: 100%;
+    display: block;
   }
 }

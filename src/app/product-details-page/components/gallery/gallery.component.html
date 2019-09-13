@@ -1,3 +1,15 @@
 <div class="gallery">
-  <img class="gallery__image" src="{{ productImages }}" (load)="changeImageStatus()" />
+  <figure class="gallery__primary-image">
+    <img src="{{ productImage }}" alt="product image primary" title="{{ curPrimaryImageTitle }}" (load)="changeImageStatus()" />
+  </figure>
+  <div class="gallery__small-images-container">
+    <img
+      *ngFor="let &quot;small-image&quot; of smallImagesArr; let i = index"
+      src="{{ productImage }}"
+      alt="product image small"
+      title="product image nr {{ i + 1 }}"
+      class="gallery__small-image"
+      (click)="onSmallImageClick(i + 1)"
+    />
+  </div>
 </div>
