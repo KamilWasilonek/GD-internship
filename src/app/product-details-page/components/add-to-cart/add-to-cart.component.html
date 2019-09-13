@@ -2,6 +2,8 @@
   <p class="order-actions__price">Price: {{ productPrice }}$</p>
   <div class="order-actions__actions">
     <app-action-icons class="order-actions__action-icons"></app-action-icons>
-    <button type="submit" class="order-actions__order-btn">Order now</button>
+    <button type="button" [disabled]="!totalProductAmount ? 'disabled' : ''" class="order-actions__order-btn" (click)="onBtnOrderClick()">
+      Order now
+    </button>
   </div>
 </div>

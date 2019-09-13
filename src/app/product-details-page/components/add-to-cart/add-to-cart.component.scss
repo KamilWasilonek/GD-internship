@@ -54,6 +54,10 @@
     &:hover {
       opacity: 0.8;
     }
+
+    &:disabled {
+      cursor: not-allowed;
+    }
     &:active,
     &:focus {
       outline-color: $title-color;
