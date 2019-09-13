@@ -12,12 +12,11 @@
 
   &__container {
     display: grid;
-    grid-template-columns: 40% 60%;
-    grid-column-gap: 6rem;
+    grid-template-columns: 1fr 1.5fr;
+    grid-column-gap: 3rem;
   }
 
-  &__content {
-    display: grid;
-    grid-template-rows: 40% 30% 30%;
-  }
+  // &__content {
+  //   display: grid;
+  // }
 }

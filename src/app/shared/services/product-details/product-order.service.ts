@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject, Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { IOrder } from '@app/shared/interfaces/product-detail/ordered-product.interface';
 
 @Injectable({
@@ -11,7 +11,7 @@ export class ProductOrderService {
     quantity: 1,
   };
 
-  private currentOrderDetails = new Subject<IOrder>();
+  private currentOrderDetails = new BehaviorSubject<IOrder>(this.orderDetails);
 
   getOrderDetails(): Observable<IOrder> {
     return this.currentOrderDetails.asObservable();
