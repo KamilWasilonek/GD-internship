@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
-import { IOrder } from '../interfaces/product-detail/ordered-product.interface';
+import { IOrder } from '@app/shared/interfaces/product-detail/ordered-product.interface';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ProductQuantityService {
+export class ProductOrderService {
   private orderDetails = {
     size: 'S',
     quantity: 1,
   };
 
-  currentOrderDetails = new Subject<IOrder>();
+  private currentOrderDetails = new Subject<IOrder>();
 
   getOrderDetails(): Observable<IOrder> {
     return this.currentOrderDetails.asObservable();
