@@ -38,7 +38,10 @@ export class OptionsComponent implements OnInit {
       this.orderService.changeOrderSize(this.actualSize);
 
       this.productAmount = this.productOptions.amountInStock;
-      this.orderService.changeOrderQuantity(this.actualAmount);
+
+      if (this.productAmount !== 0) {
+        this.orderService.changeOrderQuantity(this.actualAmount);
+      }
 
       this.isProductAvailable = !!this.productAmount;
 

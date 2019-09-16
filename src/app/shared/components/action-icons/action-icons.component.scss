@@ -1,0 +1,20 @@
+@import 'mixins.scss';
+@import 'variables.scss';
+
+.action-icons {
+  &__list {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    font-size: $font-size-subTitleSmall;
+  }
+
+  &__icon {
+    color: #49525d;
+
+    &:hover {
+      color: $title-color;
+      cursor: pointer;
+    }
+  }
+}

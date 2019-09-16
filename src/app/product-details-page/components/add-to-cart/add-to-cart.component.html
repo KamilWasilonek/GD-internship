@@ -1,1 +1,11 @@
-<h2>Price: {{ productPrice }}</h2>
+<div class="order-actions">
+  <p class="order-actions__price">
+    Price: <span>{{ totalProductPrice }}$</span>
+  </p>
+  <div class="order-actions__actions">
+    <app-action-icons class="order-actions__action-icons"></app-action-icons>
+    <button type="button" [disabled]="!totalProductAmount" class="order-actions__order-btn" (click)="onBtnOrderClick()">
+      Order now
+    </button>
+  </div>
+</div>
