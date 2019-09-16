@@ -8,7 +8,7 @@ import { IOrder } from '@app/shared/interfaces/product-detail/ordered-product.in
 export class ProductOrderService {
   private orderDetails = {
     size: 'S',
-    quantity: 1,
+    quantity: 0,
   };
 
   private currentOrderDetails = new BehaviorSubject<IOrder>(this.orderDetails);
