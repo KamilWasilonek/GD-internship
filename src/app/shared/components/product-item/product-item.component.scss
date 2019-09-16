@@ -144,5 +144,11 @@
     width: 1.5rem;
     height: 1.5rem;
     border-radius: 50%;
+
+    &--active {
+      border: 2px solid $title-color;
+      width: 1.8rem;
+      height: 1.8rem;
+    }
   }
 }

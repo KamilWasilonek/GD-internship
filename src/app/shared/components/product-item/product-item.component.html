@@ -23,6 +23,7 @@
         class="product-item__color-icon"
         *ngFor="let item of swatches; trackBy: trackItem"
         [ngStyle]="{ 'background-color': item.color }"
+        [ngClass]="{ 'product-item__color-icon--active': cardItem.color === item.color }"
         (click)="onChangeImage(item)"
       ></span>
     </div>

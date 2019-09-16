@@ -62,6 +62,8 @@ export class ProductItemComponent implements OnInit, OnDestroy {
 
   resetCard(): void {
     this.cardItem.size = undefined;
-    this.cardItem.color = undefined;
+    if (this.cardItem.color !== 'default') {
+      this.cardItem.color = undefined;
+    }
   }
 }

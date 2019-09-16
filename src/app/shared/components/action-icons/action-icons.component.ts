@@ -18,15 +18,13 @@ export class ActionIconsComponent {
   constructor(private readonly cardService: CardListService, private readonly cardStatusService: CardStatusService) {}
 
   addToCard(): void {
-    if (
-      Object.values(this.cardItem).every(val => {
-        return val;
-      })
-    ) {
+    if (!this.cardItem.size) {
+      alert('Select size');
+    } else if (!this.cardItem.color) {
+      alert('Select color');
+    } else {
       this.cardService.addToCardList(this.cardItem);
       this.cardStatusService.updateStatus();
-    } else {
-      alert('Select size and color');
     }
   }
 }
