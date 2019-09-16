@@ -118,6 +118,10 @@
 
   &__size {
     cursor: pointer;
+
+    &--active {
+      color: $title-color;
+    }
   }
 
   &__colors-option {
