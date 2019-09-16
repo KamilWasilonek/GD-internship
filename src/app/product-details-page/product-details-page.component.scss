@@ -16,9 +16,24 @@
 
   &__container {
     display: flex;
+    @include lg {
+      display: block;
+    }
+  }
+
+  &__content {
+    @include lg {
+      margin-top: 3rem;
+    }
   }
 }
 .gallery {
   flex-basis: 40%;
   margin-right: 10%;
+
+  @include lg {
+    margin: 0 auto;
+    display: block;
+    width: 70%;
+  }
 }
