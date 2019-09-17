@@ -45,7 +45,7 @@ export class ProductItemComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy():void {
+  ngOnDestroy(): void {
     if (this.statusSubscriber) {
       this.statusSubscriber.unsubscribe();
     }

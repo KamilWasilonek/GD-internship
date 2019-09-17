@@ -14,6 +14,5 @@ export class CardListService {
   addToCardList(cardItem: ICardItem): void {
     const cardCopy = { ...cardItem };
     this.cardList.push(cardCopy);
-    console.log(this.cardList);
   }
 }
