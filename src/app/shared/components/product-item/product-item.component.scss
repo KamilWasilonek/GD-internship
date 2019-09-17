@@ -21,6 +21,8 @@
   }
   @include sm {
     padding: 1rem;
+    max-width: 32rem;
+    margin: 0 auto;
   }
 
   &:hover {
@@ -74,6 +76,7 @@
 
   &__title {
     color: #49525d;
+    margin-top: 1.5rem;
   }
 
   &__price {

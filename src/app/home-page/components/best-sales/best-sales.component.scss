@@ -1,29 +1,27 @@
 @import 'mixins.scss';
 @import 'variables.scss';
 
-:host {
-  margin-bottom: 8rem;
-  display: block;
-  @include lg {
-    margin-bottom: 6rem;
+.best-sales {
+  &__heading {
+    @include heading;
+    font-size: $font-size-subTitleBig;
+
+    & span {
+      color: $title-color;
+    }
   }
-}
-.common-products {
+
   &__paragraph {
     @include paragraph;
     margin-top: 3rem;
     text-align: center;
   }
 
-  &__product-items {
+  &__items {
     margin-top: 8rem;
     display: grid;
-    gap: 4rem;
-    grid-template: 1fr / repeat(4, 1fr);
-
-    @include xl {
-      gap: 2rem;
-    }
+    grid-template: 1fr / repeat(3, 1fr);
+    grid-gap: 4rem;
 
     @include lg {
       margin-top: 5rem;
@@ -37,5 +35,9 @@
     @include sm {
       grid-template: 1fr / 1fr;
     }
+  }
+
+  &__item {
+    display: block;
   }
 }
