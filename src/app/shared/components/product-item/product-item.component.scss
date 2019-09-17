@@ -111,12 +111,14 @@
   &__sizes-list {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     list-style: none;
     font-size: $font-size-middle;
     color: #49525d;
   }
 
   &__size {
+    padding: 0.5rem;
     cursor: pointer;
 
     &--active {
@@ -129,6 +131,7 @@
     width: 70%;
     display: flex;
     justify-content: space-evenly;
+    align-items: center;
     cursor: pointer;
 
     @include xxl {

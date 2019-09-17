@@ -40,8 +40,8 @@ export class ProductItemComponent implements OnInit, OnDestroy {
       color: this.swatches.length ? this.swatches[0].color : 'default',
     };
 
-    this.cardStatusService.getCard().subscribe(() => {
-      this.resetCard();
+    this.cardStatusService.getCard().subscribe((id: string) => {
+      this.resetCard(id);
     });
   }
 

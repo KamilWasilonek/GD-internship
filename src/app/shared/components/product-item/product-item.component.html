@@ -8,14 +8,14 @@
   </div>
   <div class="product-item__options-container">
     <ul class="product-item__sizes-list">
-      <li>Size:</li>
+      <li>Sizes:</li>
       <li
         class="product-item__size"
         *ngFor="let size of product.sizes; trackBy: trackItem"
         [ngClass]="{ 'product-item__size--active': cardItem.size === size }"
         (click)="changeSize(size)"
       >
-        {{ size | lowercase }}
+        {{ size }}
       </li>
     </ul>
     <div class="product-item__colors-option" *ngIf="swatches.length > 1">

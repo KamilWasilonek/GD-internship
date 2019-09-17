@@ -24,7 +24,7 @@ export class ActionIconsComponent {
       alert('Select color');
     } else {
       this.cardService.addToCardList(this.cardItem);
-      this.cardStatusService.updateStatus();
+      this.cardStatusService.updateStatus(this.cardItem.id);
     }
   }
 }

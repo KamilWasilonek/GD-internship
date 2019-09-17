@@ -11,7 +11,7 @@ export class CardStatusService {
     return this.isAddedToCardList.asObservable();
   }
 
-  public updateStatus(): void {
-    this.isAddedToCardList.next('Added to list');
+  public updateStatus(id: string): void {
+    this.isAddedToCardList.next(id);
   }
 }
