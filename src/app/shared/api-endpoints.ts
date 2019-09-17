@@ -11,7 +11,7 @@ const endpoints = {
   productDetails: 'products/1',
 };
 
-const slideshowURL = `${environment.serverUrl}${endpoints.slideshow}`;
+const slideshowURL = `${environment.serverUrl}/${endpoints.slideshow}`;
 const advertismentsURL = `${root}${endpoints.advertisments}`;
 const subscriptionsURL = `${root}${endpoints.subscriptions}`;
 const socialsURL = `${root}${endpoints.socials}`;
