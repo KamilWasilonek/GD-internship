@@ -4,12 +4,11 @@
 :host {
   margin-bottom: 8rem;
   display: block;
-    @include lg {
-      margin-bottom: 6rem;
-    }
+  @include lg {
+    margin-bottom: 6rem;
+  }
 }
 .common-products {
-  
   &__paragraph {
     @include paragraph;
     margin-top: 3rem;
