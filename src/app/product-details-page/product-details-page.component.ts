@@ -8,6 +8,8 @@ import { IProductDescription } from '@app/shared/interfaces/product-detail/produ
 import { IProductOptions } from '@app/shared/interfaces/product-detail/product-options.interface';
 import { ProductDetailsService } from '@app/shared/services/product-details/product-details.service';
 import { ProductStateService } from '@app/shared/services/product-details/product-state.service';
+import { IArrivals } from '@app/shared/interfaces/arrivals.interface';
+
 
 @Component({
   selector: 'app-product-details-page',
@@ -25,6 +27,10 @@ export class ProductDetailsPageComponent implements OnDestroy {
   spinnerMessage = {
     message: 'Loading product details',
     isError: false,
+  };
+  products: IArrivals[];
+  flags = {
+    isArrivalsVisible: true,
   };
 
   constructor(

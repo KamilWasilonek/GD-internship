@@ -9,3 +9,9 @@
     </div>
   </div>
 </section>
+<div class="container related-products">
+  <app-common-products *ngIf="flags.isArrivalsVisible">
+    <h2 class="common-products__heading" related-products>related <span>products</span></h2>
+    <app-product-item new-arrivals *ngFor="let product of products" [product]="product"></app-product-item>
+  </app-common-products>
+</div>
