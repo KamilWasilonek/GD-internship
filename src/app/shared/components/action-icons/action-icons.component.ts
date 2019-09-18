@@ -1,8 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { faShare, faShoppingCart, faHeart } from '@fortawesome/free-solid-svg-icons';
+
 import { CardListService } from '@app/shared/services/card-list/card-list.service';
-import { ICardItem } from '@app/shared/interfaces/card-item.interface';
 import { CardStatusService } from '@app/shared/services/card-list/card-status.service';
+import { ICardItem } from '@app/shared/interfaces/card-item.interface';
 
 @Component({
   selector: 'app-action-icons',
@@ -10,10 +11,10 @@ import { CardStatusService } from '@app/shared/services/card-list/card-status.se
   styleUrls: ['./action-icons.component.scss'],
 })
 export class ActionIconsComponent {
+  @Input() cardItem: ICardItem;
   shareIcon = faShare;
   shoppingIcon = faShoppingCart;
   heartIcon = faHeart;
-  @Input() cardItem: ICardItem;
 
   constructor(private readonly cardService: CardListService, private readonly cardStatusService: CardStatusService) {}
 
