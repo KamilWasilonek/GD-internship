@@ -1,17 +1,18 @@
 <app-banner *ngIf="flags.isBannerVisible"></app-banner>
 <div class="container homepage">
   <app-common-products *ngIf="flags.isArrivalsVisible">
-    <h2 class="common-products__heading" arrivals>new <span>arrivals</span></h2>
-    <app-product-item new-arrivals *ngFor="let product of products" [product]="product"></app-product-item>
+    <h2 class="common-products__heading" title>new <span>arrivals</span></h2>
+    <app-product-item new-arrivals *ngFor="let product of products | async" [product]="product"></app-product-item>
   </app-common-products>
 
   <app-view-more *ngIf="flags.isViewMoreVisible" class="homepage__view-more"></app-view-more>
   <app-advertisements *ngIf="flags.isAdvertismentsVisible" class="homepage__adv"></app-advertisements>
 
   <app-common-products class="homepage__best-sales" *ngIf="flags.isBestSalesVisible">
-    <h2 class="common-products__heading" best-sales>best <span>sales</span></h2>
+    <h2 class="common-products__heading" title>best <span>sales</span></h2>
     <div class="best-sales__items" best-products>
-      <app-best-sales-item *ngFor="let product of bestSalesProducts" class="best-sales__item" [product]="product"> </app-best-sales-item>
+      <app-best-sales-item *ngFor="let product of bestSalesProducts | async" class="best-sales__item" [product]="product">
+      </app-best-sales-item>
     </div>
   </app-common-products>
 </div>
