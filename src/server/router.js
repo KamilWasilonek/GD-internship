@@ -7,9 +7,7 @@ const socialController = require('./controllers/socials.controller');
 const productsController = require('./controllers/products.controller');
 const memcacheMiddleware = require('./memcache.middleware');
 const filterController = require('./controllers/filters.controller');
-const subscriptionsController = require('./controllers/subscriptions.controller')
-
-
+const subscriptionsController = require('./controllers/subscriptions.controller');
 
 router.get('/products', memcacheMiddleware(), productsController.getProducts);
 router.get('/products/:id', memcacheMiddleware(), productsController.getProductById);

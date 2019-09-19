@@ -19,5 +19,16 @@
       </div>
     </div>
   </div>
-  <img class="adv__free-area" src="../../../../assets/img/adv_area.png" alt="Order" />
+  <div class="adv-external__content-box">
+    <app-spinner [spinner]="spinner" *ngIf="isDataLoadingAdvExternal" class="adv__spinner"></app-spinner>
+    <img
+      *ngIf="!isExternalAdvertisement && !isDataLoadingAdvExternal"
+      class="adv__free-area"
+      src="../../../../assets/img/adv_area.png"
+      alt="Order"
+    />
+    <app-advertisement-external *ngIf="isExternalAdvertisement">
+      <iframe style="border:none; background-color:#fff" [src]="advertisementExternal[currentIndexAdvExternal].link | safe"></iframe>
+    </app-advertisement-external>
+  </div>
 </section>

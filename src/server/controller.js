@@ -1,7 +1,8 @@
 const products = require('../assets/mocks/products.json');
 const filters = require('../assets/mocks/filters.json');
-const advertisments = require("../assets/mocks/adv.json")
+const advertisments = require('../assets/mocks/adv.json');
 const socials = require('../assets/config/social-links.json');
+const advertisementExternal = require('../assets/mocks/advertisement.json');
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const slideController = require('./controllers/slide.controller');
@@ -13,6 +14,7 @@ module.exports = {
   deleteSubscription,
 
   // getFilters,
+  getAdvertismentExternal,
   getHomepage,
   // getProductById,
   // getProducts,
@@ -110,7 +112,7 @@ function notFound(req, res) {
 async function getHomepage(req, res) {
   const randomProducts = new Set();
   const productClone = [...products];
-  const slideshow = await slideController.getSlideshow(req,res);
+  const slideshow = await slideController.getSlideshow(req, res);
   while (Array.from(randomProducts).length !== 4) {
     const cleanedUpProduct = _cleanUpProductProperties(productClone[Math.floor(Math.random() * products.length)]);
     randomProducts.add(cleanedUpProduct);
@@ -123,10 +125,9 @@ async function getHomepage(req, res) {
     bestSales,
     slideshow,
   };
-  console.log(homePageAggregated)
+  console.log(homePageAggregated);
   return res.json(homePageAggregated);
 }
-
 
 // function getAdvertisments(req, res) {
 //   res.json(advertisments);
@@ -135,6 +136,9 @@ async function getHomepage(req, res) {
 // function getSocials(req,res) {
 //   res.json(socials);
 // }
+function getAdvertismentExternal(req, res) {
+  res.json(advertisementExternal);
+}
 
 function addSubscription(req, res) {
   const { email } = req.body;
@@ -164,7 +168,7 @@ function deleteSubscription(req, res) {
 }
 
 function _cleanUpProductProperties(product) {
-  const productClone = {...product};
+  const productClone = { ...product };
   PRODUCTS_REDUNDANT_PROPS.forEach(property => {
     delete productClone[property];
   });

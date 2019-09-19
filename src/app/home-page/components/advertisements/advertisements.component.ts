@@ -3,7 +3,9 @@ import { delay } from 'rxjs/operators';
 import { Subscription, interval } from 'rxjs';
 
 import { AdvertismentsService } from '@app/shared/services/advertisments.service';
+import { AdvertismentExternalService } from '@app/shared/services/advertisements-external.service';
 import { IAdvertisment } from '@app/shared/interfaces/adv.interface';
+import { IAdvExternal } from '@app/shared/interfaces/adv-external.interface';
 
 @Component({
   selector: 'app-advertisements',
@@ -11,16 +13,27 @@ import { IAdvertisment } from '@app/shared/interfaces/adv.interface';
   styleUrls: ['./advertisements.component.scss'],
 })
 export class AdvertisementsComponent implements OnDestroy {
+  advertisementExternal: IAdvExternal[];
+  isExternalAdvertisement: boolean;
   advertisments: IAdvertisment[];
   sliderInterval: Subscription;
   spinner = {
     message: 'Loading latest products',
     isError: false,
   };
+  spinnerAdvExternal = {
+    message: 'Loading latest products',
+    isError: false,
+  };
   currentIndex = 0;
+  currentIndexAdvExternal = 0;
   isDataLoading = true;
+  isDataLoadingAdvExternal = true;
 
-  constructor(private readonly advertismentsService: AdvertismentsService) {
+  constructor(
+    private readonly advertismentsService: AdvertismentsService,
+    private readonly advExternalService: AdvertismentExternalService
+  ) {
     this.advertismentsService
       .getAdvertisments()
       .pipe(delay(2000))
@@ -37,6 +50,27 @@ export class AdvertisementsComponent implements OnDestroy {
         () => {
           this.isDataLoading = false;
           this.startSliderInterval();
+        }
+      );
+
+    this.advExternalService
+      .getAdvertismentExternal()
+      .pipe(delay(2000))
+      .subscribe(
+        data => {
+          this.advertisementExternal = data;
+        },
+        _error => {
+          this.spinnerAdvExternal = {
+            message: '',
+            isError: true,
+          };
+          this.isExternalAdvertisement = false;
+          this.isDataLoadingAdvExternal = false;
+        },
+        () => {
+          this.isExternalAdvertisement = true;
+          this.isDataLoadingAdvExternal = false;
         }
       );
   }
