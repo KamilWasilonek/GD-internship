@@ -1,8 +1,11 @@
-import { ISlide } from '@app/shared/interfaces/banner.interface';
 import { Component, OnDestroy, SecurityContext } from '@angular/core';
-import { interval, Subscription } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { DomSanitizer } from '@angular/platform-browser';
+import { interval, Subscription, Subject } from 'rxjs';
+
+import { ISlide } from '@app/shared/interfaces/banner.interface';
 import { SliderService } from '@app/shared/services/slider.service';
+import { trackElement } from '@app/shared/functions/track-element';
 
 @Component({
   selector: 'app-banner',
@@ -11,67 +14,64 @@ import { SliderService } from '@app/shared/services/slider.service';
 })
 export class BannerComponent implements OnDestroy {
   isDataLoading = true;
+  animationOption = 'opacity';
+  imageNumberToLoad: number;
   slides: ISlide[];
   currentSlideIndex: number;
-  backgroundImage: string;
-  sliderHttpObserver: Subscription;
+  unsubscribe$ = new Subject<void>();
   sliderInterval: Subscription;
+
   spinner = {
     message: 'Loading latest articles',
     isError: false,
   };
 
-  title: string;
-  proposition: string;
-  description: string;
-  price: string;
+  trackSlides = trackElement;
 
   constructor(private readonly sliderService: SliderService, private readonly sanitizer: DomSanitizer) {
-    this.sliderHttpObserver = this.sliderService.getSlideshow().subscribe(
-      slideshow => {
-        this.slides = slideshow;
-      },
-      _error => {
-        this.spinner = {
-          message: 'Can not load latest products',
-          isError: true,
-        };
-      },
-      () => {
-        this.currentSlideIndex = 0;
-        this.backgroundImage = this.sanitizeImage(this.slides[this.currentSlideIndex].img);
-        this.startSliderInterval();
-      }
-    );
+    this.sliderService
+      .getSlideshow()
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(
+        slideshow => {
+          this.slides = slideshow;
+          this.slides.forEach((val, index) => {
+            this.slides[index].img = this.sanitizer.sanitize(SecurityContext.URL, val.img);
+          });
+        },
+        _error => {
+          this.spinner = {
+            message: 'Can not load latest products',
+            isError: true,
+          };
+        },
+        () => {
+          this.currentSlideIndex = 0;
+          this.imageNumberToLoad = this.slides.length;
+        }
+      );
   }
 
   ngOnDestroy(): void {
     if (this.sliderInterval !== undefined) {
       this.sliderInterval.unsubscribe();
     }
-    if (this.sliderHttpObserver !== undefined) {
-      this.sliderHttpObserver.unsubscribe();
-    }
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 
-  public showNextSlide(event?: MouseEvent): void {
-    if (event !== undefined && this.sliderInterval !== undefined) {
-      this.sliderInterval.unsubscribe();
-    }
+  showNextSlide(event?: MouseEvent): void {
+    this.checkEvent(event);
     if (this.currentSlideIndex++ >= this.slides.length - 1) {
       this.currentSlideIndex = 0;
     }
-    this.backgroundImage = this.sanitizeImage(this.slides[this.currentSlideIndex].img);
   }
 
-  public showPrevSlide(event?: MouseEvent): void {
-    if (event !== undefined && this.sliderInterval !== undefined) {
-      this.sliderInterval.unsubscribe();
-    }
+  showPrevSlide(event?: MouseEvent): void {
+    this.checkEvent(event);
     if (this.currentSlideIndex-- === 0) {
       this.currentSlideIndex = this.slides.length - 1;
     }
-    this.backgroundImage = this.sanitizeImage(this.slides[this.currentSlideIndex].img);
   }
 
   startSliderInterval(): void {
@@ -80,19 +80,17 @@ export class BannerComponent implements OnDestroy {
     });
   }
 
-  public makeOrder(): void {
-    console.log('Ordered');
+  imageLoaded(): void {
+    this.imageNumberToLoad--;
+    if (this.imageNumberToLoad === 0) {
+      this.isDataLoading = false;
+      this.startSliderInterval();
+    }
   }
 
-  public setSlideContent(index: number): void {
-    this.title = this.slides[index].title;
-    this.proposition = this.slides[index].proposition;
-    this.description = this.slides[index].description;
-    this.price = this.slides[index].price;
-    this.isDataLoading = false;
-  }
-
-  public sanitizeImage(url: string): string {
-    return this.sanitizer.sanitize(SecurityContext.URL, url);
+  checkEvent(event: MouseEvent): void {
+    if (event !== undefined && this.sliderInterval !== undefined) {
+      this.sliderInterval.unsubscribe();
+    }
   }
 }
