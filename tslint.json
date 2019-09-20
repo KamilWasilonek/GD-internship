@@ -144,7 +144,8 @@
     "no-complex-conditionals": true,
     "prefer-dry-conditionals": true,
     "no-commented-out-code": {
-      "severity": "warning"
+      "severity": "warning",
+      "invalid-void": false
     },
     "template-i18n": false
   },

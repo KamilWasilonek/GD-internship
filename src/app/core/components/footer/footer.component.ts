@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { JoinUserService } from '@app/shared/services/join-user.service';
 
 @Component({
@@ -6,12 +6,10 @@ import { JoinUserService } from '@app/shared/services/join-user.service';
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss'],
 })
-export class FooterComponent implements OnInit {
-  constructor(private joinService: JoinUserService) {}
+export class FooterComponent {
+  constructor( private readonly joinService: JoinUserService ) {}
 
-  ngOnInit() {}
-
-  onSubscribe() {
+  onSubscribe() :void {
     this.joinService.sendClick();
   }
 }
