@@ -9,7 +9,9 @@
   <div class="product-item__options-container">
     <ul class="product-item__sizes-list">
       <li>Size:</li>
-      <li class="product-item__size; trackBy: trackElementService.trackElement" *ngFor="let size of product.sizes">{{ size | lowercase }}</li>
+      <li class="product-item__size; trackBy: trackElementService.trackElement" *ngFor="let size of product.sizes">
+        {{ size | lowercase }}
+      </li>
     </ul>
     <div class="product-item__colors-option" *ngIf="swatches.length > 1">
       <span

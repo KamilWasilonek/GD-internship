@@ -8,7 +8,6 @@ import { advertismentsURL } from '../api-endpoints';
 @Injectable({
   providedIn: 'root',
 })
-
 export class AdvertismentsService {
   constructor(private readonly http: HttpClient) {}
 

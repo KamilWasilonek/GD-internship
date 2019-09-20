@@ -8,9 +8,9 @@ import { JoinUserService } from '@app/shared/services/join-user.service';
   styleUrls: ['./footer.component.scss'],
 })
 export class FooterComponent {
-  constructor( private readonly joinService: JoinUserService ) {}
+  constructor(private readonly joinService: JoinUserService) {}
 
-  onSubscribe() :void {
+  onSubscribe(): void {
     this.joinService.sendClick();
   }
 }

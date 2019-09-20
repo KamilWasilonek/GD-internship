@@ -41,13 +41,13 @@ export class AdvertisementsComponent implements OnDestroy {
       );
   }
 
-  ngOnDestroy():void {
+  ngOnDestroy(): void {
     if (this.sliderInterval !== undefined) {
       this.sliderInterval.unsubscribe();
     }
   }
 
-  public startSliderInterval():void {
+  public startSliderInterval(): void {
     this.sliderInterval = interval(5000).subscribe(() => {
       if (this.currentIndex++ >= this.advertisments.length - 1) {
         this.currentIndex = 0;

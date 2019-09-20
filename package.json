@@ -12,6 +12,11 @@
     "e2e": "ng e2e",
     "postinstall": "ng build --prod"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && npm run headlessTests"
+    }
+  },
   "lint-staged": {
     "*.{scss,ts,json,html}": [
       "prettier --write src/**/*.{scss,ts,json,html}",

@@ -30,11 +30,11 @@ export class AddToCartComponent implements OnInit, OnDestroy {
       this.calculateTotalPrice();
     });
   }
-  
+
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
-  
+
   calculateTotalPrice(): void {
     this.totalProductPrice = this.productPrice * this.totalProductAmount;
   }
@@ -44,5 +44,4 @@ export class AddToCartComponent implements OnInit, OnDestroy {
       `total price is: ${this.totalProductPrice}$, total amount is: ${this.totalProductAmount}, product size is: ${this.productSize}`
     );
   }
-
 }

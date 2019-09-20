@@ -11,8 +11,7 @@ import { TrackElementService } from '@app/shared/services/track-element.service'
 })
 export class BestSalesComponent implements OnInit {
   products: IBestsellerItem[];
-  constructor(private readonly bestsellersService: BestsellersService,private readonly trackElementService: TrackElementService
-    ) {}
+  constructor(private readonly bestsellersService: BestsellersService, private readonly trackElementService: TrackElementService) {}
 
   ngOnInit(): void {
     this.bestsellersService.getBestsellers().subscribe(data => (this.products = data.products));

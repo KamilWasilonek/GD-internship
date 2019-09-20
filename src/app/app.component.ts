@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
   private onDetectEnvironment(): void {
     console.log(this.environmentName);
   }
-  
+
   ngOnInit(): void {
     this.onDetectEnvironment();
   }
