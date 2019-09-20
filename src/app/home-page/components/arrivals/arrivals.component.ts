@@ -11,9 +11,9 @@ import { map } from 'rxjs/internal/operators/map';
 export class ArrivalsComponent implements OnInit {
   products: IArrivals[];
 
-  constructor(private arrivals: ArrivalsService) {}
+  constructor(private readonly arrivals: ArrivalsService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.arrivals
       .getArrivals()
       .pipe(map(data => data.products))
