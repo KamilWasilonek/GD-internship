@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Spinner } from '@app/shared/interfaces/spinner.interface';
 
 @Component({
@@ -6,9 +6,6 @@ import { Spinner } from '@app/shared/interfaces/spinner.interface';
   templateUrl: './spinner.component.html',
   styleUrls: ['./spinner.component.scss'],
 })
-export class SpinnerComponent implements OnInit {
+export class SpinnerComponent {
   @Input() spinner: Spinner;
-  constructor() {}
-
-  ngOnInit() {}
 }

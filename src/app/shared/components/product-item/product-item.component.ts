@@ -17,14 +17,12 @@ export class ProductItemComponent implements OnInit {
   shoppingIcon = faShoppingCart;
   heartIcon = faHeart;
 
-  constructor() {}
-
-  ngOnInit() {
+  ngOnInit(): void {
     this.swatches = this.product.swatches;
     this.price = `${this.product.price} $`;
   }
 
-  onChangeImage(item) {
+  onChangeImage(item): void {
     this.image.nativeElement.src = item.imgSrc;
   }
 }
