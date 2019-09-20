@@ -12,11 +12,6 @@
     "e2e": "ng e2e",
     "postinstall": "ng build --prod"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged && npm run headlessTests"
-    }
-  },
   "lint-staged": {
     "*.{scss,ts,json,html}": [
       "prettier --write src/**/*.{scss,ts,json,html}",
@@ -57,6 +52,7 @@
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
+    "angular-tslint-rules": "^1.20.1",
     "codelyzer": "^5.0.0",
     "eslint": "^6.2.1",
     "husky": "^3.0.4",
@@ -70,9 +66,14 @@
     "lint-staged": "^9.2.3",
     "protractor": "~5.4.0",
     "puppeteer": "^1.19.0",
+    "rxjs-tslint-rules": "^4.25.0",
     "ts-node": "~7.0.0",
-    "tslint": "~5.15.0",
+    "tslint": "^5.20.0",
+    "tslint-clean-code": "^0.2.10",
     "tslint-config-prettier": "^1.18.0",
+    "tslint-consistent-codestyle": "^1.15.1",
+    "tslint-etc": "^1.7.0",
+    "tslint-misc-rules": "^3.5.1",
     "typescript": "~3.5.3"
   },
   "engines": {
