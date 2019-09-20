@@ -8,7 +8,7 @@ import { productDetailsURL } from '@app/shared/api-endpoints';
   providedIn: 'root',
 })
 export class ProductDetailsService {
-  constructor(private http: HttpClient) {}
+  constructor(private readonly http: HttpClient) {}
 
   public getProductDetails(): Observable<IProductDetails> {
     return this.http.get<IProductDetails>(productDetailsURL);

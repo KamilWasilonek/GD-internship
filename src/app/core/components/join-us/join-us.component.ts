@@ -1,9 +1,11 @@
-import { Component, OnInit, DoCheck, OnDestroy, ViewChild, ElementRef } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { validateEmail } from '@app/shared/functions/validations';
+
 import { JoinUserService } from '../../../shared/services/join-user.service';
 import { UserSubscription } from './user-subscription';
-import { validateEmail } from '@app/shared/functions/validations';
-import { Subscription } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-join-us',
@@ -12,33 +14,44 @@ import { Subscription } from 'rxjs';
 })
 export class JoinUsComponent implements OnInit, OnDestroy {
   @ViewChild('email', { static: false }) email: ElementRef;
-
   subscriptionForm: FormGroup;
-  submitted = false;
+  unsubscribe$ = new Subject<void>();
+
   userSubscription: UserSubscription;
+  submitted = false;
   serverMessage = '';
   isSubscriptionCreated = false;
 
-  constructor(private fb: FormBuilder, private joinService: JoinUserService) {}
-  subscription: Subscription;
-  ngOnInit() {
+  constructor(private readonly fb: FormBuilder, private readonly joinService: JoinUserService) {}
+
+  ngOnInit(): void {
     this.subscriptionForm = this.fb.group({
       email: ['', [Validators.required, validateEmail]],
     });
-    this.subscription = this.joinService.linkIsClicked.subscribe(() => {
+    this.joinService.linkIsClicked.pipe(takeUntil(this.unsubscribe$)).subscribe(() => {
       this.email.nativeElement.focus();
     });
   }
 
-  public onSubmit() {
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+  }
+
+  public onSubmit(): void {
     this.serverMessage = '';
     this.isSubscriptionCreated = false;
     this.submitted = true;
-    if (this.subscriptionForm.valid) {
-      this.userSubscription = {
-        email: this.subscriptionForm.controls.email.value,
-      };
-      this.joinService.createSubscription(this.userSubscription).subscribe(
+    if (!this.subscriptionForm.valid) {
+      return;
+    }
+    this.userSubscription = {
+      email: this.subscriptionForm.controls.email.value,
+    };
+    this.joinService
+      .createSubscription(this.userSubscription)
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(
         () => {
           this.serverMessage = 'Subscription created';
           this.isSubscriptionCreated = true;
@@ -47,10 +60,5 @@ export class JoinUsComponent implements OnInit, OnDestroy {
           this.serverMessage = serverErrors.error.message;
         }
       );
-    }
-  }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
   }
 }

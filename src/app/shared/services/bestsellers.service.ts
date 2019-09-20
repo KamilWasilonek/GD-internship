@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class BestsellersService {
-  constructor(private http: HttpClient) {}
+  constructor(private readonly http: HttpClient) {}
 
   public getBestsellers(): Observable<{ products: IBestsellerItem[] }> {
     return this.http.get<{ products: IBestsellerItem[] }>(bestsellersURL);

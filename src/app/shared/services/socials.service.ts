@@ -8,7 +8,7 @@ import { socialsURL } from '../api-endpoints';
   providedIn: 'root',
 })
 export class SocialsService {
-  constructor(private http: HttpClient) {}
+  constructor(private readonly http: HttpClient) {}
 
   public getSocialLinks(): Observable<SocialIcon[]> {
     return this.http.get<SocialIcon[]>(socialsURL);

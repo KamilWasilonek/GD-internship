@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 import { subscriptionsURL } from '../api-endpoints';
 import { UserSubscription } from '@core/components/join-us/user-subscription';
 
@@ -8,15 +8,15 @@ import { UserSubscription } from '@core/components/join-us/user-subscription';
   providedIn: 'root',
 })
 export class JoinUserService {
-  // public linkWasClicked = false;
   public linkIsClicked = new Subject<boolean>();
 
-  constructor(private http: HttpClient) {}
+  constructor(private readonly http: HttpClient) {}
 
-  public createSubscription(userSubscription: UserSubscription) {
-    return this.http.post(subscriptionsURL, userSubscription);
+  public createSubscription(userSubscription: UserSubscription): Observable<UserSubscription> {
+    return this.http.post<UserSubscription>(subscriptionsURL, userSubscription);
   }
-  sendClick() {
-    return this.linkIsClicked.next();
+
+  sendClick(): void {
+    this.linkIsClicked.next();
   }
 }

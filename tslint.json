@@ -147,7 +147,8 @@
       "severity": "warning",
       "invalid-void": false
     },
-    "template-i18n": false
+    "template-i18n": false,
+    "invalid-void": false
   },
   "rulesDirectory": ["codelyzer", "tslint-misc-rules", "tslint-consistent-codestyle"]
 }

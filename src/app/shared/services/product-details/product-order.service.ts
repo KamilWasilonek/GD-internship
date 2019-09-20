@@ -6,12 +6,12 @@ import { IOrder } from '@app/shared/interfaces/product-detail/ordered-product.in
   providedIn: 'root',
 })
 export class ProductOrderService {
-  private orderDetails = {
+  private readonly orderDetails = {
     size: 'S',
     quantity: 0,
   };
 
-  private currentOrderDetails = new BehaviorSubject<IOrder>(this.orderDetails);
+  private readonly currentOrderDetails = new BehaviorSubject<IOrder>(this.orderDetails);
 
   getOrderDetails(): Observable<IOrder> {
     return this.currentOrderDetails.asObservable();

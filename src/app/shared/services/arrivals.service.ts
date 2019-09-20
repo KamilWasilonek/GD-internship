@@ -8,7 +8,7 @@ import { newArrivalsURL } from '../api-endpoints';
   providedIn: 'root',
 })
 export class ArrivalsService {
-  constructor(private http: HttpClient) {}
+  constructor(private readonly http: HttpClient) {}
   public getArrivals(): Observable<{ products: IArrivals[] }> {
     return this.http.get<{ products: IArrivals[] }>(newArrivalsURL);
   }
