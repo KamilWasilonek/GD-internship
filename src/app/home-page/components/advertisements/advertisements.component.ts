@@ -1,8 +1,9 @@
 import { Component, OnDestroy } from '@angular/core';
-import { IAdvertisment } from '@app/shared/interfaces/adv.interface';
 import { delay } from 'rxjs/operators';
 import { Subscription, interval } from 'rxjs';
+
 import { AdvertismentsService } from '@app/shared/services/advertisments.service';
+import { IAdvertisment } from '@app/shared/interfaces/adv.interface';
 
 @Component({
   selector: 'app-advertisements',

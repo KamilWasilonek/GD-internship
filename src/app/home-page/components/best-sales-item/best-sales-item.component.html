@@ -7,7 +7,7 @@
     <div class="best-sales-item__container">
       <div class="best-sales-item__icons-container">
         <fa-icon
-          *ngFor="let number of ratingStarsArr"
+          *ngFor="let number of ratingStarsArr; trackBy: trackElementService.trackElement"
           [ngClass]="number > product.rating ? 'best-sales-item__star-icon' : 'best-sales-item__star-icon-light'"
           [icon]="starIcon"
         >

@@ -1,11 +1,11 @@
 import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { validateEmail } from '@app/shared/functions/validations';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 import { JoinUserService } from '../../../shared/services/join-user.service';
 import { UserSubscription } from './user-subscription';
-import { takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
+import { validateEmail } from '@app/shared/functions/validations';
 
 @Component({
   selector: 'app-join-us',

@@ -1,5 +1,5 @@
 <ul class="socials">
-  <li class="socials__list-item" *ngFor="let link of socials; let index = index">
+  <li class="socials__list-item" *ngFor="let link of socials; let index = index; trackBy: trackElementService.trackElement">
     <a class="socials__link" href="{{ link.url }}" target="_black">
       <img class="socials__icon" src="{{ link.icon }}" alt="{{ link.title }}" />
     </a>

@@ -2,6 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
+
 import { IProductDetails } from '@app/shared/interfaces/product-detail/product-datails.interface';
 import { IProductDescription } from '@app/shared/interfaces/product-detail/product-description.interface';
 import { IProductOptions } from '@app/shared/interfaces/product-detail/product-options.interface';

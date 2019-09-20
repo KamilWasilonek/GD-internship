@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+
 import { Spinner } from '@app/shared/interfaces/spinner.interface';
 
 @Component({

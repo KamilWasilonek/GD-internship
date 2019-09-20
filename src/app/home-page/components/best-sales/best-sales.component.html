@@ -4,6 +4,11 @@
     <p class="best-sales__paragraph">Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
   </div>
   <div class="best-sales__items">
-    <app-best-sales-item *ngFor="let product of products" class="best-sales__item" [product]="product"> </app-best-sales-item>
+    <app-best-sales-item
+      *ngFor="let product of products; trackBy: trackElementService.trackElement"
+      class="best-sales__item"
+      [product]="product"
+    >
+    </app-best-sales-item>
   </div>
 </div>

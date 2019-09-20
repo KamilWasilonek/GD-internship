@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+
 import { IAdvertisment } from '../interfaces/adv.interface';
 import { advertismentsURL } from '../api-endpoints';
 

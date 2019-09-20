@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
 import { IBestsellerItem } from '../../shared/interfaces/bestseller-item.interface';
 import { bestsellersURL } from '../api-endpoints';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',

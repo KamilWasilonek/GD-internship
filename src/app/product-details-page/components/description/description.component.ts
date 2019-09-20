@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+
 import { IProductDescription } from '@app/shared/interfaces/product-detail/product-description.interface';
 import { ProductStateService } from '@app/shared/services/product-details/product-state.service';
 

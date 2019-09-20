@@ -1,7 +1,8 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+
 import { ProductStateService } from '@app/shared/services/product-details/product-state.service';
 import { ProductOrderService } from '@app/shared/services/product-details/product-order.service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-add-to-cart',

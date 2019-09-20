@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+
 import { JoinUserService } from '@app/shared/services/join-user.service';
 
 @Component({

@@ -1,8 +1,10 @@
-import { IProductOptions } from '@app/shared/interfaces/product-detail/product-options.interface';
-import { ProductStateService } from '@app/shared/services/product-details/product-state.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
+
+import { IProductOptions } from '@app/shared/interfaces/product-detail/product-options.interface';
+import { ProductStateService } from '@app/shared/services/product-details/product-state.service';
 import { ProductOrderService } from '@app/shared/services/product-details/product-order.service';
+import { TrackElementService } from '@app/shared/services/track-element.service';
 
 @Component({
   selector: 'app-options',
@@ -26,7 +28,11 @@ export class OptionsComponent implements OnInit {
   plusIcon = faPlus;
   minusIcon = faMinus;
 
-  constructor(private readonly stateService: ProductStateService, private readonly orderService: ProductOrderService) {}
+  constructor(
+    private readonly stateService: ProductStateService,
+    private readonly orderService: ProductOrderService,
+    private readonly trackElementService: TrackElementService
+  ) {}
 
   ngOnInit(): void {
     if (!this.productOptions) {

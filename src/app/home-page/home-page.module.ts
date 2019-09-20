@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { HomePageComponent } from './components/home-page.component';
 import { HomePageRoutingModule } from './home-page-routing.module';
@@ -11,7 +12,6 @@ import { ViewMoreComponent } from './components/view-more/view-more.component';
 import { BestSalesComponent } from './components/best-sales/best-sales.component';
 import { BestSalesItemComponent } from './components/best-sales-item/best-sales-item.component';
 import { SharedModule } from '../shared/shared.module';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
