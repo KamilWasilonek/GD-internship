@@ -26,12 +26,12 @@ export class BannerComponent implements OnDestroy {
   description: string;
   price: string;
 
-  constructor(private sliderService: SliderService, private sanitizer: DomSanitizer) {
+  constructor(private readonly sliderService: SliderService, private readonly sanitizer: DomSanitizer) {
     this.sliderHttpObserver = this.sliderService.getSlideshow().subscribe(
       slideshow => {
         this.slides = slideshow;
       },
-      error => {
+      _error => {
         this.spinner = {
           message: 'Can not load latest products',
           isError: true,
@@ -45,7 +45,7 @@ export class BannerComponent implements OnDestroy {
     );
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     if (this.sliderInterval !== undefined) {
       this.sliderInterval.unsubscribe();
     }

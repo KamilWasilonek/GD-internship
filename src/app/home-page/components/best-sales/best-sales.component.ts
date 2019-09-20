@@ -9,9 +9,9 @@ import { IBestsellerItem } from '../../../shared/interfaces/bestseller-item.inte
 })
 export class BestSalesComponent implements OnInit {
   products: IBestsellerItem[];
-  constructor(private bestsellersService: BestsellersService) {}
+  constructor(private readonly bestsellersService: BestsellersService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.bestsellersService.getBestsellers().subscribe(data => (this.products = data.products));
   }
 }

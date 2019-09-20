@@ -84,7 +84,7 @@
     "throw-error": {
       "severity": "error"
     },
-        "no-implicit-dependencies": [true, ["@app", "@common", "@core", "@shared", "@state", "@styles"]],
+    "no-implicit-dependencies": [true, ["@app", "@common", "@core", "@shared", "@state", "@styles"]],
 
     "rxjs-no-subject-unsubscribe": {
       "severity": "warning"
@@ -130,12 +130,7 @@
     "no-static-this": true,
     "no-unused": true,
     "no-var-before-return": [true, "allow-destructuring"],
-    "parameter-properties": [
-      true,
-      "all-or-none",
-      "member-access",
-      "readonly"
-    ],
+    "parameter-properties": [true, "all-or-none", "member-access", "readonly"],
     "prefer-const-enum": true,
     "prefer-while": true,
     "id-length": [true, ["T"]],

@@ -10,9 +10,9 @@ import { SocialsService } from '@app/shared/services/socials.service';
 export class SocialsComponent implements OnInit {
   socials: SocialIcon[];
   lastLink: number;
-  constructor(private socialsService: SocialsService) {}
+  constructor(private readonly socialsService: SocialsService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.socialsService.getSocialLinks().subscribe(data => {
       this.socials = data;
       this.lastLink = this.socials.length - 1;
