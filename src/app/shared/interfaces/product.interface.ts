@@ -26,10 +26,12 @@ export enum ProductAvailabilityState {
 }
 
 export enum ProductSize {
+  // tslint:disable: id-length
   S = 's',
   M = 'm',
   L = 'l',
   XL = 'xl',
+  // tslint:enable: id-length
 }
 
 export interface IFilter {
