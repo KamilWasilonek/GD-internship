@@ -11,12 +11,12 @@ export class GalleryComponent {
   smallImagesArr: number[] = [0, 1, 2];
   curPrimaryImageTitle = 'product image nr 1';
 
-  constructor(private stateService: ProductStateService) {}
+  constructor(private readonly stateService: ProductStateService) {}
 
-  changeImageStatus() {
+  changeImageStatus(): void {
     this.stateService.changeGalleryState(true);
   }
-  onSmallImageClick(imageNumber: string) {
+  onSmallImageClick(imageNumber: string): void {
     this.curPrimaryImageTitle = `product image nr ${imageNumber}`;
   }
 }

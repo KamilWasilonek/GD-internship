@@ -27,9 +27,9 @@ export class ProductDetailsPageComponent implements OnDestroy {
   };
 
   constructor(
-    private route: ActivatedRoute,
-    private productDetailsService: ProductDetailsService,
-    private stateService: ProductStateService
+    private readonly route: ActivatedRoute,
+    private readonly productDetailsService: ProductDetailsService,
+    private readonly stateService: ProductStateService
   ) {
     this.id = route.params.pipe(map(params => params.id));
 
@@ -51,13 +51,13 @@ export class ProductDetailsPageComponent implements OnDestroy {
           amountInStock: this.productDetails.amountInStock,
         };
       },
-      error => {
+      _error => {
         console.log('Loading error.');
       }
     );
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     if (this.loadingStateObserver) {
       this.loadingStateObserver.unsubscribe();
     }
