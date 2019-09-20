@@ -9,7 +9,6 @@ import { GalleryComponent } from '@app/product-details-page/components/gallery/g
 import { DescriptionComponent } from '@app/product-details-page/components/description/description.component';
 import { OptionsComponent } from '@app/product-details-page/components/options/options.component';
 import { AddToCartComponent } from '@app/product-details-page/components/add-to-cart/add-to-cart.component';
-// import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
