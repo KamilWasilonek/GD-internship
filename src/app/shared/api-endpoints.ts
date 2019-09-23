@@ -1,3 +1,4 @@
+import { environment } from '../../environments/environment';
 const root = 'https://project-angular-gd.herokuapp.com/api/';
 const endpoints = {
   slideshow: 'slideshow',
@@ -9,7 +10,7 @@ const endpoints = {
   productDetails: 'products/1',
 };
 
-const slideshowURL = `${root}${endpoints.slideshow}`;
+const slideshowURL = `${environment.serverUrl}${endpoints.slideshow}`;
 const advertismentsURL = `${root}${endpoints.advertisments}`;
 const subscriptionsURL = `${root}${endpoints.subscriptions}`;
 const socialsURL = `${root}${endpoints.socials}`;
