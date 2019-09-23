@@ -2,7 +2,7 @@ import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { faShare, faShoppingCart, faHeart } from '@fortawesome/free-solid-svg-icons';
 
 import { IArrivals } from '@app/shared/interfaces/arrivals.interface';
-import { TrackElementService } from '@app/shared/services/track-element.service';
+import { trackElement } from '@app/shared/functions/track-element';
 
 @Component({
   selector: 'app-product-item',
@@ -19,7 +19,7 @@ export class ProductItemComponent implements OnInit {
   shoppingIcon = faShoppingCart;
   heartIcon = faHeart;
 
-  constructor(private readonly trackElementService: TrackElementService) {}
+  trackItem = trackElement;
 
   ngOnInit(): void {
     this.swatches = this.product.swatches;

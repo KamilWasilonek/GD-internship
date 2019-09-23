@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { BestsellersService } from '../../../shared/services/bestsellers.service';
 import { IBestsellerItem } from '../../../shared/interfaces/bestseller-item.interface';
-import { TrackElementService } from '@app/shared/services/track-element.service';
+import { trackElement } from '@app/shared/functions/track-element';
 
 @Component({
   selector: 'app-best-sales',
@@ -11,7 +11,9 @@ import { TrackElementService } from '@app/shared/services/track-element.service'
 })
 export class BestSalesComponent implements OnInit {
   products: IBestsellerItem[];
-  constructor(private readonly bestsellersService: BestsellersService, private readonly trackElementService: TrackElementService) {}
+  trackBestSales = trackElement;
+
+  constructor(private readonly bestsellersService: BestsellersService) {}
 
   ngOnInit(): void {
     this.bestsellersService.getBestsellers().subscribe(data => (this.products = data.products));

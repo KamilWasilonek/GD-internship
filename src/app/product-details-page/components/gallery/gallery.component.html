@@ -4,7 +4,7 @@
   </figure>
   <div class="gallery__small-images-container">
     <img
-      *ngFor="let &quot;small-image&quot; of smallImagesArr; let i = index; trackBy: trackElementService.trackElement"
+      *ngFor="let &quot;small-image&quot; of smallImagesArr; let i = index; trackBy: trackGallery"
       src="{{ productImage }}"
       alt="product image small"
       title="product image nr {{ i + 1 }}"

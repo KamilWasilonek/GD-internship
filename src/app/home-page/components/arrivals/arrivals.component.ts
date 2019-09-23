@@ -3,7 +3,7 @@ import { map } from 'rxjs/internal/operators/map';
 
 import { IArrivals } from '@app/shared/interfaces/arrivals.interface';
 import { ArrivalsService } from '@app/shared/services/arrivals.service';
-import { TrackElementService } from '@app/shared/services/track-element.service';
+import { trackElement } from '@app/shared/functions/track-element';
 
 @Component({
   selector: 'app-arrivals',
@@ -13,7 +13,9 @@ import { TrackElementService } from '@app/shared/services/track-element.service'
 export class ArrivalsComponent implements OnInit {
   products: IArrivals[];
 
-  constructor(private readonly arrivals: ArrivalsService, private readonly trackElementService: TrackElementService) {}
+  trackArrivals = trackElement;
+
+  constructor(private readonly arrivals: ArrivalsService) {}
 
   ngOnInit(): void {
     this.arrivals

@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { SocialIcon } from '@app/shared/interfaces/social-icon.interface';
 import { SocialsService } from '@app/shared/services/socials.service';
-import { TrackElementService } from '@app/shared/services/track-element.service';
-
+import { trackElement } from '@app/shared/functions/track-element';
 @Component({
   selector: 'app-socials',
   templateUrl: './socials.component.html',
@@ -12,7 +11,10 @@ import { TrackElementService } from '@app/shared/services/track-element.service'
 export class SocialsComponent implements OnInit {
   socials: SocialIcon[];
   lastLink: number;
-  constructor(private readonly socialsService: SocialsService, private readonly trackElementService: TrackElementService) {}
+
+  trackSocials = trackElement;
+
+  constructor(private readonly socialsService: SocialsService) {}
 
   ngOnInit(): void {
     this.socialsService.getSocialLinks().subscribe(data => {
