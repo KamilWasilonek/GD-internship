@@ -5,10 +5,11 @@ import { map, pluck } from 'rxjs/operators';
 import { IProductDetails } from '@app/shared/interfaces/product-detail/product-datails.interface';
 import { IProductDescription } from '@app/shared/interfaces/product-detail/product-description.interface';
 import { IProductOptions } from '@app/shared/interfaces/product-detail/product-options.interface';
+import { IArrivals } from '@app/shared/interfaces/arrivals.interface';
+import { Spinner } from '@app/shared/interfaces/spinner.interface';
+import { ArrivalsService } from '@app/shared/services/arrivals.service';
 import { ProductDetailsService } from '@app/shared/services/product-details/product-details.service';
 import { ProductStateService } from '@app/shared/services/product-details/product-state.service';
-import { IArrivals } from '@app/shared/interfaces/arrivals.interface';
-
 
 @Component({
   selector: 'app-product-details-page',
@@ -23,7 +24,7 @@ export class ProductDetailsPageComponent {
   public isDataLoaded: Observable<boolean>;
   public loadingStateObserver: Subscription;
 
-  public spinnerMessage = {
+  public spinnerMessage: Spinner = {
     message: 'Loading product details',
     isError: false,
   };
@@ -35,7 +36,8 @@ export class ProductDetailsPageComponent {
   constructor(
     private readonly route: ActivatedRoute,
     private readonly productDetailsService: ProductDetailsService,
-    private readonly stateService: ProductStateService
+    private readonly stateService: ProductStateService,
+    private readonly arrivalsService: ArrivalsService
   ) {
     this.id = route.params.pipe(map(params => params.id));
     this.getProducts();
@@ -45,14 +47,14 @@ export class ProductDetailsPageComponent {
     this.isDataLoaded = combineLatest([this.stateService.currentState, this.productDetails]).pipe(map(([loaded]) => loaded));
   }
 
-  private getProducts() :void {
+  private getProducts(): void {
     this.products = this.arrivalsService.getArrivals().pipe(pluck('products'));
   }
-  private getProductDetails() :void {
+  private getProductDetails(): void {
     this.productDetails = this.productDetailsService.getProductDetails();
   };
 
-  private getProductDescription() :void {
+  private getProductDescription(): void {
     this.productDescription = this.productDetailsService.getProductDetails().pipe(
       map<IProductDetails, IProductDescription>(products => {
         return {
@@ -63,7 +65,7 @@ export class ProductDetailsPageComponent {
       })
     );
   }
-  private getProductOptions() :void {
+  private getProductOptions(): void {
     this.productOptions = this.productDetailsService.getProductDetails().pipe(
       map<IProductDetails, IProductOptions>(({ sizes, amountInStock }) => {
         return {
