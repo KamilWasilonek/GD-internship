@@ -1,26 +1,32 @@
 <div class="product-item">
   <figure class="product-item__img">
-    <img src="{{ product.thumbnailImageSrc }}" alt="product-image" #image />
+    <img src="{{ currentImageSrc }}" alt="product-image" #image />
   </figure>
   <div class="product-item__details">
     <app-small-title class="product-item__title" [description]="product.name"></app-small-title>
-    <app-small-title class="product-item__price" [description]="price"></app-small-title>
+    <app-small-title class="product-item__price" [description]="product.price | currency: 'USD'"></app-small-title>
   </div>
   <div class="product-item__options-container">
     <ul class="product-item__sizes-list">
-      <li>Size:</li>
-      <li class="product-item__size" *ngFor="let size of product.sizes; trackBy: trackItem">
-        {{ size | lowercase }}
+      <li>Sizes:</li>
+      <li
+        class="product-item__size"
+        *ngFor="let size of product.sizes; trackBy: trackItem"
+        [ngClass]="{ 'product-item__size--active': cardItem.size === size }"
+        (click)="changeSize(size)"
+      >
+        {{ size }}
       </li>
     </ul>
-    <div class="product-item__colors-option" *ngIf="swatches.length > 1">
+    <div class="product-item__colors-option" *ngIf="product.swatches.length > 1">
       <span
         class="product-item__color-icon"
-        *ngFor="let item of swatches; trackBy: trackItem"
+        *ngFor="let item of product.swatches; trackBy: trackItem"
         [ngStyle]="{ 'background-color': item.color }"
+        [ngClass]="{ 'product-item__color-icon--active': cardItem.color === item.color }"
         (click)="onChangeImage(item)"
       ></span>
     </div>
   </div>
-  <app-action-icons class="product-item__actions-container"></app-action-icons>
+  <app-action-icons class="product-item__actions-container" [cardItem]="cardItem"></app-action-icons>
 </div>

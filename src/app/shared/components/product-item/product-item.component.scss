@@ -111,13 +111,19 @@
   &__sizes-list {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     list-style: none;
     font-size: $font-size-middle;
     color: #49525d;
   }
 
   &__size {
+    padding: 0.5rem;
     cursor: pointer;
+
+    &--active {
+      color: $title-color;
+    }
   }
 
   &__colors-option {
@@ -125,6 +131,7 @@
     width: 70%;
     display: flex;
     justify-content: space-evenly;
+    align-items: center;
     cursor: pointer;
 
     @include xxl {
@@ -140,5 +147,11 @@
     width: 1.5rem;
     height: 1.5rem;
     border-radius: 50%;
+
+    &--active {
+      border: 2px solid $title-color;
+      width: 1.8rem;
+      height: 1.8rem;
+    }
   }
 }
