@@ -1,8 +1,9 @@
 import { Component, OnDestroy } from '@angular/core';
-import { IAdvertisment } from '@app/shared/interfaces/adv.interface';
 import { delay } from 'rxjs/operators';
 import { Subscription, interval } from 'rxjs';
+
 import { AdvertismentsService } from '@app/shared/services/advertisments.service';
+import { IAdvertisment } from '@app/shared/interfaces/adv.interface';
 
 @Component({
   selector: 'app-advertisements',
@@ -19,7 +20,7 @@ export class AdvertisementsComponent implements OnDestroy {
   currentIndex = 0;
   isDataLoading = true;
 
-  constructor(private advertismentsService: AdvertismentsService) {
+  constructor(private readonly advertismentsService: AdvertismentsService) {
     this.advertismentsService
       .getAdvertisments()
       .pipe(delay(2000))
@@ -27,7 +28,7 @@ export class AdvertisementsComponent implements OnDestroy {
         advertisments => {
           this.advertisments = advertisments;
         },
-        error => {
+        _error => {
           this.spinner = {
             message: 'Can not load latest products',
             isError: true,
@@ -40,13 +41,13 @@ export class AdvertisementsComponent implements OnDestroy {
       );
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     if (this.sliderInterval !== undefined) {
       this.sliderInterval.unsubscribe();
     }
   }
 
-  public startSliderInterval() {
+  public startSliderInterval(): void {
     this.sliderInterval = interval(5000).subscribe(() => {
       if (this.currentIndex++ >= this.advertisments.length - 1) {
         this.currentIndex = 0;

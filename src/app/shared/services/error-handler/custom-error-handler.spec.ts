@@ -21,6 +21,7 @@ describe('CustomErrorHandler', () => {
     handler = new CustomErrorHandler(new MockedNotificationService());
   });
 
+  // tslint:disable: no-floating-promises no-unbound-method
   it('should be created', () => {
     expect(handler).toBeTruthy();
   });
@@ -46,4 +47,5 @@ describe('CustomErrorHandler', () => {
     expect(console.log).toHaveBeenCalled();
     expect(console.log).toHaveBeenCalledWith('No internet connection');
   });
+  // tslint:enable: no-floating-promises no-unbound-method
 });

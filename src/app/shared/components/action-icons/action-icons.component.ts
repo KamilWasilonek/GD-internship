@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { faShare, faShoppingCart, faHeart } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -6,12 +6,8 @@ import { faShare, faShoppingCart, faHeart } from '@fortawesome/free-solid-svg-ic
   templateUrl: './action-icons.component.html',
   styleUrls: ['./action-icons.component.scss'],
 })
-export class ActionIconsComponent implements OnInit {
+export class ActionIconsComponent {
   shareIcon = faShare;
   shoppingIcon = faShoppingCart;
   heartIcon = faHeart;
-
-  constructor() {}
-
-  ngOnInit() {}
 }

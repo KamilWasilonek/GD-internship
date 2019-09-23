@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
@@ -15,7 +16,6 @@ import { ServerErrorsInterceptor } from './shared/services/error-handler/server-
 import { MenuComponent } from './core/components/header/menu/menu.component';
 import { NavigationComponent } from './core/components/header/menu/navigation/navigation.component';
 import { ActionsComponent } from './core/components/header/menu/actions/actions.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FooterComponent } from './core/components/footer/footer.component';
 import { JoinUsComponent } from '@core/components/join-us/join-us.component';
 @NgModule({

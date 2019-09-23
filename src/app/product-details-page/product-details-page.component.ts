@@ -2,6 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
+
 import { IProductDetails } from '@app/shared/interfaces/product-detail/product-datails.interface';
 import { IProductDescription } from '@app/shared/interfaces/product-detail/product-description.interface';
 import { IProductOptions } from '@app/shared/interfaces/product-detail/product-options.interface';
@@ -27,9 +28,9 @@ export class ProductDetailsPageComponent implements OnDestroy {
   };
 
   constructor(
-    private route: ActivatedRoute,
-    private productDetailsService: ProductDetailsService,
-    private stateService: ProductStateService
+    private readonly route: ActivatedRoute,
+    private readonly productDetailsService: ProductDetailsService,
+    private readonly stateService: ProductStateService
   ) {
     this.id = route.params.pipe(map(params => params.id));
 
@@ -51,13 +52,13 @@ export class ProductDetailsPageComponent implements OnDestroy {
           amountInStock: this.productDetails.amountInStock,
         };
       },
-      error => {
+      _error => {
         console.log('Loading error.');
       }
     );
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     if (this.loadingStateObserver) {
       this.loadingStateObserver.unsubscribe();
     }

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+
 import { IProductDescription } from '@app/shared/interfaces/product-detail/product-description.interface';
 import { ProductStateService } from '@app/shared/services/product-details/product-state.service';
 
@@ -10,9 +11,9 @@ import { ProductStateService } from '@app/shared/services/product-details/produc
 export class DescriptionComponent implements OnInit {
   @Input() productDescription: IProductDescription;
 
-  constructor(private stateService: ProductStateService) {}
+  constructor(private readonly stateService: ProductStateService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     if (this.stateService) {
       this.stateService.changeDescriptionState(true);
     }

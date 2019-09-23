@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { faShare, faShoppingCart, faHeart } from '@fortawesome/free-solid-svg-icons';
+
 import { IArrivals } from '@app/shared/interfaces/arrivals.interface';
+import { trackElement } from '@app/shared/functions/track-element';
 
 @Component({
   selector: 'app-product-item',
@@ -17,14 +19,14 @@ export class ProductItemComponent implements OnInit {
   shoppingIcon = faShoppingCart;
   heartIcon = faHeart;
 
-  constructor() {}
+  trackItem = trackElement;
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.swatches = this.product.swatches;
     this.price = `${this.product.price} $`;
   }
 
-  onChangeImage(item) {
+  onChangeImage(item): void {
     this.image.nativeElement.src = item.imgSrc;
   }
 }
