@@ -1,6 +1,5 @@
 const products = require('../assets/mocks/products.json');
 const filters = require('../assets/mocks/filters.json');
-const slideshow = require('../assets/mocks/slideshow.json');
 const advertisments = require("../assets/mocks/adv.json")
 const socials = require('../assets/config/social-links.json');
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -15,7 +14,6 @@ module.exports = {
   getHomepage,
   getProductById,
   getProducts,
-  getSlideshow,
   getSocials,
   notFound,
 };
@@ -126,9 +124,6 @@ function getHomepage(req, res) {
   res.json(homePageAggregated);
 }
 
-function getSlideshow(req, res) {
-  res.json(slideshow);
-}
 
 function getAdvertisments(req, res) {
   res.json(advertisments);
