@@ -74,12 +74,16 @@
     font-family: $font-bold;
   }
 
-  &__free-area {
+  &____free-area {
     display: block;
     max-width: 55rem;
 
     @include xl {
       margin: 0 auto;
     }
+  }
+
+  &__free-area-adv {
+    width: 100%;
   }
 }
