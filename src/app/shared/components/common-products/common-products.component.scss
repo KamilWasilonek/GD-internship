@@ -1,16 +1,14 @@
 @import 'mixins.scss';
 @import 'variables.scss';
 
-.arrivals {
-  &__heading {
-    @include heading;
-    font-size: $font-size-subTitleBig;
-
-    & span {
-      color: $title-color;
-    }
+:host {
+  margin-bottom: 8rem;
+  display: block;
+  @include lg {
+    margin-bottom: 6rem;
   }
-
+}
+.common-products {
   &__paragraph {
     @include paragraph;
     margin-top: 3rem;

@@ -19,16 +19,6 @@
       margin-bottom: 8rem;
     }
   }
-
-  &__arrivals {
-    margin-bottom: 8rem;
-    display: block;
-
-    @include lg {
-      margin-bottom: 6rem;
-    }
-  }
-
   &__best-sales {
     margin-top: 12rem;
     display: block;
@@ -37,4 +27,28 @@
       margin-top: 0;
     }
   }
+}
+.common-products__heading {
+  @include heading;
+  font-size: $font-size-subTitleBig;
+  span {
+    color: $title-color;
+  }
+}
+.best-sales__items {
+  display: grid;
+  grid-template: 1fr / repeat(3, 1fr);
+  grid-gap: 2rem;
+
+  @include lg {
+    margin-top: 5rem;
+    grid-template: 1fr / repeat(2, 1fr);
+  }
+
+  @include sm {
+    grid-template: 1fr / 1fr;
+  }
+}
+.best-sales__item {
+  display: block;
 }

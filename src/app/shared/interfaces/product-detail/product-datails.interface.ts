@@ -7,5 +7,5 @@ export interface IProductDetails {
   amountInStock: number;
   sizes: Array<string>;
   thumbnailImageSrc: string;
-  realtedProducts: Array<string>;
+  realatedProducts: Array<string>;
 }

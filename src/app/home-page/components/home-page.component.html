@@ -1,7 +1,22 @@
 <app-banner *ngIf="flags.isBannerVisible"></app-banner>
 <div class="container homepage">
-  <app-arrivals *ngIf="flags.isArrivalsVisible" class="homepage__arrivals"></app-arrivals>
+  <app-common-products *ngIf="flags.isArrivalsVisible">
+    <h2 class="common-products__heading" title>new <span>arrivals</span></h2>
+    <app-product-item new-arrivals *ngFor="let product of products | async; trackBy: trackHome" [product]="product"></app-product-item>
+  </app-common-products>
+
   <app-view-more *ngIf="flags.isViewMoreVisible" class="homepage__view-more"></app-view-more>
   <app-advertisements *ngIf="flags.isAdvertismentsVisible" class="homepage__adv"></app-advertisements>
-  <app-best-sales *ngIf="flags.isBestSalesVisible" class="homepage__best-sales"></app-best-sales>
+
+  <app-common-products class="homepage__best-sales" *ngIf="flags.isBestSalesVisible">
+    <h2 class="common-products__heading" title>best <span>sales</span></h2>
+    <div class="best-sales__items" best-products>
+      <app-best-sales-item
+        *ngFor="let product of bestSalesProducts | async; trackBy: trackHome"
+        class="best-sales__item"
+        [product]="product"
+      >
+      </app-best-sales-item>
+    </div>
+  </app-common-products>
 </div>
