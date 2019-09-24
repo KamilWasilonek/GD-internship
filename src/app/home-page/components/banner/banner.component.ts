@@ -5,7 +5,6 @@ import { interval, Subscription, Subject } from 'rxjs';
 
 import { ISlide } from '@app/shared/interfaces/banner.interface';
 import { SliderService } from '@app/shared/services/slider.service';
-import { trackElement } from '@app/shared/functions/track-element';
 
 @Component({
   selector: 'app-banner',
@@ -25,8 +24,6 @@ export class BannerComponent implements OnDestroy {
     message: 'Loading latest articles',
     isError: false,
   };
-
-  trackSlides = trackElement;
 
   constructor(private readonly sliderService: SliderService, private readonly sanitizer: DomSanitizer) {
     this.sliderService

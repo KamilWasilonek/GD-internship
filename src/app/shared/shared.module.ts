@@ -9,9 +9,18 @@ import { SmallTitleComponent } from './components/small-title/small-title.compon
 import { LogoComponent } from './components/logo/logo.component';
 import { ActionIconsComponent } from './components/action-icons/action-icons.component';
 import { CommonProductsComponent } from './components/common-products/common-products.component';
+import { TrackByPropertyPipe } from './pipes/track-by-property.pipe';
 
 @NgModule({
-  declarations: [ProductItemComponent, SmallTitleComponent, SpinnerComponent, LogoComponent, ActionIconsComponent, CommonProductsComponent],
+  declarations: [
+    ProductItemComponent,
+    SmallTitleComponent,
+    SpinnerComponent,
+    LogoComponent,
+    ActionIconsComponent,
+    CommonProductsComponent,
+    TrackByPropertyPipe,
+  ],
   imports: [CommonModule, FontAwesomeModule, RouterModule],
   exports: [
     ProductItemComponent,
@@ -21,6 +30,7 @@ import { CommonProductsComponent } from './components/common-products/common-pro
     RouterModule,
     ActionIconsComponent,
     CommonProductsComponent,
+    TrackByPropertyPipe,
   ],
   schemas: [NO_ERRORS_SCHEMA],
 })

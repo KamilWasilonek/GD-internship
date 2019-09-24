@@ -4,7 +4,6 @@ import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import { IProductOptions } from '@app/shared/interfaces/product-detail/product-options.interface';
 import { ProductStateService } from '@app/shared/services/product-details/product-state.service';
 import { ProductOrderService } from '@app/shared/services/product-details/product-order.service';
-import { trackElement } from '@app/shared/functions/track-element';
 
 @Component({
   selector: 'app-options',
@@ -13,8 +12,6 @@ import { trackElement } from '@app/shared/functions/track-element';
 })
 export class OptionsComponent implements OnInit {
   @Input() productOptions: IProductOptions;
-
-  trackOptions = trackElement;
 
   sizes: string[];
   productAmount: number;

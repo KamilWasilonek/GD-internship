@@ -5,7 +5,6 @@ import { IBestsellerItem } from '@app/shared/interfaces/bestseller-item.interfac
 import { BestsellersService } from '@app/shared/services/bestsellers.service';
 import { Observable } from 'rxjs';
 import { pluck } from 'rxjs/operators';
-import { trackElement } from '@app/shared/functions/track-element';
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
@@ -21,7 +20,6 @@ export class HomePageComponent implements OnInit {
   };
   public products: Observable<IArrivals[]>;
   public bestSalesProducts: Observable<IBestsellerItem[]>;
-  trackHome = trackElement;
 
   constructor(private readonly arrivalsService: ArrivalsService, private readonly bestsellersService: BestsellersService) {}
 

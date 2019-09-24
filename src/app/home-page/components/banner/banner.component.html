@@ -5,7 +5,7 @@
   <ul class="banner__list" *ngIf="animationOption === 'opacity'" [ngClass]="{ hidden: isDataLoading }">
     <li
       class="banner__slide"
-      *ngFor="let slide of slides; index as i; trackBy: trackSlides"
+      *ngFor="let slide of slides; index as i; trackBy: null | trackByProperty"
       [ngClass]="{ 'banner__slide--active': i === currentSlideIndex }"
     >
       <img class="banner__background" src="{{ slide.img }}" alt="Banner img" (load)="imageLoaded()" />

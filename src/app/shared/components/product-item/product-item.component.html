@@ -11,7 +11,7 @@
       <li>Sizes:</li>
       <li
         class="product-item__size"
-        *ngFor="let size of product.sizes; trackBy: trackItem"
+        *ngFor="let size of product.sizes; trackBy: null | trackByProperty"
         [ngClass]="{ 'product-item__size--active': cardItem.size === size }"
         (click)="changeSize(size)"
       >
@@ -21,7 +21,7 @@
     <div class="product-item__colors-option" *ngIf="product.swatches.length > 1">
       <span
         class="product-item__color-icon"
-        *ngFor="let item of product.swatches; trackBy: trackItem"
+        *ngFor="let item of product.swatches; trackBy: null | trackByProperty"
         [ngStyle]="{ 'background-color': item.color }"
         [ngClass]="{ 'product-item__color-icon--active': cardItem.color === item.color }"
         (click)="onChangeImage(item)"

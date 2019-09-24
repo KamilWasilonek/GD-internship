@@ -2,7 +2,11 @@
 <div class="container homepage">
   <app-common-products *ngIf="flags.isArrivalsVisible">
     <h2 class="common-products__heading" title>new <span>arrivals</span></h2>
-    <app-product-item new-arrivals *ngFor="let product of products | async; trackBy: trackHome" [product]="product"></app-product-item>
+    <app-product-item
+      new-arrivals
+      *ngFor="let product of products | async; trackBy: 'id' | trackByProperty"
+      [product]="product"
+    ></app-product-item>
   </app-common-products>
 
   <app-view-more *ngIf="flags.isViewMoreVisible" class="homepage__view-more"></app-view-more>
@@ -12,7 +16,7 @@
     <h2 class="common-products__heading" title>best <span>sales</span></h2>
     <div class="best-sales__items" best-products>
       <app-best-sales-item
-        *ngFor="let product of bestSalesProducts | async; trackBy: trackHome"
+        *ngFor="let product of bestSalesProducts | async; trackBy: null | trackByProperty"
         class="best-sales__item"
         [product]="product"
       >

@@ -10,7 +10,6 @@ import { Spinner } from '@app/shared/interfaces/spinner.interface';
 import { ArrivalsService } from '@app/shared/services/arrivals.service';
 import { ProductDetailsService } from '@app/shared/services/product-details/product-details.service';
 import { ProductStateService } from '@app/shared/services/product-details/product-state.service';
-import { trackElement } from '@app/shared/functions/track-element';
 
 @Component({
   selector: 'app-product-details-page',
@@ -33,7 +32,6 @@ export class ProductDetailsPageComponent {
   public flags = {
     isArrivalsVisible: true,
   };
-  trackProducts = trackElement;
 
   constructor(
     private readonly route: ActivatedRoute,

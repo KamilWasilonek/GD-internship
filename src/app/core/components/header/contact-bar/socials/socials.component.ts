@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 
 import { SocialIcon } from '@app/shared/interfaces/social-icon.interface';
 import { SocialsService } from '@app/shared/services/socials.service';
-import { trackElement } from '@app/shared/functions/track-element';
 @Component({
   selector: 'app-socials',
   templateUrl: './socials.component.html',
@@ -11,8 +10,6 @@ import { trackElement } from '@app/shared/functions/track-element';
 export class SocialsComponent implements OnInit {
   socials: SocialIcon[];
   lastLink: number;
-
-  trackSocials = trackElement;
 
   constructor(private readonly socialsService: SocialsService) {}
 

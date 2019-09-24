@@ -6,7 +6,6 @@ import { CardStatusService } from '@app/shared/services/card-list/card-status.se
 import { IArrivals } from '@app/shared/interfaces/arrivals.interface';
 import { ICardItem } from '@app/shared/interfaces/card-item.interface';
 import { ISwatches } from '@app/shared/interfaces/swatches.interface';
-import { trackElement } from '@app/shared/functions/track-element';
 
 @Component({
   selector: 'app-product-item',
@@ -18,8 +17,6 @@ export class ProductItemComponent implements OnInit, OnChanges, OnDestroy {
   unsubscribe$: Subject<void> = new Subject();
   cardItem: ICardItem;
   currentImageSrc: string;
-
-  trackItem = trackElement;
 
   constructor(private readonly cardStatusService: CardStatusService) {}
 

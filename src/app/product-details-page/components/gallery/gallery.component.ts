@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 
 import { ProductStateService } from '@app/shared/services/product-details/product-state.service';
-import { trackElement } from '@app/shared/functions/track-element';
 
 @Component({
   selector: 'app-gallery',
@@ -12,8 +11,6 @@ export class GalleryComponent {
   @Input() productImage: string;
   smallImagesArr: number[] = [0, 1, 2];
   curPrimaryImageTitle = 'product image nr 1';
-
-  trackGallery = trackElement;
 
   constructor(private readonly stateService: ProductStateService) {}
 

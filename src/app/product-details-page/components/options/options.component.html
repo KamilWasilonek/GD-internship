@@ -4,7 +4,7 @@
     <ul class="options__list">
       <li
         class="options__list-item"
-        *ngFor="let size of sizes; trackBy: trackOptions"
+        *ngFor="let size of sizes; trackBy: null | trackByProperty"
         [ngClass]="{ 'options__list-item--active': actualSize === size }"
         (click)="takeSize(size)"
       >

@@ -12,6 +12,10 @@
 <div class="container related-products">
   <app-common-products *ngIf="flags.isArrivalsVisible">
     <h2 class="common-products__heading" title>related <span>products</span></h2>
-    <app-product-item new-arrivals *ngFor="let product of products | async; trackBy: trackProducts" [product]="product"></app-product-item>
+    <app-product-item
+      new-arrivals
+      *ngFor="let product of products | async; trackBy: 'id' | trackByProperty"
+      [product]="product"
+    ></app-product-item>
   </app-common-products>
 </div>
