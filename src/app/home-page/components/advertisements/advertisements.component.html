@@ -21,10 +21,9 @@
   </div>
   <div class="adv__free-area">
     <app-spinner [spinner]="spinners[1]" *ngIf="isDataLoading[1]" class="adv__spinner"></app-spinner>
-    <img *ngIf="spinners[1].isError" class="adv__free-area-adv" src="../../../../assets/img/adv_area.png" alt="Order" />
-    <app-advertisement-external *ngIf="!spinners[1].isError && !isDataLoading[1]" class="adv__free-area-adv">
-      <iframe style="display:block;border:none; background-color:#fff" [src]="advertisementsExternal[currentIndex[1]].link | safe">
-      </iframe>
+    <img *ngIf="spinners[1].isError" class="adv__free-area-dummy" src="../../../../assets/img/adv_area.png" alt="Order" />
+    <app-advertisement-external *ngIf="!spinners[1].isError && !isDataLoading[1]" class="adv__free-area-container">
+      <iframe class="adv__free-area-adv" [src]="advertisementsExternal[currentIndex[1]].link | safe"> </iframe>
     </app-advertisement-external>
   </div>
 </section>
