@@ -8,7 +8,7 @@ import { advertismentExternalURL } from '../api-endpoints';
   providedIn: 'root',
 })
 export class AdvertismentExternalService {
-  constructor(private http: HttpClient) {}
+  constructor(private readonly http: HttpClient) {}
 
   public getAdvertismentExternal(): Observable<IAdvExternal[]> {
     return this.http.get<IAdvExternal[]>(advertismentExternalURL);

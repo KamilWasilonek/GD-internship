@@ -79,8 +79,7 @@ export class AdvertisementsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.destroy$.next(true);
-    // tslint:disable-next-line: rxjs-no-subject-unsubscribe
-    this.destroy$.unsubscribe();
+    this.destroy$.complete();
   }
 
   public startSliderInterval(id: number, arr: Array<IAdvExternal | IAdvInternal>): void {

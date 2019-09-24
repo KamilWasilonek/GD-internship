@@ -5,7 +5,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
   name: 'safe',
 })
 export class SafePipe implements PipeTransform {
-  constructor(private sanitizer: DomSanitizer) {}
+  constructor(private readonly sanitizer: DomSanitizer) {}
   transform(url: string): SafeUrl {
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
