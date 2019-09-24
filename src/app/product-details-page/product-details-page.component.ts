@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, Subscription,combineLatest } from 'rxjs';
+import { Observable, Subscription, combineLatest } from 'rxjs';
 import { map, pluck } from 'rxjs/operators';
 import { IProductDetails } from '@app/shared/interfaces/product-detail/product-datails.interface';
 import { IProductDescription } from '@app/shared/interfaces/product-detail/product-description.interface';
@@ -10,6 +10,7 @@ import { Spinner } from '@app/shared/interfaces/spinner.interface';
 import { ArrivalsService } from '@app/shared/services/arrivals.service';
 import { ProductDetailsService } from '@app/shared/services/product-details/product-details.service';
 import { ProductStateService } from '@app/shared/services/product-details/product-state.service';
+import { trackElement } from '@app/shared/functions/track-element';
 
 @Component({
   selector: 'app-product-details-page',
@@ -32,6 +33,7 @@ export class ProductDetailsPageComponent {
   public flags = {
     isArrivalsVisible: true,
   };
+  trackProducts = trackElement;
 
   constructor(
     private readonly route: ActivatedRoute,
@@ -52,7 +54,7 @@ export class ProductDetailsPageComponent {
   }
   private getProductDetails(): void {
     this.productDetails = this.productDetailsService.getProductDetails();
-  };
+  }
 
   private getProductDescription(): void {
     this.productDescription = this.productDetailsService.getProductDetails().pipe(
