@@ -18,6 +18,10 @@ import { NavigationComponent } from './core/components/header/menu/navigation/na
 import { ActionsComponent } from './core/components/header/menu/actions/actions.component';
 import { FooterComponent } from './core/components/footer/footer.component';
 import { JoinUsComponent } from '@core/components/join-us/join-us.component';
+
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +35,19 @@ import { JoinUsComponent } from '@core/components/join-us/join-us.component';
     FooterComponent,
     JoinUsComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FontAwesomeModule, SharedModule, ReactiveFormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FontAwesomeModule,
+    SharedModule,
+    ReactiveFormsModule,
+    StoreModule.forRoot({}),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+    }),
+    EffectsModule.forRoot([]),
+  ],
   providers: [
     {
       provide: ErrorHandler,
