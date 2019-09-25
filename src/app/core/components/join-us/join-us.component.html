@@ -4,9 +4,14 @@
     <p class="join__sub-title">join us now to get all news and special offers</p>
   </div>
   <form [formGroup]="subscriptionForm" (ngSubmit)="onSubmit()" class="join__sign-form">
-    <div class="join__email-box">
-      <img src="../../../../assets/icons/mail-icon.png" alt="Email" class="join__email-icon" />
-      <input formControlName="email" class="join__email-field" type="email" placeholder="type you email here" #email />
+    <div class="join__form-fields">
+      <div class="join__email-box">
+        <img src="../../../../assets/icons/mail-icon.png" alt="Email" class="join__email-icon" />
+        <input formControlName="email" class="join__email-field" type="email" placeholder="Type you email here" #email />
+      </div>
+      <button type="submit" class="join__sign-btn">Join us</button>
+    </div>
+    <div>
       <p *ngIf="submitted && subscriptionForm.controls.email.errors?.required" class="join__email-error">
         Email is required
       </p>
@@ -17,6 +22,5 @@
         {{ serverMessage }}
       </p>
     </div>
-    <button type="submit" class="join__sign-btn">join us</button>
   </form>
 </section>

@@ -11,27 +11,35 @@
   padding-top: 3rem;
   padding-bottom: 3rem;
 
-  @include md {
+  @include lg {
     display: block;
+    text-align: center;
   }
 }
 .footer__logo {
-  flex-basis: 20%;
+  flex-basis: 20rem;
+
   &-text {
+    margin-top: 1rem;
     font-size: $font-size-middle;
-    @include md {
-      display: none;
-    }
   }
 }
 .footer__list {
   display: flex;
   justify-content: center;
-  flex-basis: 50%;
+  flex-basis: auto;
   &-item {
-    font-size: $font-size-subTitleSmall;
-    padding-right: 2rem;
+    font-size: $font-size-main;
     list-style: none;
+    text-transform: capitalize;
+
+    &:nth-child(even) {
+      padding: 0 3rem;
+    }
+  }
+
+  @include lg {
+    margin: 4rem 0;
   }
 }
 .footer__item-link {
@@ -47,32 +55,18 @@
 .footer__payment {
   display: flex;
   flex-direction: column;
-  flex-basis: 20%;
-  @include md {
-    padding-top: 1rem;
-  }
+  flex-basis: 20rem;
 
   &-title {
     padding-bottom: 1rem;
     font-family: $font-bold;
     font-size: $font-size-main;
     color: $title-color;
-    @include md {
-      text-align: center;
-    }
-  }
-  &-container {
-    @include md {
-      display: block;
-      width: 100%;
-      text-align: center;
-    }
   }
 
   &-image {
     width: 100%;
-    @include md {
-      width: 30%;
-    }
+    max-width: 20rem;
+    cursor: pointer;
   }
 }

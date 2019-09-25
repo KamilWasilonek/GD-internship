@@ -1,22 +1,28 @@
 <section class="banner">
   <app-spinner class="banner__spinner" [spinner]="spinner" *ngIf="isDataLoading"></app-spinner>
 
-  <img class="banner__bg" src="{{ backgroundImage }}" alt="Background" (load)="setSlideContent(currentSlideIndex)" />
-
-  <div *ngIf="!isDataLoading" class="banner__details" bannerImg>
-    <div class="banner__buttons-container">
-      <button class="banner__slide-btn banner__slide-btn--prev" (click)="showPrevSlide($event)"></button>
-      <div class="banner__slide-btn banner__slide-btn--bigger"></div>
-      <button class="banner__slide-btn banner__slide-btn--next" (click)="showNextSlide($event)"></button>
-    </div>
-    <div class="banner__content">
-      <h2 class="banner__title">{{ title }}</h2>
-      <h4 class="banner__proposition">{{ proposition }}</h4>
-      <p class="banner__desc">{{ description }}</p>
-      <div class="banner__box">
-        <p class="banner__price">Price: {{ price }}$</p>
-        <p class="banner__order" (click)="makeOrder()">Order Now</p>
+  <!-- Opacity animation -->
+  <ul class="banner__list" *ngIf="animationOption === 'opacity'" [ngClass]="{ hidden: isDataLoading }">
+    <li
+      class="banner__slide"
+      *ngFor="let slide of slides; index as i; trackBy: trackSlides"
+      [ngClass]="{ 'banner__slide--active': i === currentSlideIndex }"
+    >
+      <img class="banner__background" src="{{ slide.img }}" alt="Banner img" (load)="imageLoaded()" />
+      <div class="banner__buttons-container">
+        <button class="banner__slide-btn banner__slide-btn--prev" (click)="showPrevSlide($event)"></button>
+        <div class="banner__slide-btn banner__slide-btn--bigger"></div>
+        <button class="banner__slide-btn banner__slide-btn--next" (click)="showNextSlide($event)"></button>
       </div>
-    </div>
-  </div>
+      <div class="banner__content-box">
+        <h2 class="banner__title">{{ slide.title }}</h2>
+        <h4 class="banner__proposition">{{ slide.proposition }}</h4>
+        <p class="banner__desc">{{ slide.description }}</p>
+        <div class="banner__order-box">
+          <p class="banner__price">Price: {{ slide.price }}$</p>
+          <p class="banner__order">Order Now</p>
+        </div>
+      </div>
+    </li>
+  </ul>
 </section>
