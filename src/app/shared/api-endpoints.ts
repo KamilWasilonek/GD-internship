@@ -5,17 +5,19 @@ const endpoints = {
   advertisments: 'advertisments',
   subscriptions: 'subscriptions',
   socials: 'socials',
+  filters: 'filters',
   bestsellers: 'products?ids=1,3,6',
   newArrivals: 'products?ids=5,8,13,15',
   productDetails: 'products/1',
 };
 
 const slideshowURL = `${environment.serverUrl}${endpoints.slideshow}`;
-const advertismentsURL = `${root}${endpoints.advertisments}`;
+const advertismentsURL = `${environment.serverUrl}${endpoints.advertisments}`;
 const subscriptionsURL = `${root}${endpoints.subscriptions}`;
-const socialsURL = `${root}${endpoints.socials}`;
+const socialsURL = `${environment.serverUrl}${endpoints.socials}`;
 const bestsellersURL = `${root}${endpoints.bestsellers}`;
-const newArrivalsURL = `${root}${endpoints.newArrivals}`;
-const productDetailsURL = `${root}${endpoints.productDetails}`;
+const newArrivalsURL = `${environment.serverUrl}${endpoints.newArrivals}`;
+const productDetailsURL = `${environment.serverUrl}${endpoints.productDetails}`;
+const filterURL = `${environment.serverUrl}${endpoints.filters}`;
 
-export { slideshowURL, advertismentsURL, subscriptionsURL, socialsURL, bestsellersURL, newArrivalsURL, productDetailsURL };
+export { slideshowURL, advertismentsURL, subscriptionsURL, socialsURL, bestsellersURL, newArrivalsURL, productDetailsURL, filterURL };
