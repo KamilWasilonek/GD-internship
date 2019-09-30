@@ -7,7 +7,7 @@ exports.getFilters = async function (req, res) {
        
         const rangeFilter = filters.find(el => el.type === 'range');
         const productsSorted = JSON.parse(JSON.stringify(productsController.getProducts)).sort((a, b) => b.price - a.price);
-        const productsSorted = productsController.getProducts.sort((a, b) => b.price - a.price);
+        // const productsSorted = productsController.getProducts.sort((a, b) => b.price - a.price);
         const mostExpensive = productsSorted[0].price;
         const cheapest = productsSorted[productsSorted.length - 1].price;
 
