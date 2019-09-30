@@ -71,7 +71,6 @@ exports.getProducts = async (req, res) => {
 }
 exports.getProductById = async (req, res) => {
     return ProductDetails.find((err, productDetails) => {
-        
         if (err) {
             // return console.log(err);
         }
@@ -92,10 +91,12 @@ exports.getProductById = async (req, res) => {
 }
 const PRODUCTS_REDUNDANT_PROPS = ['relatedProducts', 'description'];
 function _cleanUpProductProperties(product) {
-    const productClone = JSON.parse(JSON.stringify(product));
+    const productClone = {...product};
+
     PRODUCTS_REDUNDANT_PROPS.forEach(property => {
         delete productClone[property];
     });
 
+    return productClone;
 }
 
