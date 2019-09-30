@@ -64,8 +64,8 @@ exports.getProducts = async (req, res) => {
 
         cleanedProducts = cleanedProducts.slice(+query.start || 0, +query.end || cleanedProducts.length);
         responseProducts.products = cleanedProducts;
-        // res.json(responseProducts);
-        return res.json(products);
+        res.json(responseProducts);
+        // return res.json(products);
     });
 
 }
