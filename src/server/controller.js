@@ -107,9 +107,10 @@ function notFound(req, res) {
   res.status(404).send();
 }
 
-function getHomepage(req, res) {
+async function getHomepage(req, res) {
   const randomProducts = new Set();
-  const productClone = JSON.parse(JSON.stringify(products));
+  const slideshow = await slideController.getSlideshow(req, res);
+  const productClone = [...products];
   while (Array.from(randomProducts).length !== 4) {
     const cleanedUpProduct = _cleanUpProductProperties(productClone[Math.floor(Math.random() * products.length)]);
     randomProducts.add(cleanedUpProduct);
@@ -119,8 +120,8 @@ function getHomepage(req, res) {
 
   const homePageAggregated = {
     arrivals: Array.from(randomProducts),
-    bestSales: bestSales,
-    slideshow: slideController.getSlideshow
+    bestSales,
+    slideshow,
   };
 
   res.json(homePageAggregated);
@@ -163,7 +164,8 @@ function deleteSubscription(req, res) {
 }
 
 function _cleanUpProductProperties(product) {
-  const productClone = JSON.parse(JSON.stringify(product));
+  const productClone = {...product};
+
   PRODUCTS_REDUNDANT_PROPS.forEach(property => {
     delete productClone[property];
   });
