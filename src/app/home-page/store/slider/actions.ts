@@ -1,4 +1,5 @@
 import { Action } from '@ngrx/store';
+
 import { ISlide } from '@app/shared/interfaces/banner.interface';
 
 export const LOAD_SLIDER = '[Banner] Load Slider';

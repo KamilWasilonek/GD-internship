@@ -3,8 +3,9 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
 
+import * as sliderActions from './actions';
+import { ISlide } from '@app/shared/interfaces/banner.interface';
 import { SliderService } from '@app/shared/services/slider.service';
-import * as sliderActions from '../actions/slider.actions';
 
 @Injectable()
 export class SliderEffects {
@@ -12,7 +13,7 @@ export class SliderEffects {
     ofType(sliderActions.LOAD_SLIDER),
     mergeMap(() =>
       this.sliderService.getSlideshow().pipe(
-        map(slideshow => new sliderActions.LoadSliderSuccessAction(slideshow)),
+        map((slides: ISlide[]) => new sliderActions.LoadSliderSuccessAction(slides)),
         catchError(() => of(new sliderActions.LoadSliderFailAction()))
       )
     )

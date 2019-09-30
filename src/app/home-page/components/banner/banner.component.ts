@@ -3,11 +3,10 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { takeUntil, tap } from 'rxjs/operators';
 import { interval, Subscription, Subject, Observable } from 'rxjs';
 
-import { ISlide } from '@app/shared/interfaces/banner.interface';
 import { Store, select } from '@ngrx/store';
 
 import * as fromStore from '../../store';
-import { SliderState } from '@app/home-page/store/reducers/slider.reducer';
+import * as fromSlider from '../../store/slider';
 
 @Component({
   selector: 'app-banner',
@@ -18,7 +17,6 @@ export class BannerComponent implements OnDestroy, OnInit {
   isImagesLoading = true;
   animationOption = 'opacity';
   imageNumberToLoad: number;
-  slides: ISlide[];
   currentSlideIndex = 0;
   unsubscribe$ = new Subject<void>();
   sliderInterval: Subscription;
@@ -28,27 +26,28 @@ export class BannerComponent implements OnDestroy, OnInit {
     isError: false,
   };
 
-  slider$: Observable<SliderState>;
+  sliderState$: Observable<fromSlider.SliderState>;
+
+  slidesAmount: number;
 
   constructor(private readonly store: Store<fromStore.HomePageState>) {}
 
   ngOnInit(): void {
-    this.store.dispatch(new fromStore.LoadSliderAction());
-
-    this.slider$ = this.store.pipe(
-      select(fromStore.getSliderState),
-      tap(slider => {
-        if (slider.isError) {
+    this.sliderState$ = this.store.pipe(
+      select(fromSlider.selectState),
+      tap(sliderSate => {
+        if (sliderSate.isFailed) {
           this.spinner = {
             message: 'Can not load latest products',
             isError: true,
           };
-        } else if (slider.isLoaded) {
-          this.slides = slider.data;
-          this.imageNumberToLoad = this.slides.length;
+        } else if (sliderSate.data.length) {
+          this.slidesAmount = this.imageNumberToLoad = sliderSate.data.length;
         }
       })
     );
+
+    this.store.dispatch(new fromSlider.LoadSliderAction());
   }
 
   ngOnDestroy(): void {
@@ -58,7 +57,7 @@ export class BannerComponent implements OnDestroy, OnInit {
 
   showNextSlide(event?: MouseEvent): void {
     this.checkEvent(event);
-    if (this.currentSlideIndex++ >= this.slides.length - 1) {
+    if (this.currentSlideIndex++ >= this.slidesAmount - 1) {
       this.currentSlideIndex = 0;
     }
   }
@@ -66,7 +65,7 @@ export class BannerComponent implements OnDestroy, OnInit {
   showPrevSlide(event?: MouseEvent): void {
     this.checkEvent(event);
     if (this.currentSlideIndex-- === 0) {
-      this.currentSlideIndex = this.slides.length - 1;
+      this.currentSlideIndex = this.slidesAmount - 1;
     }
   }
 
