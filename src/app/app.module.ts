@@ -23,6 +23,8 @@ import { FooterComponent } from './core/components/footer/footer.component';
 import { JoinUsComponent } from '@core/components/join-us/join-us.component';
 import { reducers, effects } from '@app/@store';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
