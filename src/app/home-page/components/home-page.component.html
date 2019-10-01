@@ -16,9 +16,12 @@
 
   <app-common-products class="homepage__best-sales" *ngIf="flags.isBestSalesVisible">
     <h2 class="common-products__heading" title>best <span>sales</span></h2>
-    <div class="best-sales__items" best-products>
+
+    <app-spinner [spinner]="spinners.bestSales" *ngIf="isSpinnerVisible.bestSales" spinner></app-spinner>
+
+    <div class="best-sales__items" [ngClass]="{ hidden: isSpinnerVisible.bestSales }" best-products>
       <app-best-sales-item
-        *ngFor="let product of bestSalesProducts | async; trackBy: null | trackByProperty"
+        *ngFor="let product of (bestSalesProductsState$ | async).data; trackBy: null | trackByProperty"
         class="best-sales__item"
         [product]="product"
       >

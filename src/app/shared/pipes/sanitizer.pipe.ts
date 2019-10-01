@@ -13,7 +13,7 @@ export class SanitizerPipe implements PipeTransform {
       case 'link':
         return this.sanitizer.bypassSecurityTrustResourceUrl(url);
       default:
-        return url;
+        throw new Error('Param has to be url or link');
     }
   }
 }
