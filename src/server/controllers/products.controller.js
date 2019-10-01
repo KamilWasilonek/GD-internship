@@ -1,10 +1,9 @@
 const Product = require('../models/product.model');
-const ProductDetails = require('../models/product-details.model');
+// const ProductDetails = require('../models/product-details.model');
 const notFound = async (req, res) => {
     res.status(404).send();
 }
 exports.getProducts = async (req, res) => {
-    // console.log(res);
     return Product.find((err, products) => {
         if (err) {
             // return console.log(err);
@@ -64,25 +63,50 @@ exports.getProducts = async (req, res) => {
 
         cleanedProducts = cleanedProducts.slice(+query.start || 0, +query.end || cleanedProducts.length);
         responseProducts.products = cleanedProducts;
-        res.json(responseProducts);
-        // return res.json(products);
+        return res.json(responseProducts);
     });
 
 }
+// exports.getProductById = async (req, res) => {
+//     console.log(res)
+//     return ProductDetails.find((err, productsDetails) => {
+//         if (err) {
+//             // return console.log(err);
+//         }
+//         console.log(productsDetails)
+//         let product = productsDetails.find(({ id }) => id === req.params.id);
+
+//         if (!product) {
+//             notFound(req, res);
+//             return;
+//         }
+
+//         product = JSON.parse(JSON.stringify(productsDetails));
+//         console.log(product);
+//         product.relatedProducts = products.filter(item => product.relatedProducts.some(id => id === item.id));
+
+//         res.json(product);
+//     });
+
+// }
+
+
 exports.getProductById = async (req, res) => {
-    return ProductDetails.find((err, productDetails) => {
+    console.log(res)
+    return ProductDetails.find((err, productsDetails) => {
         if (err) {
             // return console.log(err);
         }
-        let product = productDetails.find(({ id }) => id === req.params.id);
+        console.log(productsDetails)
+        let product = getProducts.find(({ id }) => id === req.params.id);
 
         if (!product) {
             notFound(req, res);
             return;
         }
 
-        product = JSON.parse(JSON.stringify(productDetails));
-
+        product = JSON.parse(JSON.stringify(productsDetails));
+        console.log(product);
         product.relatedProducts = products.filter(item => product.relatedProducts.some(id => id === item.id));
 
         res.json(product);
@@ -91,7 +115,7 @@ exports.getProductById = async (req, res) => {
 }
 const PRODUCTS_REDUNDANT_PROPS = ['relatedProducts', 'description'];
 function _cleanUpProductProperties(product) {
-    const productClone = {...product};
+    const productClone = { ...product };
 
     PRODUCTS_REDUNDANT_PROPS.forEach(property => {
         delete productClone[property];
