@@ -1,4 +1,4 @@
-<ul class="socials">
+<ul class="socials" *ngIf="socialIconsState$ | async as socials">
   <li class="socials__list-item" *ngFor="let link of socials; trackBy: 'title' | trackByProperty">
     <a class="socials__link" href="{{ link.url }}" target="_black">
       <img class="socials__icon" src="{{ link.icon }}" alt="{{ link.title }}" />

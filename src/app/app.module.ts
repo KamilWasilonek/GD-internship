@@ -4,7 +4,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { StoreModule } from '@ngrx/store';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -21,6 +20,7 @@ import { NavigationComponent } from './core/components/header/menu/navigation/na
 import { ActionsComponent } from './core/components/header/menu/actions/actions.component';
 import { FooterComponent } from './core/components/footer/footer.component';
 import { JoinUsComponent } from '@core/components/join-us/join-us.component';
+import { reducers, effects } from '@app/@store';
 
 @NgModule({
   declarations: [
@@ -42,11 +42,8 @@ import { JoinUsComponent } from '@core/components/join-us/join-us.component';
     FontAwesomeModule,
     SharedModule,
     ReactiveFormsModule,
-    StoreModule.forRoot({}),
-    StoreDevtoolsModule.instrument({
-      maxAge: 25,
-    }),
-    EffectsModule.forRoot([]),
+    StoreModule.forRoot(reducers, {}),
+    EffectsModule.forRoot(effects),
   ],
   providers: [
     {

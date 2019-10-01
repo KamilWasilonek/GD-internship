@@ -1,22 +1,24 @@
 import { Component, OnInit } from '@angular/core';
+import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
-import { SocialIcon } from '@app/shared/interfaces/social-icon.interface';
-import { SocialsService } from '@app/shared/services/socials.service';
+import { ISocialIcon } from '@app/shared/interfaces/social-icon.interface';
+import * as fromStore from '@app/@store';
+import * as fromSocialIcons from '@app/@store/social-icons';
+
 @Component({
   selector: 'app-socials',
   templateUrl: './socials.component.html',
   styleUrls: ['./socials.component.scss'],
 })
 export class SocialsComponent implements OnInit {
-  socials: SocialIcon[];
-  lastLink: number;
+  socialIconsState$: Observable<ISocialIcon[]>;
 
-  constructor(private readonly socialsService: SocialsService) {}
+  constructor(private readonly store: Store<fromStore.AppState>) {}
 
   ngOnInit(): void {
-    this.socialsService.getSocialLinks().subscribe(data => {
-      this.socials = data;
-      this.lastLink = this.socials.length - 1;
-    });
+    this.socialIconsState$ = this.store.pipe(select(fromSocialIcons.selectSocialIconsData));
+
+    this.store.dispatch(new fromSocialIcons.LoadSocialIconsAction());
   }
 }

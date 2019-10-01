@@ -150,7 +150,8 @@
     },
     "template-i18n": false,
     "invalid-void": false,
-    "template-cyclomatic-complexity": [true, 20]
+    "template-cyclomatic-complexity": [true, 20],
+    "only-arrow-functions": false
   },
   "rulesDirectory": ["codelyzer", "tslint-misc-rules", "tslint-consistent-codestyle"]
 }
