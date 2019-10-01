@@ -128,6 +128,7 @@ async function getHomepage(req, res) {
 }
 
 
+
 // function getAdvertisments(req, res) {
 //   res.json(advertisments);
 // }
@@ -163,8 +164,9 @@ function deleteSubscription(req, res) {
   res.status(202).send();
 }
 
+
 function _cleanUpProductProperties(product) {
-  const productClone = {...product};
+  const productClone = { ...product };
 
   PRODUCTS_REDUNDANT_PROPS.forEach(property => {
     delete productClone[property];
