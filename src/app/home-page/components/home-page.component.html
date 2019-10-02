@@ -2,12 +2,13 @@
 <div class="container homepage">
   <app-common-products *ngIf="flags.isArrivalsVisible">
     <h2 class="common-products__heading" title>new <span>arrivals</span></h2>
-    <app-spinner spinner *ngIf="spinners[0].isError || spinners[0].isError === undefined" [spinner]="spinners[0]"> </app-spinner>
+    <app-spinner spinner *ngIf="isSpinnerVisible.arrivals" [spinner]="spinners.arrivals"> </app-spinner>
     <app-product-item
       new-arrivals
-      *ngFor="let product of productsState$ | async; trackBy: 'id' | trackByProperty"
+      *ngFor="let product of (productsState$ | async).data; trackBy: 'id' | trackByProperty"
       [product]="product"
-    ></app-product-item>
+    >
+    </app-product-item>
   </app-common-products>
 
   <app-view-more *ngIf="flags.isViewMoreVisible" class="homepage__view-more"></app-view-more>

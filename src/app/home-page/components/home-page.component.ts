@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { IArrivals } from '@app/shared/interfaces/arrivals.interface';
 import { IBestsellerItem } from '@app/shared/interfaces/bestseller-item.interface';
 import { BestsellersService } from '@app/shared/services/bestsellers.service';
 import * as fromStore from '../store';
@@ -7,7 +6,7 @@ import * as fromArrivals from '../store/new-arrivals';
 import { Observable } from 'rxjs';
 import { pluck, tap } from 'rxjs/operators';
 import { Store, select } from '@ngrx/store';
-import { Spinner } from '@app/shared/interfaces/spinner.interface';
+
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
@@ -21,28 +20,31 @@ export class HomePageComponent implements OnInit {
     isAdvertismentsVisible: true,
     isBestSalesVisible: true,
   };
-  public productsState$: Observable<IArrivals[]>;
+  public productsState$: Observable<fromArrivals.ArrivalsState>;
   public bestSalesProducts: Observable<IBestsellerItem[]>;
-  public spinners: Spinner[] = [
-    {
+  public spinners = {
+    arrivals: {
       message: 'Products are loading',
-      isError: undefined,
+      isError: false,
     },
-  ];
+  };
+  isSpinnerVisible = {
+    arrivals: true,
+  };
 
   constructor(private readonly store: Store<fromStore.HomePageState>, private readonly bestsellersService: BestsellersService) {}
 
   public ngOnInit(): void {
     this.productsState$ = this.store.pipe(
-      select(fromArrivals.selectCombinedData),
+      select(fromArrivals.selectState),
       tap(arrivalsData => {
-        if (!arrivalsData.length) {
-          this.spinners[0] = {
+        if (arrivalsData.isFailed) {
+          this.spinners.arrivals = {
             message: 'Can not load latest products',
             isError: true,
           };
-        } else {
-          this.spinners[0].isError = false;
+        } else if (arrivalsData.data.length) {
+          this.isSpinnerVisible.arrivals = false;
         }
       })
     );
