@@ -1,6 +1,5 @@
 import { Action } from '@ngrx/store';
 import { IArrivals } from '@app/shared/interfaces/arrivals.interface';
-import { ICardItem } from '@app/shared/interfaces/card-item.interface';
 
 export const LOAD_ARRIVALS = '[New Arrivals] Load New Arrivals';
 export const LOAD_ARRIVALS_SUCCESS = '[New Arrivals] Load New Arrivals Success';
@@ -21,10 +20,4 @@ export class LoadArrivalsFailAction implements Action {
   readonly type = LOAD_ARRIVALS_FAIL;
 }
 
-export class AddProductToCardlist implements Action {
-  readonly type = ADD_PRODUCT_TO_CARDLIST;
-
-  constructor(public readonly payload: ICardItem) {}
-}
-
-export type ArrivalsAction = LoadArrivalsAction | LoadArrivalsSuccessAction | LoadArrivalsFailAction | AddProductToCardlist;
+export type ArrivalsAction = LoadArrivalsAction | LoadArrivalsSuccessAction | LoadArrivalsFailAction;
