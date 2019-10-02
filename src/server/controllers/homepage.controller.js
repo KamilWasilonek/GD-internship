@@ -7,7 +7,7 @@ async function getHomepage(req, res) {
     try {
         let randomProducts = new Set();
 
-        let [slideshow, products] = await Promise.all([slideController.getSlideshow(req, res), productsController.getProducts(req, res)]);
+        let [slideshow, products] = await Promise.all([slideController.getSlideshow(), productsController.getProducts(req)]);
 
         const productClone = [...products];
         while (Array.from(randomProducts).length !== 4) {

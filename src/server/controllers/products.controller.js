@@ -67,7 +67,7 @@ controller.getProducts = async (req, res) => {
             cleanedProducts = cleanedProducts.slice(+query.start || 0, +query.end || cleanedProducts.length);
             responseProducts.products = cleanedProducts;
 
-            return res.json(responseProducts);
+            return res ? res.json(responseProducts) : responseProducts;
         });
     }
     catch (err) {
@@ -78,17 +78,14 @@ controller.getHomepage = async (req, res, next) => {
     try {
         let randomProducts = new Set();
 
-        // let [slideshow, products] = await Promise.all([slideController.getSlideshow(req, res), controller.getProducts(req, res)]);
-        const slideshow = await slideController.getSlideshow(req, res)
-        const products = await controller.getProducts(req, res)
-        console.log(products);
+        let [slideshow, products] = await Promise.all([slideController.getSlideshow(), controller.getProducts(req)]);
+
         const productClone = [...products];
         while (Array.from(randomProducts).length !== 4) {
             const cleanedUpProduct = _cleanUpProductProperties(productClone[Math.floor(Math.random() * products.length)]);
             randomProducts.add(cleanedUpProduct);
 
         }
-        console.log(randomProducts);
 
         const bestSales = productClone.slice(0, 3);
 
@@ -97,7 +94,6 @@ controller.getHomepage = async (req, res, next) => {
             bestSales,
             slideshow,
         };
-        console.log(homePageAggregated)
         return res.json(homePageAggregated);
     }
     catch (err) {
