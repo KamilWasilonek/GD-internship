@@ -4,29 +4,32 @@ const Product = require('../models/product.model');
 const PRODUCTS_REDUNDANT_PROPS = ['relatedProducts', 'description'];
 
 async function getHomepage(req, res) {
+    try {
+        let randomProducts = new Set();
 
+        let [slideshow, products] = await Promise.all([slideController.getSlideshow(req, res), productsController.getProducts(req, res)]);
 
-    const randomProducts = new Set();
-    let slideshow = await slideController.getSlideshow(req, res);
-    const products = await productsController.getProducts(req,res)
-    // let [slideshow, products] = await Promise.all([slideController.getSlideshow(req, res)]);
-    console.log(products);
+        const productClone = [...products];
+        while (Array.from(randomProducts).length !== 4) {
+            const cleanedUpProduct = _cleanUpProductProperties(productClone[Math.floor(Math.random() * products.length)]);
+            randomProducts.add(cleanedUpProduct);
 
-    const productClone = [...products];
-    while (Array.from(randomProducts).length !== 4) {
-        const cleanedUpProduct = _cleanUpProductProperties(productClone[Math.floor(Math.random() * products.length)]);
-        randomProducts.add(cleanedUpProduct);
+        }
+        console.log(randomProducts);
+
+        const bestSales = productClone.slice(0, 3);
+
+        const homePageAggregated = {
+            arrivals: Array.from(randomProducts),
+            bestSales,
+            slideshow,
+        };
+        console.log(homePageAggregated)
+        return res.json(homePageAggregated);
     }
-
-    const bestSales = productClone.slice(0, 3);
-
-    const homePageAggregated = {
-        arrivals: Array.from(randomProducts),
-        bestSales,
-        slideshow,
-    };
-    console.log(homePageAggregated)
-    res.json(homePageAggregated);
+    catch (err) {
+        return next(err);
+    }
 
 };
 

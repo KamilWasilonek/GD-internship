@@ -109,8 +109,8 @@ function notFound(req, res) {
 
 async function getHomepage(req, res) {
   const randomProducts = new Set();
-  const slideshow = await slideController.getSlideshow(req, res);
   const productClone = [...products];
+  const slideshow = await slideController.getSlideshow(req,res);
   while (Array.from(randomProducts).length !== 4) {
     const cleanedUpProduct = _cleanUpProductProperties(productClone[Math.floor(Math.random() * products.length)]);
     randomProducts.add(cleanedUpProduct);
@@ -123,10 +123,9 @@ async function getHomepage(req, res) {
     bestSales,
     slideshow,
   };
-
-  res.json(homePageAggregated);
+  console.log(homePageAggregated)
+  return res.json(homePageAggregated);
 }
-
 
 
 // function getAdvertisments(req, res) {
@@ -164,10 +163,8 @@ function deleteSubscription(req, res) {
   res.status(202).send();
 }
 
-
 function _cleanUpProductProperties(product) {
-  const productClone = { ...product };
-
+  const productClone = {...product};
   PRODUCTS_REDUNDANT_PROPS.forEach(property => {
     delete productClone[property];
   });
