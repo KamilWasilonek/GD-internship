@@ -1,11 +1,12 @@
 const Social = require('../models/social.model');
 
-exports.getSocials = async function (req, res) {
-    return Social.find((err, socials) => {
-        if (err) {
-            // return console.log(err);
-        }
-
-        return res.json(socials);
-    });
+exports.getSocials = async function (req, res, next) {
+    try {
+        return Social.find((err, socials) => {
+            return res ? res.json(socials) : socials;
+        });
+    }
+    catch (err) {
+        return next(err)
+    }
 }
