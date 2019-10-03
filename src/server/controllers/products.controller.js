@@ -1,16 +1,13 @@
 const Product = require('../models/product.model');
 const controller = {};
 const slideController = require('./slide.controller');
-// const ProductDetails = require('../models/product-details.model');
+const ProductsDetails = require('../models/product-details.model');
 const notFound = async (req, res) => {
     res.status(404).send();
 }
 controller.getProducts = async (req, res) => {
     try {
         return Product.find((err, products) => {
-            // if (err) {
-            //     return next(err)
-            // }
             const productsArrCopy = JSON.parse(JSON.stringify(products));
             const responseProducts = {
                 products: productsArrCopy,
@@ -101,51 +98,20 @@ controller.getHomepage = async (req, res, next) => {
     }
 
 };
-// exports.getProductById = async (req, res) => {
-//     console.log(res)
-//     return ProductDetails.find((err, productsDetails) => {
-//         if (err) {
-//             // return console.log(err);
-//         }
-//         console.log(productsDetails)
-//         let product = productsDetails.find(({ id }) => id === req.params.id);
 
-//         if (!product) {
-//             notFound(req, res);
-//             return;
-//         }
+controller.getProductById = async (req, res, next) => {
+    let product = await controller.getProducts(req);
+    try {
+        return ProductsDetails.find((err, productsDetails) => {
 
-//         product = JSON.parse(JSON.stringify(productsDetails));
-//         console.log(product);
-//         product.relatedProducts = products.filter(item => product.relatedProducts.some(id => id === item.id));
+            productDetails = product.find(({ id }) => id === req.params.id);
+            return res ? res.json(productDetails) : productsDetails;
+        })
 
-//         res.json(product);
-//     });
-
-// }
-
-
-exports.getProductById = async (req, res) => {
-    console.log(res)
-    return ProductDetails.find((err, productsDetails) => {
-        if (err) {
-            // return console.log(err);
-        }
-        console.log(productsDetails)
-        let product = getProducts.find(({ id }) => id === req.params.id);
-
-        if (!product) {
-            notFound(req, res);
-            return;
-        }
-
-        product = JSON.parse(JSON.stringify(productsDetails));
-        console.log(product);
-        product.relatedProducts = products.filter(item => product.relatedProducts.some(id => id === item.id));
-
-        return res.json(product);
-    });
-
+    }
+    catch (err) {
+        return next(err);
+    }
 }
 
 const PRODUCTS_REDUNDANT_PROPS = ['relatedProducts', 'description'];
