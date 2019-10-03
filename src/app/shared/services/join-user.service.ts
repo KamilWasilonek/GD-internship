@@ -3,7 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Subject, Observable } from 'rxjs';
 
 import { subscriptionsURL } from '../api-endpoints';
-import { UserSubscription } from '@core/components/join-us/user-subscription';
+import { UserSubscription } from '../interfaces/user-subscription.interface';
+import { SubscriptionResponse } from '../interfaces/subscription-response.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -13,8 +14,8 @@ export class JoinUserService {
 
   constructor(private readonly http: HttpClient) {}
 
-  public createSubscription(userSubscription: UserSubscription): Observable<UserSubscription> {
-    return this.http.post<UserSubscription>(subscriptionsURL, userSubscription);
+  public createSubscription(userSubscription: UserSubscription): Observable<SubscriptionResponse> {
+    return this.http.post<SubscriptionResponse>(subscriptionsURL, userSubscription);
   }
 
   sendClick(): void {

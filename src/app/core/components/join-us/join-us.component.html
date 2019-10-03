@@ -11,15 +11,15 @@
       </div>
       <button type="submit" class="join__sign-btn">Join us</button>
     </div>
-    <div>
+    <div *ngIf="joinUsState$ | async as response">
       <p *ngIf="submitted && subscriptionForm.controls.email.errors?.required" class="join__email-error">
         Email is required
       </p>
       <p *ngIf="submitted && subscriptionForm.controls.email.errors?.validEmail" class="join__email-error">
         Email is invalid
       </p>
-      <p *ngIf="serverMessage" class="join__email-error" [ngClass]="{ 'join__email-success': isSubscriptionCreated }">
-        {{ serverMessage }}
+      <p class="join__email-error" [ngClass]="{ 'join__email-success': !response.serverResponse.isError }">
+        {{ response.serverResponse.message }}
       </p>
     </div>
   </form>

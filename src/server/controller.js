@@ -139,14 +139,14 @@ async function getHomepage(req, res) {
 function addSubscription(req, res) {
   const { email } = req.body;
   if (subscriptions.has(email)) {
-    return res.status(409).json({ message: 'Already exists' });
+    return res.json({ message: 'Already exists', isError: true });
   }
 
   if (!_isValidEmail(email)) {
-    return _sendEmailValidationError(res);
+    return res.json({ message: 'Not valid Email', isError: true });
   }
   subscriptions.add(email);
-  res.status(201).send();
+  return res.json({ message: 'Success' , isError: false});
 }
 
 function deleteSubscription(req, res) {
@@ -170,10 +170,6 @@ function _cleanUpProductProperties(product) {
   });
 
   return productClone;
-}
-
-function _sendEmailValidationError(res) {
-  return res.status(400).json({ message: 'Not valid Email' });
 }
 
 function _isValidEmail(email) {

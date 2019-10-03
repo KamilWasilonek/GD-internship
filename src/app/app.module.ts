@@ -1,10 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
@@ -21,6 +21,7 @@ import { ActionsComponent } from './core/components/header/menu/actions/actions.
 import { FooterComponent } from './core/components/footer/footer.component';
 import { JoinUsComponent } from '@core/components/join-us/join-us.component';
 import { reducers, effects } from '@app/@store';
+
 
 @NgModule({
   declarations: [
