@@ -17,7 +17,6 @@ import { IArrivals } from '@app/shared/interfaces/arrivals.interface';
 export class ActionIconsComponent implements OnInit {
   @Input() cardItem: ICardItem;
   @Input() product: IArrivals;
-
   shareIcon = faShare;
   shoppingIcon = faShoppingCart;
   heartIcon = faHeart;
