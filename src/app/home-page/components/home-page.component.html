@@ -10,18 +10,27 @@
   <app-view-more *ngIf="flags.isViewMoreVisible" class="homepage__view-more"></app-view-more>
   <app-advertisements *ngIf="flags.isAdvertismentsVisible" class="homepage__adv"></app-advertisements>
 
-  <app-common-products class="homepage__best-sales" *ngIf="flags.isBestSalesVisible">
-    <h2 class="common-products__heading" title>best <span>sales</span></h2>
+  <!-- Wish list -->
+  <ng-container *ngIf="wishListState$ | async">
+    <app-common-products class="homepage__wish-list" *ngIf="flags.isWishListVisible">
+      <!-- Title -->
+      <h2 class="common-products__heading" title>Wish <span>List</span></h2>
 
-    <app-spinner [spinner]="spinners.bestSales" *ngIf="isSpinnerVisible.bestSales" spinner></app-spinner>
+      <!-- Spinner -->
+      <app-spinner class="wish-list__spinner" [spinner]="spinners.wishList" *ngIf="isSpinnerVisible.wishList" spinner></app-spinner>
 
-    <div class="best-sales__items" [ngClass]="{ hidden: isSpinnerVisible.bestSales }" best-products>
-      <app-best-sales-item
-        *ngFor="let product of (bestSalesProductsState$ | async).data; trackBy: null | trackByProperty"
-        class="best-sales__item"
-        [product]="product"
-      >
-      </app-best-sales-item>
-    </div>
-  </app-common-products>
+      <!-- List of products -->
+      <div class="wish-list__items" [ngClass]="{ hidden: isSpinnerVisible.wishList }" best-products>
+        <app-best-sales-item
+          *ngFor="let product of currentWishListProducts; trackBy: null | trackByProperty"
+          class="wish-list__item"
+          [product]="product"
+        >
+        </app-best-sales-item>
+      </div>
+
+      <!-- View more -->
+      <app-view-more *ngIf="wishListLoadMoreFlag" (showMore)="loadMoreItems()" class="homepage__view-more" view-more></app-view-more>
+    </app-common-products>
+  </ng-container>
 </div>

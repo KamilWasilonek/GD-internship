@@ -1,5 +1,8 @@
+import { ISwatches } from './swatches.interface';
+
 export interface IProduct {
   id: string;
+  category?: string;
   title?: string;
   price: number;
   amountInStock?: number;
@@ -8,16 +11,11 @@ export interface IProduct {
   sex?: string;
   name: string;
   rating?: number;
-  swatches?: Array<ISwatch>;
+  swatches?: Array<ISwatches>;
   availability: Array<ProductAvailabilityState>;
   thumbnailImageSrc?: string;
   sizes?: Array<ProductSize>;
   relatedProducts?: Array<IProduct>;
-}
-
-export interface ISwatch {
-  color: string;
-  imgSrc?: string;
 }
 
 export enum ProductAvailabilityState {
