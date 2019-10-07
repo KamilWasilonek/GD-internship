@@ -16,6 +16,7 @@ export interface IProduct {
   thumbnailImageSrc?: string;
   sizes?: Array<ProductSize>;
   relatedProducts?: Array<IProduct>;
+  addedToWishList?: boolean;
 }
 
 export enum ProductAvailabilityState {

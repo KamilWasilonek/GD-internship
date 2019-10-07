@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { faShare, faShoppingCart, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
 
@@ -14,18 +14,24 @@ import { IArrivals } from '@app/shared/interfaces/arrivals.interface';
   templateUrl: './action-icons.component.html',
   styleUrls: ['./action-icons.component.scss'],
 })
-export class ActionIconsComponent {
+export class ActionIconsComponent implements OnInit {
   @Input() cardItem: ICardItem;
   @Input() product: IArrivals;
   shareIcon = faShare;
   shoppingIcon = faShoppingCart;
   heartIcon = faHeart;
 
+  addToWishListFlag: boolean;
+
   constructor(
     private readonly cardService: CardListService,
     private readonly cardStatusService: CardStatusService,
     private readonly store: Store<fromStore.AppState>
   ) {}
+
+  ngOnInit(): void {
+    this.addToWishListFlag = this.product.addedToWishList;
+  }
 
   addToCard(): void {
     if (!this.cardItem.size) {
@@ -40,5 +46,7 @@ export class ActionIconsComponent {
 
   addToWishList(): void {
     this.store.dispatch(new fromWishList.AddToWishListAction(this.product));
+    this.store.dispatch(new fromWishList.UpdateProductAction({ id: this.product.id, status: !this.addToWishListFlag }));
+    this.addToWishListFlag = !this.addToWishListFlag;
   }
 }

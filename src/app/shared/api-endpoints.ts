@@ -9,6 +9,8 @@ const endpoints = {
   bestsellers: 'products?ids=1,3,6',
   newArrivals: 'products?ids=5,8,13,15',
   productDetails: 'products/1',
+  updateProduct: 'updateProduct',
+  wishList: 'wishList',
 };
 
 const slideshowURL = `${environment.serverUrl}${endpoints.slideshow}`;
@@ -20,6 +22,8 @@ const bestsellersURL = `${environment.serverUrl}${endpoints.bestsellers}`;
 const newArrivalsURL = `${environment.serverUrl}${endpoints.newArrivals}`;
 const productDetailsURL = `${environment.serverUrl}${endpoints.productDetails}`;
 const filterURL = `${environment.serverUrl}${endpoints.filters}`;
+const updateProductURL = `${environment.serverUrl}${endpoints.updateProduct}`;
+const loadWishListURL = `${environment.serverUrl}${endpoints.wishList}`;
 
 export {
   slideshowURL,
@@ -31,4 +35,6 @@ export {
   productDetailsURL,
   filterURL,
   advertismentExternalURL,
+  updateProductURL,
+  loadWishListURL,
 };

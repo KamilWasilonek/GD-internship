@@ -79,6 +79,7 @@ export class HomePageComponent implements OnInit {
     this.wishListState$ = this.store.pipe(
       select(fromWishList.selectWishList),
       tap(state => {
+        console.log(state.products);
         if (state.products.length === 0) {
           this.flags = {
             ...this.flags,

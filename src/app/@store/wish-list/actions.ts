@@ -8,6 +8,8 @@ export const LOAD_PRODUCTS_FAIL = '[Wish-list] Load Products Fail';
 export const ADD_TO_WITH_LIST = 'Add To Wish List';
 export const REMOVE_FROM_WISH_LIST = 'Remove From Wish List';
 
+export const UPDATE_PRODUCT = 'Update Product "addedToWishList" property';
+
 export class LoadProductsAction implements Action {
   readonly type = LOAD_PRODUCTS;
 }
@@ -34,9 +36,16 @@ export class RemoveFromWishListAction implements Action {
   constructor(public readonly payload: IArrivals) {}
 }
 
+export class UpdateProductAction implements Action {
+  readonly type = UPDATE_PRODUCT;
+
+  constructor(public readonly payload: { id: string; status: boolean }) {}
+}
+
 export type WishListActions =
   | LoadProductsAction
   | LoadProductsSuccessAction
   | LoadProductsFailAction
   | AddToWishListAction
-  | RemoveFromWishListAction;
+  | RemoveFromWishListAction
+  | UpdateProductAction;

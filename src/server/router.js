@@ -10,7 +10,9 @@ const socialController = require('./controllers/socials.controller');
 const productsController = require('./controllers/products.controller');
 const memcacheMiddleware = require('./memcache.middleware');
 const filterController = require('./controllers/filters.controller');
-const subscriptionsController = require('./controllers/subscriptions.controller');
+const subscriptionsController = require('./controllers/subscriptions.controller')
+const updateProductController = require('./controllers/update-product.controller');
+const wishListController = require('./controllers/wish-list.controller');
 
 router.get('/products', memcacheMiddleware(), productsController.getProducts);
 router.get('/products/:id', memcacheMiddleware(), productsController.getProductById);
@@ -23,7 +25,9 @@ router.get('/advertismentsExternal', memcacheMiddleware(), advertisementsExterna
 // router.get('/advertismentsExternal', controller.getAdvertismentExternal);
 
 router.get('/socials', memcacheMiddleware(), socialController.getSocials);
-router.post('/subscriptions', controller.addSubscription);
+router.get('/wishList',  memcacheMiddleware(), wishListController.getWishListProducts);
+router.post('/subscriptions', subscriptionsController.addSubscription);
+router.patch('/updateProduct', updateProductController.updateProductAddedToWishList);
 router.get('**', controller.notFound);
 
 module.exports = router;
