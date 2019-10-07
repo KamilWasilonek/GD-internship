@@ -22,9 +22,6 @@ import { ActionsComponent } from './core/components/header/menu/actions/actions.
 import { FooterComponent } from './core/components/footer/footer.component';
 import { JoinUsComponent } from '@core/components/join-us/join-us.component';
 
-import { StoreModule } from '@ngrx/store';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { EffectsModule } from '@ngrx/effects';
 @NgModule({
   declarations: [
     AppComponent,

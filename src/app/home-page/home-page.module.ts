@@ -16,11 +16,6 @@ import { AdvertisementsComponent } from './components/advertisements/advertiseme
 import { HomePageRoutingModule } from './home-page-routing.module';
 import { SharedModule } from '../shared/shared.module';
 
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
-
-import { reducers, effects } from './store';
-
 @NgModule({
   declarations: [HomePageComponent, BannerComponent, AdvertisementsComponent, ViewMoreComponent, BestSalesItemComponent],
   imports: [

@@ -4,7 +4,6 @@ import { IArrivals } from '@app/shared/interfaces/arrivals.interface';
 export const LOAD_ARRIVALS = '[New Arrivals] Load New Arrivals';
 export const LOAD_ARRIVALS_SUCCESS = '[New Arrivals] Load New Arrivals Success';
 export const LOAD_ARRIVALS_FAIL = '[New Arrivals] Load New Arrivals Fail';
-export const ADD_PRODUCT_TO_CARDLIST = '[New Arrivals] Add Product to Cardlist';
 
 export class LoadArrivalsAction implements Action {
   readonly type = LOAD_ARRIVALS;
