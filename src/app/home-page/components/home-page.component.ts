@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { IArrivals } from '@app/shared/interfaces/arrivals.interface';
-import { ArrivalsService } from '@app/shared/services/arrivals.service';
 import { IBestsellerItem } from '@app/shared/interfaces/bestseller-item.interface';
 import { BestsellersService } from '@app/shared/services/bestsellers.service';
+import * as fromStore from '../store';
+import * as fromArrivals from '../store/new-arrivals';
 import { Observable } from 'rxjs';
-import { pluck } from 'rxjs/operators';
+import { pluck, tap } from 'rxjs/operators';
+import { Store, select } from '@ngrx/store';
+
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
@@ -18,18 +20,39 @@ export class HomePageComponent implements OnInit {
     isAdvertismentsVisible: true,
     isBestSalesVisible: true,
   };
-  public products: Observable<IArrivals[]>;
+  public productsState$: Observable<fromArrivals.ArrivalsState>;
   public bestSalesProducts: Observable<IBestsellerItem[]>;
+  public spinners = {
+    arrivals: {
+      message: 'Products are loading',
+      isError: false,
+    },
+  };
+  isSpinnerVisible = {
+    arrivals: true,
+  };
 
-  constructor(private readonly arrivalsService: ArrivalsService, private readonly bestsellersService: BestsellersService) {}
+  constructor(private readonly store: Store<fromStore.HomePageState>, private readonly bestsellersService: BestsellersService) {}
 
   public ngOnInit(): void {
-    this.getProducts();
+    this.productsState$ = this.store.pipe(
+      select(fromArrivals.selectState),
+      tap(arrivalsData => {
+        if (arrivalsData.isFailed) {
+          this.spinners.arrivals = {
+            message: 'Can not load latest products',
+            isError: true,
+          };
+        } else if (arrivalsData.data.length) {
+          this.isSpinnerVisible.arrivals = false;
+        }
+      })
+    );
+    this.store.dispatch(new fromArrivals.LoadArrivalsAction());
+
     this.getBestSales();
   }
-  private getProducts(): void {
-    this.products = this.arrivalsService.getArrivals().pipe(pluck('products'));
-  }
+
   private getBestSales(): void {
     this.bestSalesProducts = this.bestsellersService.getBestsellers().pipe(pluck('products'));
   }
