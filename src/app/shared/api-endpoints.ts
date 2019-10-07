@@ -1,5 +1,4 @@
 import { environment } from '../../environments/environment';
-const root = 'https://project-angular-gd.herokuapp.com/api/';
 const endpoints = {
   slideshow: 'slideshow',
   advertisments: 'advertisments',
@@ -13,9 +12,9 @@ const endpoints = {
 
 const slideshowURL = `${environment.serverUrl}${endpoints.slideshow}`;
 const advertismentsURL = `${environment.serverUrl}${endpoints.advertisments}`;
-const subscriptionsURL = `${root}${endpoints.subscriptions}`;
+const subscriptionsURL = `${environment.serverUrl}${endpoints.subscriptions}`;
 const socialsURL = `${environment.serverUrl}${endpoints.socials}`;
-const bestsellersURL = `${root}${endpoints.bestsellers}`;
+const bestsellersURL = `${environment.serverUrl}${endpoints.bestsellers}`;
 const newArrivalsURL = `${environment.serverUrl}${endpoints.newArrivals}`;
 const productDetailsURL = `${environment.serverUrl}${endpoints.productDetails}`;
 const filterURL = `${environment.serverUrl}${endpoints.filters}`;
