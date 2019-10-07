@@ -10,6 +10,7 @@ import { LogoComponent } from './components/logo/logo.component';
 import { ActionIconsComponent } from './components/action-icons/action-icons.component';
 import { CommonProductsComponent } from './components/common-products/common-products.component';
 import { TrackByPropertyPipe } from './pipes/track-by-property.pipe';
+import { SanitizerPipe } from './pipes/sanitizer.pipe';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { TrackByPropertyPipe } from './pipes/track-by-property.pipe';
     ActionIconsComponent,
     CommonProductsComponent,
     TrackByPropertyPipe,
+    SanitizerPipe,
   ],
   imports: [CommonModule, FontAwesomeModule, RouterModule],
   exports: [
@@ -31,6 +33,7 @@ import { TrackByPropertyPipe } from './pipes/track-by-property.pipe';
     ActionIconsComponent,
     CommonProductsComponent,
     TrackByPropertyPipe,
+    SanitizerPipe,
   ],
   schemas: [NO_ERRORS_SCHEMA],
 })

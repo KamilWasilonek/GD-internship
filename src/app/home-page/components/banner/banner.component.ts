@@ -1,22 +1,23 @@
-import { Component, OnDestroy, SecurityContext } from '@angular/core';
-import { takeUntil } from 'rxjs/operators';
-import { DomSanitizer } from '@angular/platform-browser';
-import { interval, Subscription, Subject } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
-import { ISlide } from '@app/shared/interfaces/banner.interface';
-import { SliderService } from '@app/shared/services/slider.service';
+import { takeUntil, tap } from 'rxjs/operators';
+import { interval, Subscription, Subject, Observable } from 'rxjs';
+
+import { Store, select } from '@ngrx/store';
+
+import * as fromStore from '../../store';
+import * as fromSlider from '../../store/slider';
 
 @Component({
   selector: 'app-banner',
   templateUrl: './banner.component.html',
   styleUrls: ['./banner.component.scss'],
 })
-export class BannerComponent implements OnDestroy {
-  isDataLoading = true;
+export class BannerComponent implements OnDestroy, OnInit {
+  isImagesLoading = true;
   animationOption = 'opacity';
   imageNumberToLoad: number;
-  slides: ISlide[];
-  currentSlideIndex: number;
+  currentSlideIndex = 0;
   unsubscribe$ = new Subject<void>();
   sliderInterval: Subscription;
 
@@ -25,41 +26,38 @@ export class BannerComponent implements OnDestroy {
     isError: false,
   };
 
-  constructor(private readonly sliderService: SliderService, private readonly sanitizer: DomSanitizer) {
-    this.sliderService
-      .getSlideshow()
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe(
-        slideshow => {
-          this.slides = slideshow;
-          this.slides.forEach((val, index) => {
-            this.slides[index].img = this.sanitizer.sanitize(SecurityContext.URL, val.img);
-          });
-        },
-        _error => {
+  sliderState$: Observable<fromSlider.SliderState>;
+
+  slidesAmount: number;
+
+  constructor(private readonly store: Store<fromStore.HomePageState>) {}
+
+  ngOnInit(): void {
+    this.sliderState$ = this.store.pipe(
+      select(fromSlider.selectState),
+      tap(sliderSate => {
+        if (sliderSate.isFailed) {
           this.spinner = {
             message: 'Can not load latest products',
             isError: true,
           };
-        },
-        () => {
-          this.currentSlideIndex = 0;
-          this.imageNumberToLoad = this.slides.length;
+        } else if (sliderSate.data.length) {
+          this.slidesAmount = this.imageNumberToLoad = sliderSate.data.length;
         }
-      );
+      })
+    );
+
+    this.store.dispatch(new fromSlider.LoadSliderAction());
   }
 
   ngOnDestroy(): void {
-    if (this.sliderInterval !== undefined) {
-      this.sliderInterval.unsubscribe();
-    }
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
   }
 
   showNextSlide(event?: MouseEvent): void {
     this.checkEvent(event);
-    if (this.currentSlideIndex++ >= this.slides.length - 1) {
+    if (this.currentSlideIndex++ >= this.slidesAmount - 1) {
       this.currentSlideIndex = 0;
     }
   }
@@ -67,20 +65,22 @@ export class BannerComponent implements OnDestroy {
   showPrevSlide(event?: MouseEvent): void {
     this.checkEvent(event);
     if (this.currentSlideIndex-- === 0) {
-      this.currentSlideIndex = this.slides.length - 1;
+      this.currentSlideIndex = this.slidesAmount - 1;
     }
   }
 
   startSliderInterval(): void {
-    this.sliderInterval = interval(5000).subscribe(() => {
-      this.showNextSlide();
-    });
+    this.sliderInterval = interval(5000)
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(() => {
+        this.showNextSlide();
+      });
   }
 
   imageLoaded(): void {
     this.imageNumberToLoad--;
     if (this.imageNumberToLoad === 0) {
-      this.isDataLoading = false;
+      this.isImagesLoading = false;
       this.startSliderInterval();
     }
   }

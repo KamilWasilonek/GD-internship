@@ -1,14 +1,14 @@
 <section class="banner">
-  <app-spinner class="banner__spinner" [spinner]="spinner" *ngIf="isDataLoading"></app-spinner>
+  <app-spinner class="banner__spinner" [spinner]="spinner" *ngIf="isImagesLoading"></app-spinner>
 
   <!-- Opacity animation -->
-  <ul class="banner__list" *ngIf="animationOption === 'opacity'" [ngClass]="{ hidden: isDataLoading }">
+  <ul class="banner__list" *ngIf="animationOption === 'opacity'" [ngClass]="{ hidden: isImagesLoading }">
     <li
       class="banner__slide"
-      *ngFor="let slide of slides; index as i; trackBy: null | trackByProperty"
+      *ngFor="let slide of (sliderState$ | async).data; index as i; trackBy: null | trackByProperty"
       [ngClass]="{ 'banner__slide--active': i === currentSlideIndex }"
     >
-      <img class="banner__background" src="{{ slide.img }}" alt="Banner img" (load)="imageLoaded()" />
+      <img class="banner__background" src="{{ slide.img | sanitize: 'url' }}" alt="Banner img" (load)="imageLoaded()" />
       <div class="banner__buttons-container">
         <button class="banner__slide-btn banner__slide-btn--prev" (click)="showPrevSlide($event)"></button>
         <div class="banner__slide-btn banner__slide-btn--bigger"></div>

@@ -12,6 +12,7 @@
     "exclude": ["e2e/src/*.ts", "src/test.ts", "src/polyfills.ts"]
   },
   "rules": {
+    "only-arrow-functions": false,
     "array-type": false,
     "arrow-parens": false,
     "deprecation": {
@@ -110,9 +111,6 @@
       "severity": "error"
     },
     "rxjs-no-nested-subscribe": {
-      "severity": "warning"
-    },
-    "rxjs-no-tap": {
       "severity": "warning"
     },
     "rxjs-no-unsafe-catch": {
