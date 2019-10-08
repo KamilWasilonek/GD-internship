@@ -1,16 +1,17 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
+import { Store } from '@ngrx/store';
 
 import { IProductOptions } from '@app/shared/interfaces/product-detail/product-options.interface';
-import { ProductStateService } from '@app/shared/services/product-details/product-state.service';
-import { ProductOrderService } from '@app/shared/services/product-details/product-order.service';
+import * as fromStore from '../../../product-list-page/store/';
+import * as fromProductDetails from '../../../product-list-page/store/product-details';
 
 @Component({
   selector: 'app-options',
   templateUrl: './options.component.html',
   styleUrls: ['./options.component.scss'],
 })
-export class OptionsComponent implements OnInit {
+export class OptionsComponent implements OnInit, OnChanges {
   @Input() productOptions: IProductOptions;
 
   sizes: string[];
@@ -19,7 +20,7 @@ export class OptionsComponent implements OnInit {
   actualSize: string;
   prevActiveSizeElement: HTMLElement;
 
-  actualAmount = 1;
+  actualAmount: number;
   isMinAmount = false;
   isMaxAmount = false;
   isProductAvailable: boolean;
@@ -27,54 +28,44 @@ export class OptionsComponent implements OnInit {
   plusIcon = faPlus;
   minusIcon = faMinus;
 
-  constructor(private readonly stateService: ProductStateService, private readonly orderService: ProductOrderService) {}
+  constructor(private readonly store: Store<fromStore.ProductsState>) {}
 
   ngOnInit(): void {
     if (!this.productOptions) {
       return;
     }
-    this.stateService.changeOptionsState(true);
+    this.store.dispatch(new fromProductDetails.SendLoadingStatusAction('options'));
+  }
 
-    this.sizes = this.productOptions.sizes;
-    this.actualSize = this.sizes[0];
-    this.orderService.changeOrderSize(this.actualSize);
-
+  ngOnChanges(): void {
     this.productAmount = this.productOptions.amountInStock;
-
-    if (this.productAmount !== 0) {
-      this.orderService.changeOrderQuantity(this.actualAmount);
-    }
-
+    this.sizes = this.productOptions.sizes;
+    this.actualSize = this.productOptions.choosenDetails.size;
+    this.actualAmount = this.productOptions.choosenDetails.quantity;
     this.isProductAvailable = !!this.productAmount;
 
-    if (this.productAmount === 1) {
+    if (this.actualAmount === 1 && this.productAmount === 1) {
+      this.isMinAmount = true;
       this.isMaxAmount = true;
-    }
-    this.isMinAmount = true;
-  }
-
-  takeSize(size: string): void {
-    this.actualSize = size;
-    this.orderService.changeOrderSize(this.actualSize);
-  }
-
-  increaseAmount(): void {
-    this.actualAmount++;
-    if (this.actualAmount === this.productAmount) {
+    } else if (this.actualAmount === 1) {
+      this.isMinAmount = true;
+    } else if (this.actualAmount >= this.productAmount) {
       this.isMaxAmount = true;
     } else {
       this.isMinAmount = false;
+      this.isMaxAmount = false;
     }
-    this.orderService.changeOrderQuantity(this.actualAmount);
+  }
+
+  takeSize(size: string): void {
+    this.store.dispatch(new fromProductDetails.ChooseSizeAction(size));
+  }
+
+  increaseAmount(): void {
+    this.store.dispatch(new fromProductDetails.SendQuantityIncreamentAction());
   }
 
   decreaseAmount(): void {
-    this.actualAmount--;
-    if (this.actualAmount === 1) {
-      this.isMinAmount = true;
-    } else {
-      this.isMaxAmount = false;
-    }
-    this.orderService.changeOrderQuantity(this.actualAmount);
+    this.store.dispatch(new fromProductDetails.SendQuantityDecreamentAction());
   }
 }

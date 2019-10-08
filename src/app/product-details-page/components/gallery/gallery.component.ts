@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
+import { Store } from '@ngrx/store';
 
-import { ProductStateService } from '@app/shared/services/product-details/product-state.service';
+import * as fromStore from '../../../product-list-page/store/';
+import * as fromProductDetails from '../../../product-list-page/store/product-details';
 
 @Component({
   selector: 'app-gallery',
@@ -12,10 +14,10 @@ export class GalleryComponent {
   smallImagesArr: number[] = [0, 1, 2];
   curPrimaryImageTitle = 'product image nr 1';
 
-  constructor(private readonly stateService: ProductStateService) {}
+  constructor(private readonly store: Store<fromStore.ProductsState>) {}
 
   changeImageStatus(): void {
-    this.stateService.changeGalleryState(true);
+    this.store.dispatch(new fromProductDetails.SendLoadingStatusAction('gallery'));
   }
   onSmallImageClick(imageNumber: string): void {
     this.curPrimaryImageTitle = `product image nr ${imageNumber}`;
