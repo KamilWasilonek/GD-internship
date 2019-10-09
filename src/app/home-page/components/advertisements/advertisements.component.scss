@@ -17,6 +17,9 @@
   }
 
   &__content-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex-basis: 100%;
     margin-right: 2%;
     min-height: 10rem;

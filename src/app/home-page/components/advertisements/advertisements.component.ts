@@ -2,8 +2,8 @@ import { Component, OnDestroy } from '@angular/core';
 import { delay } from 'rxjs/operators';
 import { Subscription, interval } from 'rxjs';
 
-import { AdvertismentsService } from '@app/shared/services/advertisments.service';
-import { IAdvertisment } from '@app/shared/interfaces/adv.interface';
+import { AdvertisementsService } from '@app/shared/services/advertisements.service';
+import { IAdvertisement } from '@app/shared/interfaces/adv.interface';
 
 @Component({
   selector: 'app-advertisements',
@@ -11,7 +11,7 @@ import { IAdvertisment } from '@app/shared/interfaces/adv.interface';
   styleUrls: ['./advertisements.component.scss'],
 })
 export class AdvertisementsComponent implements OnDestroy {
-  advertisments: IAdvertisment[];
+  advertisements: IAdvertisement[];
   sliderInterval: Subscription;
   spinner = {
     message: 'Loading latest products',
@@ -20,13 +20,14 @@ export class AdvertisementsComponent implements OnDestroy {
   currentIndex = 0;
   isDataLoading = true;
 
-  constructor(private readonly advertismentsService: AdvertismentsService) {
-    this.advertismentsService
+  constructor(private readonly advertisementsService: AdvertisementsService) {
+    this.advertisementsService
       .getAdvertisments()
       .pipe(delay(2000))
       .subscribe(
-        advertisments => {
-          this.advertisments = advertisments;
+        advertisements => {
+          this.advertisements = advertisements;
+          console.log(this.advertisements);
         },
         _error => {
           this.spinner = {
@@ -49,7 +50,7 @@ export class AdvertisementsComponent implements OnDestroy {
 
   public startSliderInterval(): void {
     this.sliderInterval = interval(5000).subscribe(() => {
-      if (this.currentIndex++ >= this.advertisments.length - 1) {
+      if (this.currentIndex++ >= this.advertisements.length - 1) {
         this.currentIndex = 0;
       }
     });

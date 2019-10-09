@@ -1,4 +1,4 @@
-export interface IAdvertisment {
+export interface IAdvertisement {
   title: string;
   description: string;
   price: string;
