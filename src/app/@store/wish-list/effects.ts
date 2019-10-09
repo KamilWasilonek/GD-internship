@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Actions, ofType, Effect } from '@ngrx/effects';
-
-import * as fromWishList from './actions';
-import { mergeMap, map, catchError } from 'rxjs/operators';
-import { UpdateProductService } from '@app/shared/services/update-product.service';
 import { of } from 'rxjs';
+import { mergeMap, map, catchError } from 'rxjs/operators';
+
+import { UpdateProductService } from '@app/shared/services/update-product.service';
 import { IArrivals } from '@app/shared/interfaces/arrivals.interface';
 import { WishListService } from '@app/shared/services/wish-list.service';
+import * as fromWishList from './actions';
 @Injectable()
 export class WishListEffects {
   constructor(
@@ -17,8 +17,9 @@ export class WishListEffects {
 
   @Effect() updateProduct$ = this.actions$.pipe(
     ofType(fromWishList.UPDATE_PRODUCT),
-    map((action: fromWishList.UpdateProductAction) => action.payload),
-    mergeMap(action => this.updateProductService.updateProduct(action))
+    mergeMap((action: fromWishList.UpdateProductAction) =>
+      this.updateProductService.updateProduct(action.payload).pipe(map(() => new fromWishList.UpdateProductSuccessAction()))
+    )
   );
 
   @Effect() loadProduct$ = this.actions$.pipe(

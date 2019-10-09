@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
 import { IArrivals } from '@app/shared/interfaces/arrivals.interface';
+import { ProductUpdate } from '@app/shared/interfaces/product-update.interface';
 
 export const LOAD_PRODUCTS = '[Wish-list] Load Products';
 export const LOAD_PRODUCTS_SUCCESS = '[Wish-list] Load Products Succes';
@@ -9,6 +10,7 @@ export const ADD_TO_WITH_LIST = 'Add To Wish List';
 export const REMOVE_FROM_WISH_LIST = 'Remove From Wish List';
 
 export const UPDATE_PRODUCT = 'Update Product "addedToWishList" property';
+export const UPDATE_PRODUCT_SUCCESS = 'Update Product Success "addedToWishList" property';
 
 export class LoadProductsAction implements Action {
   readonly type = LOAD_PRODUCTS;
@@ -39,7 +41,11 @@ export class RemoveFromWishListAction implements Action {
 export class UpdateProductAction implements Action {
   readonly type = UPDATE_PRODUCT;
 
-  constructor(public readonly payload: { id: string; status: boolean }) {}
+  constructor(public readonly payload: ProductUpdate) {}
+}
+
+export class UpdateProductSuccessAction implements Action {
+  readonly type = UPDATE_PRODUCT_SUCCESS;
 }
 
 export type WishListActions =
@@ -48,4 +54,5 @@ export type WishListActions =
   | LoadProductsFailAction
   | AddToWishListAction
   | RemoveFromWishListAction
-  | UpdateProductAction;
+  | UpdateProductAction
+  | UpdateProductSuccessAction;

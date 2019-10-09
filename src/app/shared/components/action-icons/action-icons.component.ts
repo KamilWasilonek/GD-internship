@@ -17,11 +17,12 @@ import { IArrivals } from '@app/shared/interfaces/arrivals.interface';
 export class ActionIconsComponent implements OnInit {
   @Input() cardItem: ICardItem;
   @Input() product: IArrivals;
+
   shareIcon = faShare;
   shoppingIcon = faShoppingCart;
   heartIcon = faHeart;
 
-  addToWishListFlag: boolean;
+  isWishListHasProduct: boolean;
 
   constructor(
     private readonly cardService: CardListService,
@@ -30,7 +31,7 @@ export class ActionIconsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.addToWishListFlag = this.product.addedToWishList;
+    this.isWishListHasProduct = this.product.addedToWishList;
   }
 
   addToCard(): void {
@@ -44,9 +45,19 @@ export class ActionIconsComponent implements OnInit {
     }
   }
 
-  addToWishList(): void {
-    this.store.dispatch(new fromWishList.AddToWishListAction(this.product));
-    this.store.dispatch(new fromWishList.UpdateProductAction({ id: this.product.id, status: !this.addToWishListFlag }));
-    this.addToWishListFlag = !this.addToWishListFlag;
+  updateProductStatus(): void {
+    this.updateWishListStore(this.isWishListHasProduct);
+
+    this.isWishListHasProduct = !this.isWishListHasProduct;
+
+    this.store.dispatch(new fromWishList.UpdateProductAction({ id: this.product.id, status: this.isWishListHasProduct }));
+  }
+
+  updateWishListStore(isWishListHasProduct: boolean): void {
+    if (isWishListHasProduct) {
+      this.store.dispatch(new fromWishList.RemoveFromWishListAction(this.product));
+    } else {
+      this.store.dispatch(new fromWishList.AddToWishListAction(this.product));
+    }
   }
 }

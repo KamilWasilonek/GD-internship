@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { updateProductURL } from '../api-endpoints';
 import { IArrivals } from '../interfaces/arrivals.interface';
+import { ProductUpdate } from '../interfaces/product-update.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,7 @@ import { IArrivals } from '../interfaces/arrivals.interface';
 export class UpdateProductService {
   constructor(private readonly http: HttpClient) {}
 
-  public updateProduct(updatedProduct: { id: string; status: boolean }): Observable<IArrivals> {
+  public updateProduct(updatedProduct: ProductUpdate): Observable<IArrivals> {
     return this.http.patch<IArrivals>(updateProductURL, updatedProduct);
   }
 }

@@ -56,7 +56,6 @@ export class HomePageComponent implements OnInit {
 
     this.store.dispatch(new fromArrivals.LoadArrivalsAction());
     this.store.dispatch(new fromWishList.LoadProductsAction());
-
   }
 
   getArrivals(): void {
@@ -79,7 +78,6 @@ export class HomePageComponent implements OnInit {
     this.wishListState$ = this.store.pipe(
       select(fromWishList.selectWishList),
       tap(state => {
-        console.log(state.products);
         if (state.products.length === 0) {
           this.flags = {
             ...this.flags,
@@ -114,11 +112,11 @@ export class HomePageComponent implements OnInit {
     this.wishListLoadMoreFlag = this.checkViewMoreProductsAmount(this.wishListProducts, this.wishListProductsCounter);
   }
 
-  calculateCurrentWistList(wishList: IArrivals[], productsCounter: number): IArrivals[] {
-    return wishList.slice(0, productsCounter);
+  calculateCurrentWistList(wishList: IArrivals[], wishListProductsCounter: number): IArrivals[] {
+    return wishList.slice(0, wishListProductsCounter);
   }
 
-  checkViewMoreProductsAmount(wishList: IArrivals[], productsCounter: number): boolean {
-    return wishList.length > productsCounter;
+  checkViewMoreProductsAmount(wishList: IArrivals[], wishListProductsCounter: number): boolean {
+    return wishList.length > wishListProductsCounter;
   }
 }

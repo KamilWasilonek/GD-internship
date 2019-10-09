@@ -14,10 +14,10 @@ const subscriptionsController = require('./controllers/subscriptions.controller'
 const updateProductController = require('./controllers/update-product.controller');
 const wishListController = require('./controllers/wish-list.controller');
 
-router.get('/products', memcacheMiddleware(), productsController.getProducts);
-router.get('/products/:id', memcacheMiddleware(), productsController.getProductById);
+router.get('/products', productsController.getProducts);
+router.get('/products/:id', productsController.getProductById);
 router.get('/filters', memcacheMiddleware(), filterController.getFilters);
-router.get('/homepage', memcacheMiddleware(), productsController.getHomepage);
+router.get('/homepage', productsController.getHomepage);
 router.get('/slideshow', memcacheMiddleware(), slideController.getSlideshow);
 router.get('/advertisments', memcacheMiddleware(), advertisementsController.getAdvertisement);
 

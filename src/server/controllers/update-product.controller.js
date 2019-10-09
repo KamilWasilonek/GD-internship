@@ -5,7 +5,7 @@ exports.updateProductAddedToWishList = async function(req, res) {
     addedToWishList: req.body.status,
   };
 
-  Product.findOneAndUpdate({ id: req.body.id }, { $set: updatedProduct }, { new: true }, function(err, response) {
+  Product.findOneAndUpdate({ id: req.body.id }, { $set: updatedProduct }, { new: true }, function(response) {
     res.send(response);
   });
 };
