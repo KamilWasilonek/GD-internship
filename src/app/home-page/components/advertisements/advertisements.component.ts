@@ -41,8 +41,9 @@ export class AdvertisementsComponent implements OnInit, OnDestroy {
         takeUntil(this.destroy$)
       )
       .subscribe(
-        advertisments => {
-          this.advertisments = advertisments;
+        advertisements => {
+          this.advertisements = advertisements;
+          console.log(this.advertisements);
         },
         _error => {
           this.spinners[0] = {

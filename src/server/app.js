@@ -19,7 +19,6 @@ app.use(bodyParser.json({ limit: '500mb' }));
 app.use('/', express.static(path.join(__dirname, '../../dist/GD-internship-angularProject')));
 app.use('/api', routes);
 
-<<<<<<< HEAD
 app.get('/advertisement1', (req, res) => {
   res.sendFile(path.resolve('src/assets/mocks/advHTML/adv1.html'));
 });
@@ -30,8 +29,6 @@ app.get('/advertisement3', (req, res) => {
   res.sendFile(path.resolve('src/assets/mocks/advHTML/adv3.html'));
 });
 
-=======
->>>>>>> Add heart icon checking
 app.get('/*', (req, res) => {
   res.sendFile(path.resolve('dist/GD-internship-angularProject/index.html'));
 });

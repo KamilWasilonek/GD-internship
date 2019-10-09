@@ -1,13 +1,17 @@
 import { environment } from '../../environments/environment';
 const endpoints = {
   slideshow: 'slideshow',
+<<<<<<< HEAD
   advertisments: 'advertisments',
   advertismentExternal: 'advertismentsExternal',
+=======
+  advertisments: 'advertisements',
+>>>>>>> Fix issues
   subscriptions: 'subscriptions',
   socials: 'socials',
   filters: 'filters',
   bestsellers: 'products?ids=1,3,6',
-  newArrivals: 'products?ids=5,8,13,15',
+  newArrivals: 'products?ids=1,5,8,13',
   productDetails: 'products/1',
   updateProduct: 'updateProduct',
   wishList: 'wishList',

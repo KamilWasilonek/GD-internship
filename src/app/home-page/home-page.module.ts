@@ -10,7 +10,6 @@ import { reducers, effects } from './store';
 
 import { HomePageComponent } from './components/home-page.component';
 import { BannerComponent } from './components/banner/banner.component';
-import { ViewMoreComponent } from './components/view-more/view-more.component';
 import { BestSalesItemComponent } from './components/best-sales-item/best-sales-item.component';
 import { AdvertisementsComponent } from './components/advertisements/advertisements.component';
 import { AdvertisementExternalComponent } from './components/advertisement-external/advertisement-external.component';
