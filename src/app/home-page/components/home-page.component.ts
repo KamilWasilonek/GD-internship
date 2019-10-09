@@ -104,8 +104,6 @@ export class HomePageComponent implements OnInit {
     );
   }
 
-
-
   loadMoreItems(): void {
     this.wishListProductsCounter += this.wishListProductsCounter;
     this.currentWishListProducts = this.calculateCurrentWistList(this.wishListProducts, this.wishListProductsCounter);
