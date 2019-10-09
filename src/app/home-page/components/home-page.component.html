@@ -3,11 +3,7 @@
   <app-common-products *ngIf="flags.isArrivalsVisible">
     <h2 class="common-products__heading" title>new <span>arrivals</span></h2>
     <app-spinner spinner *ngIf="isSpinnerVisible.arrivals" [spinner]="spinners.arrivals"> </app-spinner>
-    <app-product-item
-      new-arrivals
-      *ngFor="let product of (productsState$ | async).data; trackBy: 'id' | trackByProperty"
-      [product]="product"
-    >
+    <app-product-item new-arrivals *ngFor="let product of products | async; trackBy: 'id' | trackByProperty" [product]="product">
     </app-product-item>
   </app-common-products>
 

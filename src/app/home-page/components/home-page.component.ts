@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { IBestsellerItem } from '@app/shared/interfaces/bestseller-item.interface';
-import { BestsellersService } from '@app/shared/services/bestsellers.service';
-import * as fromStore from '../store';
-import * as fromArrivals from '../store/new-arrivals';
-import { Observable } from 'rxjs';
 import { pluck, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+
+import { IArrivals } from '@app/shared/interfaces/arrivals.interface';
+import { ArrivalsService } from '@app/shared/services/arrivals.service';
 import { Store, select } from '@ngrx/store';
+import * as fromStore from '../store';
+import * as fromBestSales from '../store/best-sales';
 
 @Component({
   selector: 'app-home-page',
@@ -20,40 +21,47 @@ export class HomePageComponent implements OnInit {
     isAdvertismentsVisible: true,
     isBestSalesVisible: true,
   };
-  public productsState$: Observable<fromArrivals.ArrivalsState>;
-  public bestSalesProducts: Observable<IBestsellerItem[]>;
-  public spinners = {
+
+  spinners = {
     arrivals: {
       message: 'Products are loading',
       isError: false,
     },
+    bestSales: {
+      message: 'Loading best sales products',
+      isError: false,
+    },
   };
+
   isSpinnerVisible = {
     arrivals: true,
+    bestSales: true,
   };
 
-  constructor(private readonly store: Store<fromStore.HomePageState>, private readonly bestsellersService: BestsellersService) {}
+  public products: Observable<IArrivals[]>;
+  public bestSalesProductsState$: Observable<fromBestSales.BestSalesState>;
+
+  constructor(private readonly arrivalsService: ArrivalsService, private readonly store: Store<fromStore.HomePageState>) {}
 
   public ngOnInit(): void {
-    this.productsState$ = this.store.pipe(
-      select(fromArrivals.selectState),
-      tap(arrivalsData => {
-        if (arrivalsData.isFailed) {
-          this.spinners.arrivals = {
-            message: 'Can not load latest products',
+    this.getProducts();
+    this.bestSalesProductsState$ = this.store.pipe(
+      select(fromBestSales.selectState),
+      tap(bestSalesState => {
+        if (bestSalesState.isLoadingFailed) {
+          this.spinners.bestSales = {
+            message: "Can't load best sales products",
             isError: true,
           };
-        } else if (arrivalsData.data.length) {
-          this.isSpinnerVisible.arrivals = false;
+        } else if (bestSalesState.data.length) {
+          this.isSpinnerVisible.bestSales = false;
         }
       })
     );
-    this.store.dispatch(new fromArrivals.LoadArrivalsAction());
 
-    this.getBestSales();
+    this.store.dispatch(new fromBestSales.LoadBestSalesProductsAction());
   }
-
-  private getBestSales(): void {
-    this.bestSalesProducts = this.bestsellersService.getBestsellers().pipe(pluck('products'));
+  private getProducts(): void {
+    this.products = this.arrivalsService.getArrivals().pipe(pluck('products'));
   }
 }
