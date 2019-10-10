@@ -13,12 +13,19 @@ import { BannerComponent } from './components/banner/banner.component';
 import { ViewMoreComponent } from './components/view-more/view-more.component';
 import { BestSalesItemComponent } from './components/best-sales-item/best-sales-item.component';
 import { AdvertisementsComponent } from './components/advertisements/advertisements.component';
-
+import { AdvertisementExternalComponent } from './components/advertisement-external/advertisement-external.component';
 import { HomePageRoutingModule } from './home-page-routing.module';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  declarations: [HomePageComponent, BannerComponent, AdvertisementsComponent, ViewMoreComponent, BestSalesItemComponent],
+  declarations: [
+    HomePageComponent,
+    BannerComponent,
+    AdvertisementsComponent,
+    ViewMoreComponent,
+    BestSalesItemComponent,
+    AdvertisementExternalComponent,
+  ],
   imports: [
     CommonModule,
     HomePageRoutingModule,
