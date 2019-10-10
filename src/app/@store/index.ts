@@ -10,9 +10,7 @@ export interface AppState {
 
 export const reducers: ActionReducerMap<AppState> = {
   socialIcons: fromSocialIcons.reducer,
-  joinUs: fromJoinUs.reducer
+  joinUs: fromJoinUs.reducer,
 };
 
-export const effects = [fromSocialIcons.SocialIconsEffects,fromJoinUs.JoinUsEffects];
-
-
+export const effects = [fromSocialIcons.SocialIconsEffects, fromJoinUs.JoinUsEffects];
