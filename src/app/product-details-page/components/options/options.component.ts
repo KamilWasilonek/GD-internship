@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
 
@@ -13,6 +13,7 @@ import * as fromProductDetails from '../../../product-list-page/store/product-de
 })
 export class OptionsComponent implements OnInit, OnChanges {
   @Input() productOptions: IProductOptions;
+  @Output() readonly changeOption = new EventEmitter<string>();
 
   sizes: string[];
   productAmount: number;
@@ -44,28 +45,19 @@ export class OptionsComponent implements OnInit, OnChanges {
     this.actualAmount = this.productOptions.choosenDetails.quantity;
     this.isProductAvailable = !!this.productAmount;
 
-    if (this.actualAmount === 1 && this.productAmount === 1) {
-      this.isMinAmount = true;
-      this.isMaxAmount = true;
-    } else if (this.actualAmount === 1) {
-      this.isMinAmount = true;
-    } else if (this.actualAmount >= this.productAmount) {
-      this.isMaxAmount = true;
-    } else {
-      this.isMinAmount = false;
-      this.isMaxAmount = false;
-    }
+    this.isMinAmount = this.actualAmount === 1;
+    this.isMaxAmount = this.actualAmount >= this.productAmount;
   }
 
   takeSize(size: string): void {
-    this.store.dispatch(new fromProductDetails.ChooseSizeAction(size));
+    this.changeOption.emit(size);
   }
 
   increaseAmount(): void {
-    this.store.dispatch(new fromProductDetails.SendQuantityIncreamentAction());
+    this.changeOption.emit('increase');
   }
 
   decreaseAmount(): void {
-    this.store.dispatch(new fromProductDetails.SendQuantityDecreamentAction());
+    this.changeOption.emit('decrease');
   }
 }

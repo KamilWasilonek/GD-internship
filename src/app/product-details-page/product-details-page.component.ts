@@ -87,4 +87,18 @@ export class ProductDetailsPageComponent {
   private getDataLoadingStatus(): void {
     this.dataLoadingStatus = this.store.pipe(select(fromProductDetails.selectDataLoadingStatus));
   }
+
+  onOptionChange(action: string): void {
+    switch (action) {
+      case 'increase':
+        this.store.dispatch(new fromProductDetails.SendQuantityIncreamentAction());
+        break;
+      case 'decrease':
+        this.store.dispatch(new fromProductDetails.SendQuantityDecreamentAction());
+        break;
+      default:
+        this.store.dispatch(new fromProductDetails.ChooseSizeAction(action));
+        break;
+    }
+  }
 }

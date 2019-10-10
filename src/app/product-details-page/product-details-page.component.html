@@ -4,7 +4,11 @@
     <app-gallery *ngIf="productDetails | async" class="gallery" [productImage]="(productDetails | async).thumbnailImageSrc"> </app-gallery>
     <div class="details__content">
       <app-description *ngIf="productDescription | async as description" [productDescription]="description"> </app-description>
-      <app-options *ngIf="productOptions | async as options" [productOptions]="options"></app-options>
+      <app-options
+        *ngIf="productOptions | async as options"
+        (changeOption)="onOptionChange($event)"
+        [productOptions]="options"
+      ></app-options>
       <app-add-to-cart *ngIf="productAddToCard | async as addToCard" [addToCard]="addToCard"> </app-add-to-cart>
     </div>
   </div>
