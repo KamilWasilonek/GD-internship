@@ -17,9 +17,9 @@ router.get('/products/:id', memcacheMiddleware(), productsController.getProductB
 router.get('/filters', memcacheMiddleware(), filterController.getFilters);
 router.get('/homepage', memcacheMiddleware(), productsController.getHomepage);
 router.get('/slideshow', memcacheMiddleware(), slideController.getSlideshow);
-router.get('/advertisments', advertisementsController.getAdvertisement);
+router.get('/advertisments', memcacheMiddleware(), advertisementsController.getAdvertisement);
 
-router.get('/advertismentsExternal', advertisementsExternalController.getAdvertisementExternal);
+router.get('/advertismentsExternal', memcacheMiddleware(), advertisementsExternalController.getAdvertisementExternal);
 // router.get('/advertismentsExternal', controller.getAdvertismentExternal);
 
 router.get('/socials', memcacheMiddleware(), socialController.getSocials);
