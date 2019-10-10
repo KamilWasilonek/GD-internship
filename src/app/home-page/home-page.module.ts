@@ -17,14 +17,7 @@ import { HomePageRoutingModule } from './home-page-routing.module';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  declarations: [
-    HomePageComponent,
-    BannerComponent,
-    AdvertisementsComponent,
-    ViewMoreComponent,
-    BestSalesItemComponent,
-    AdvertisementExternalComponent,
-  ],
+  declarations: [HomePageComponent, BannerComponent, AdvertisementsComponent, BestSalesItemComponent, AdvertisementExternalComponent],
   imports: [
     CommonModule,
     HomePageRoutingModule,

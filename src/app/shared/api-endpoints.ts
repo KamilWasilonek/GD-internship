@@ -1,12 +1,8 @@
 import { environment } from '../../environments/environment';
 const endpoints = {
   slideshow: 'slideshow',
-<<<<<<< HEAD
   advertisments: 'advertisments',
   advertismentExternal: 'advertismentsExternal',
-=======
-  advertisments: 'advertisements',
->>>>>>> Fix issues
   subscriptions: 'subscriptions',
   socials: 'socials',
   filters: 'filters',
@@ -19,7 +15,7 @@ const endpoints = {
 
 const slideshowURL = `${environment.serverUrl}${endpoints.slideshow}`;
 const advertismentExternalURL = `${environment.serverUrl}${endpoints.advertismentExternal}`;
-const advertismentsURL = `${environment.serverUrl}${endpoints.advertisments}`;
+const advertisementsURL = `${environment.serverUrl}${endpoints.advertisments}`;
 const subscriptionsURL = `${environment.serverUrl}${endpoints.subscriptions}`;
 const socialsURL = `${environment.serverUrl}${endpoints.socials}`;
 const bestsellersURL = `${environment.serverUrl}${endpoints.bestsellers}`;
@@ -31,7 +27,7 @@ const loadWishListURL = `${environment.serverUrl}${endpoints.wishList}`;
 
 export {
   slideshowURL,
-  advertismentsURL,
+  advertisementsURL,
   subscriptionsURL,
   socialsURL,
   bestsellersURL,

@@ -16,4 +16,3 @@ export const reducers: ActionReducerMap<AppState> = {
 };
 
 export const effects = [fromSocialIcons.SocialIconsEffects, fromJoinUs.JoinUsEffects, fromWishList.WishListEffects];
-

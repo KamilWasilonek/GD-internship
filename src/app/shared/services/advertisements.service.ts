@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
-import { IAdvertisement } from '../interfaces/adv.interface';
+import { IAdvInternal } from '../interfaces/adv-internal.interface';
 import { advertisementsURL } from '../api-endpoints';
 
 @Injectable({
@@ -11,7 +10,7 @@ import { advertisementsURL } from '../api-endpoints';
 export class AdvertisementsService {
   constructor(private readonly http: HttpClient) {}
 
-  public getAdvertisments(): Observable<IAdvertisement[]> {
-    return this.http.get<IAdvertisement[]>(advertisementsURL);
+  public getAdvertisments(): Observable<IAdvInternal[]> {
+    return this.http.get<IAdvInternal[]>(advertisementsURL);
   }
 }

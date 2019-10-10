@@ -16,16 +16,15 @@ const wishListController = require('./controllers/wish-list.controller');
 
 router.get('/products', productsController.getProducts);
 router.get('/products/:id', productsController.getProductById);
-router.get('/filters', memcacheMiddleware(), filterController.getFilters);
+router.get('/filters', filterController.getFilters);
 router.get('/homepage', productsController.getHomepage);
-router.get('/slideshow', memcacheMiddleware(), slideController.getSlideshow);
-router.get('/advertisments', memcacheMiddleware(), advertisementsController.getAdvertisement);
+router.get('/slideshow', slideController.getSlideshow);
+router.get('/advertisments', advertisementsController.getAdvertisement);
 
-router.get('/advertismentsExternal', memcacheMiddleware(), advertisementsExternalController.getAdvertisementExternal);
-// router.get('/advertismentsExternal', controller.getAdvertismentExternal);
+router.get('/advertismentsExternal', advertisementsExternalController.getAdvertisementExternal);
 
-router.get('/socials', memcacheMiddleware(), socialController.getSocials);
-router.get('/wishList',  memcacheMiddleware(), wishListController.getWishListProducts);
+router.get('/socials', socialController.getSocials);
+router.get('/wishList', wishListController.getWishListProducts);
 router.post('/subscriptions', subscriptionsController.addSubscription);
 router.patch('/updateProduct', updateProductController.updateProductAddedToWishList);
 router.get('**', controller.notFound);
