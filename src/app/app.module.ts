@@ -3,6 +3,7 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -43,6 +44,9 @@ import { reducers, effects } from '@app/@store';
     SharedModule,
     ReactiveFormsModule,
     StoreModule.forRoot(reducers, {}),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+    }),
     EffectsModule.forRoot(effects),
   ],
   providers: [
