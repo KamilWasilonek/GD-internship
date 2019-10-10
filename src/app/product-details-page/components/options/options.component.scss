@@ -16,6 +16,7 @@
 
   &__sizes-box {
     display: flex;
+    align-items: center;
 
     @include xl {
       margin-bottom: 2rem;
@@ -40,7 +41,7 @@
 
   &__list-item {
     cursor: pointer;
-    margin: 0 1rem;
+    padding: 0.5rem;
 
     &--active {
       color: $title-color;
@@ -63,7 +64,7 @@
 
   &__amount-actions {
     display: grid;
-    grid-template-columns: 2rem 4rem 2rem;
+    grid-template-columns: 2.5rem 4rem 2.5rem;
     grid-gap: 1rem;
     margin-left: 2rem;
 

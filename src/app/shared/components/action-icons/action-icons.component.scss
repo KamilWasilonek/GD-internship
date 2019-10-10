@@ -17,4 +17,8 @@
       cursor: pointer;
     }
   }
+
+  &__wish-list--active {
+    color: $title-color;
+  }
 }

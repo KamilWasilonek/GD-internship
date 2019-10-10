@@ -7,4 +7,5 @@ export interface IArrivals {
   sizes: string[];
   thumbnailImageSrc: string;
   swatches: ISwatches[];
+  addedToWishList?: boolean;
 }

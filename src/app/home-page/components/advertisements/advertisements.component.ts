@@ -2,10 +2,10 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { delay, takeUntil } from 'rxjs/operators';
 import { Subscription, interval, Subject } from 'rxjs';
 
-import { AdvertismentsService } from '@app/shared/services/advertisments.service';
 import { AdvertismentExternalService } from '@app/shared/services/advertisements-external.service';
 import { IAdvExternal } from '@app/shared/interfaces/adv-external.interface';
 import { IAdvInternal } from '@app/shared/interfaces/adv-internal.interface';
+import { AdvertisementsService } from '@app/shared/services/advertisements.service';
 
 @Component({
   selector: 'app-advertisements',
@@ -29,7 +29,7 @@ export class AdvertisementsComponent implements OnInit, OnDestroy {
   destroy$: Subject<boolean> = new Subject<boolean>();
 
   constructor(
-    private readonly advertismentsService: AdvertismentsService,
+    private readonly advertismentsService: AdvertisementsService,
     private readonly advExternalService: AdvertismentExternalService
   ) {}
 

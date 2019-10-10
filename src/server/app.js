@@ -10,7 +10,9 @@ const routes = require('./router');
 const cors = require('cors');
 const config = require('./config');
 
-mongoose.connect('mongodb://user1:qwerty1@ds225442.mlab.com:25442/internship');
+mongoose.set('useUnifiedTopology', true);
+mongoose.connect('mongodb://user1:qwerty1@ds225442.mlab.com:25442/internship',{ useNewUrlParser: true });
+
 
 app.use(cors());
 app.use(bodyParser.json({ limit: '500mb' }));

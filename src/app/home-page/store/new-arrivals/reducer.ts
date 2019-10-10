@@ -11,7 +11,6 @@ export const initialArrivalsState: ArrivalsState = {
   isFailed: undefined,
 };
 
-// tslint:disable-next-line: only-arrow-functions
 export function reducer(state = initialArrivalsState, action: arrivalsActions.ArrivalsAction): ArrivalsState {
   switch (action.type) {
     case arrivalsActions.LOAD_ARRIVALS_SUCCESS: {
