@@ -14,7 +14,7 @@ module.exports = {
   deleteSubscription,
 
   // getFilters,
-  getAdvertismentExternal,
+  // getAdvertismentExternal,
   getHomepage,
   // getProductById,
   // getProducts,
@@ -136,9 +136,9 @@ async function getHomepage(req, res) {
 // function getSocials(req,res) {
 //   res.json(socials);
 // }
-function getAdvertismentExternal(req, res) {
-  res.json(advertisementExternal);
-}
+// function getAdvertismentExternal(req, res) {
+//   res.json(advertisementExternal);
+// }
 
 function addSubscription(req, res) {
   const { email } = req.body;

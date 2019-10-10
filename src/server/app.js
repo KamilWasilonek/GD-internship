@@ -28,7 +28,6 @@ app.get('/advertisement3', (req, res) => {
 });
 
 app.get('/*', (req, res) => {
-
   res.sendFile(path.resolve('dist/GD-internship-angularProject/index.html'));
 });
 

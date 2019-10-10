@@ -2,7 +2,7 @@ import { environment } from '../../environments/environment';
 const endpoints = {
   slideshow: 'slideshow',
   advertisments: 'advertisments',
-  advertismentExternal: 'advertisementExternal',
+  advertismentExternal: 'advertismentsExternal',
   subscriptions: 'subscriptions',
   socials: 'socials',
   filters: 'filters',
@@ -12,7 +12,7 @@ const endpoints = {
 };
 
 const slideshowURL = `${environment.serverUrl}${endpoints.slideshow}`;
-const advertismentExternalURL = `http://localhost:3000/api/${endpoints.advertismentExternal}`;
+const advertismentExternalURL = `${environment.serverUrl}${endpoints.advertismentExternal}`;
 const advertismentsURL = `${environment.serverUrl}${endpoints.advertisments}`;
 const subscriptionsURL = `${environment.serverUrl}${endpoints.subscriptions}`;
 const socialsURL = `${environment.serverUrl}${endpoints.socials}`;
@@ -21,4 +21,14 @@ const newArrivalsURL = `${environment.serverUrl}${endpoints.newArrivals}`;
 const productDetailsURL = `${environment.serverUrl}${endpoints.productDetails}`;
 const filterURL = `${environment.serverUrl}${endpoints.filters}`;
 
-export { slideshowURL, advertismentsURL, subscriptionsURL, socialsURL, bestsellersURL, newArrivalsURL, productDetailsURL, filterURL, advertismentExternalURL, };
+export {
+  slideshowURL,
+  advertismentsURL,
+  subscriptionsURL,
+  socialsURL,
+  bestsellersURL,
+  newArrivalsURL,
+  productDetailsURL,
+  filterURL,
+  advertismentExternalURL,
+};
