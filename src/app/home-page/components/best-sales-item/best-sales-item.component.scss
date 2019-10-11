@@ -10,6 +10,7 @@
   justify-content: space-around;
   align-items: center;
   background-color: $secondary-background-color;
+  cursor: pointer;
 
   @include sm {
     max-width: 32rem;

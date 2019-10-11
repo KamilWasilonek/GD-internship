@@ -1,6 +1,4 @@
-import { Component, Input } from '@angular/core';
-
-import { ProductStateService } from '@app/shared/services/product-details/product-state.service';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-gallery',
@@ -9,13 +7,13 @@ import { ProductStateService } from '@app/shared/services/product-details/produc
 })
 export class GalleryComponent {
   @Input() productImage: string;
+  @Output() readonly loadingStatus = new EventEmitter<string>();
+
   smallImagesArr: number[] = [0, 1, 2];
   curPrimaryImageTitle = 'product image nr 1';
 
-  constructor(private readonly stateService: ProductStateService) {}
-
   changeImageStatus(): void {
-    this.stateService.changeGalleryState(true);
+    this.loadingStatus.emit('gallery');
   }
   onSmallImageClick(imageNumber: string): void {
     this.curPrimaryImageTitle = `product image nr ${imageNumber}`;

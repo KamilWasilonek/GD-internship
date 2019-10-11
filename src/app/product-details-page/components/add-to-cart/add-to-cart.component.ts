@@ -1,38 +1,32 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
-
-import { ProductStateService } from '@app/shared/services/product-details/product-state.service';
-import { ProductOrderService } from '@app/shared/services/product-details/product-order.service';
+import { Component, Input, OnInit, OnChanges, Output, EventEmitter } from '@angular/core';
+import { IProductAddToCard } from '@app/shared/interfaces/product-detail/product-add-to-card.interface';
 
 @Component({
   selector: 'app-add-to-cart',
   templateUrl: './add-to-cart.component.html',
   styleUrls: ['./add-to-cart.component.scss'],
 })
-export class AddToCartComponent implements OnInit, OnDestroy {
-  @Input() productPrice: number;
+export class AddToCartComponent implements OnInit, OnChanges {
+  @Input() addToCard: IProductAddToCard;
+  @Output() readonly loadingStatus = new EventEmitter<string>();
+
+  productPrice: number;
   productSize: string;
   totalProductAmount: number;
   totalProductPrice: number;
-  subscription: Subscription;
-
-  constructor(private readonly stateService: ProductStateService, private readonly orderService: ProductOrderService) {}
 
   ngOnInit(): void {
-    if (!this.productPrice) {
+    if (!this.addToCard) {
       return;
     }
-    this.stateService.changeAddToCartState(true);
-
-    this.subscription = this.orderService.getOrderDetails().subscribe(data => {
-      this.productSize = data.size;
-      this.totalProductAmount = data.quantity;
-      this.calculateTotalPrice();
-    });
+    this.loadingStatus.emit('addToCart');
   }
 
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+  ngOnChanges(): void {
+    this.productPrice = this.addToCard.price;
+    this.productSize = this.addToCard.choosenDetails.size;
+    this.totalProductAmount = this.addToCard.choosenDetails.quantity;
+    this.calculateTotalPrice();
   }
 
   calculateTotalPrice(): void {

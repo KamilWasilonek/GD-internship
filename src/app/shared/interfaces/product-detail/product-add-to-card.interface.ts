@@ -1,7 +1,6 @@
 import { IChoosenProductDetails } from './choosen-product-details.interface';
 
-export interface IProductOptions {
-  sizes: string[];
-  amountInStock: number;
+export interface IProductAddToCard {
+  price: number;
   choosenDetails: IChoosenProductDetails;
 }
