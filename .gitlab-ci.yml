@@ -35,7 +35,7 @@ build-prod:
   only:
     - dev
   script:
-    - npm run build --prod
+    - npm run postinstall
 
 tests:
   stage: tests
