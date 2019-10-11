@@ -1,15 +1,23 @@
 <section class="container details">
   <app-spinner [spinner]="spinnerMessage" *ngIf="(isDataLoaded | async) === false"></app-spinner>
   <div [ngClass]="{ hidden: (isDataLoaded | async) === false }" class="details__container">
-    <app-gallery *ngIf="productDetails | async" class="gallery" [productImage]="(productDetails | async).thumbnailImageSrc"> </app-gallery>
+    <app-gallery
+      *ngIf="productDetails | async"
+      class="gallery"
+      [productImage]="(productDetails | async).thumbnailImageSrc"
+      (loadingStatus)="sendAction($event)"
+    >
+    </app-gallery>
     <div class="details__content">
-      <app-description *ngIf="productDescription | async as description" [productDescription]="description"> </app-description>
-      <app-options
-        *ngIf="productOptions | async as options"
-        (changeOption)="onOptionChange($event)"
-        [productOptions]="options"
-      ></app-options>
-      <app-add-to-cart *ngIf="productAddToCard | async as addToCard" [addToCard]="addToCard"> </app-add-to-cart>
+      <app-description
+        *ngIf="productDescription | async as description"
+        [productDescription]="description"
+        (loadingStatus)="sendAction($event)"
+      >
+      </app-description>
+      <app-options *ngIf="productOptions | async as options" (changeOption)="sendAction($event)" [productOptions]="options"></app-options>
+      <app-add-to-cart *ngIf="productAddToCard | async as addToCard" [addToCard]="addToCard" (loadingStatus)="sendAction($event)">
+      </app-add-to-cart>
     </div>
   </div>
 </section>

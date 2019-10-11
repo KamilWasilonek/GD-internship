@@ -1,8 +1,4 @@
-import { Component, Input, OnInit, OnChanges } from '@angular/core';
-import { Store } from '@ngrx/store';
-
-import * as fromStore from '../../../product-list-page/store/';
-import * as fromProductDetails from '../../../product-list-page/store/product-details';
+import { Component, Input, OnInit, OnChanges, Output, EventEmitter } from '@angular/core';
 import { IProductAddToCard } from '@app/shared/interfaces/product-detail/product-add-to-card.interface';
 
 @Component({
@@ -12,18 +8,18 @@ import { IProductAddToCard } from '@app/shared/interfaces/product-detail/product
 })
 export class AddToCartComponent implements OnInit, OnChanges {
   @Input() addToCard: IProductAddToCard;
+  @Output() readonly loadingStatus = new EventEmitter<string>();
+
   productPrice: number;
   productSize: string;
   totalProductAmount: number;
   totalProductPrice: number;
 
-  constructor(private readonly store: Store<fromStore.ProductsState>) {}
-
   ngOnInit(): void {
     if (!this.addToCard) {
       return;
     }
-    this.store.dispatch(new fromProductDetails.SendLoadingStatusAction('addToCart'));
+    this.loadingStatus.emit('addToCart');
   }
 
   ngOnChanges(): void {

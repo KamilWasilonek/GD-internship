@@ -88,8 +88,14 @@ export class ProductDetailsPageComponent {
     this.dataLoadingStatus = this.store.pipe(select(fromProductDetails.selectDataLoadingStatus));
   }
 
-  onOptionChange(action: string): void {
+  sendAction(action: string): void {
     switch (action) {
+      case 'gallery':
+      case 'description':
+      case 'options':
+      case 'addToCart':
+        this.store.dispatch(new fromProductDetails.SendLoadingStatusAction(action));
+        break;
       case 'increase':
         this.store.dispatch(new fromProductDetails.SendQuantityIncreamentAction());
         break;

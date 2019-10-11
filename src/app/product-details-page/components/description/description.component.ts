@@ -1,9 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { IProductDescription } from '@app/shared/interfaces/product-detail/product-description.interface';
-import * as fromStore from '../../../product-list-page/store/';
-import * as fromProductDetails from '../../../product-list-page/store/product-details';
 
 @Component({
   selector: 'app-description',
@@ -12,13 +9,12 @@ import * as fromProductDetails from '../../../product-list-page/store/product-de
 })
 export class DescriptionComponent implements OnInit {
   @Input() productDescription: IProductDescription;
-
-  constructor(private readonly store: Store<fromStore.ProductsState>) {}
+  @Output() readonly loadingStatus = new EventEmitter<string>();
 
   ngOnInit(): void {
     if (!this.productDescription) {
       return;
     }
-    this.store.dispatch(new fromProductDetails.SendLoadingStatusAction('description'));
+    this.loadingStatus.emit('description');
   }
 }

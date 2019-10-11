@@ -1,10 +1,7 @@
 import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
-import { Store } from '@ngrx/store';
 
 import { IProductOptions } from '@app/shared/interfaces/product-detail/product-options.interface';
-import * as fromStore from '../../../product-list-page/store/';
-import * as fromProductDetails from '../../../product-list-page/store/product-details';
 
 @Component({
   selector: 'app-options',
@@ -29,13 +26,11 @@ export class OptionsComponent implements OnInit, OnChanges {
   plusIcon = faPlus;
   minusIcon = faMinus;
 
-  constructor(private readonly store: Store<fromStore.ProductsState>) {}
-
   ngOnInit(): void {
     if (!this.productOptions) {
       return;
     }
-    this.store.dispatch(new fromProductDetails.SendLoadingStatusAction('options'));
+    this.changeOption.emit('options');
   }
 
   ngOnChanges(): void {
