@@ -1,0 +1,39 @@
+@import 'variables.scss';
+@import 'mixins.scss';
+.hidden {
+  visibility: hidden;
+}
+
+.details {
+  padding-top: 10rem;
+  padding-bottom: 10rem;
+  background: $secondary-background-color;
+  border-top: 1px solid $section-border;
+  @include lg {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+
+  &__container {
+    display: flex;
+    @include lg {
+      display: block;
+    }
+  }
+
+  &__content {
+    @include lg {
+      margin-top: 3rem;
+    }
+  }
+}
+.gallery {
+  flex-basis: 40%;
+  margin-right: 10%;
+
+  @include lg {
+    margin: 0 auto;
+    display: block;
+    width: 70%;
+  }
+}

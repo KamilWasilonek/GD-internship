@@ -1,0 +1,37 @@
+@import 'variables.scss';
+@import 'mixins.scss';
+
+.description {
+  &__name {
+    @include heading;
+    margin-bottom: 3rem;
+    font-size: $font-size-subTitleBig;
+    font-family: $font-bold;
+    color: $title-color;
+    text-align: left;
+  }
+  &__title {
+    font-size: $font-size-subTitleSmall;
+    color: $font-color-darker;
+    margin-bottom: 2rem;
+
+    &::first-letter {
+      text-transform: uppercase;
+    }
+  }
+
+  &__details {
+    font-size: $font-size-main-product-details;
+    color: $font-color-lighter;
+    line-height: 1.88;
+    margin-bottom: 4rem;
+  }
+
+  &__name,
+  &__title,
+  &__details {
+    @include sm {
+      text-align: center;
+    }
+  }
+}

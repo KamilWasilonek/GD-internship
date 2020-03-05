@@ -1,7 +1,20 @@
-const slideshowURL = 'https://project-angular-gd.herokuapp.com/api/slideshow';
-const advertismentsURL = 'https://project-angular-gd.herokuapp.com/api/advertisments';
-const subscriptionsURL = 'https://project-angular-gd.herokuapp.com/api/subscriptions';
-const socialsURL = 'https://project-angular-gd.herokuapp.com/api/socials';
-const bestsellersURL = 'https://project-angular-gd.herokuapp.com/api/products?ids=1,3,6';
+const root = 'https://project-angular-gd.herokuapp.com/api/';
+const endpoints = {
+  slideshow: 'slideshow',
+  advertisments: 'advertisments',
+  subscriptions: 'subscriptions',
+  socials: 'socials',
+  bestsellers: 'products?ids=1,3,6',
+  newArrivals: 'products?ids=5,8,13,15',
+  productDetails: 'products/1',
+};
 
-export { slideshowURL, advertismentsURL, subscriptionsURL, socialsURL, bestsellersURL };
+const slideshowURL = `${root}${endpoints.slideshow}`;
+const advertismentsURL = `${root}${endpoints.advertisments}`;
+const subscriptionsURL = `${root}${endpoints.subscriptions}`;
+const socialsURL = `${root}${endpoints.socials}`;
+const bestsellersURL = `${root}${endpoints.bestsellers}`;
+const newArrivalsURL = `${root}${endpoints.newArrivals}`;
+const productDetailsURL = `${root}${endpoints.productDetails}`;
+
+export { slideshowURL, advertismentsURL, subscriptionsURL, socialsURL, bestsellersURL, newArrivalsURL, productDetailsURL };

@@ -1,0 +1,30 @@
+<section class="options">
+  <div class="options__sizes-box">
+    <p>Choose Size:</p>
+    <ul class="options__list">
+      <li
+        class="options__list-item"
+        *ngFor="let size of sizes; index as i"
+        [ngClass]="{ 'options__list-item--active': actualSize === size }"
+        (click)="takeSize(size)"
+      >
+        {{ size }}
+      </li>
+    </ul>
+  </div>
+  <p *ngIf="!isProductAvailable" class="options__out-of-stock">Product out of stock</p>
+  <div *ngIf="isProductAvailable" class="options__amount-box">
+    <p>Choose Quantity:</p>
+    <div class="options__amount-actions">
+      <button [disabled]="isMinAmount" (click)="decreaseAmount()" class="options__amount-btn">
+        <fa-icon [icon]="minusIcon" class="options__amount-icon"></fa-icon>
+      </button>
+
+      <input class="options__amount-number" min="0" value="{{ actualAmount }}" [max]="productOptions.amountInStock" disabled />
+
+      <button [disabled]="isMaxAmount" (click)="increaseAmount()" class="options__amount-btn">
+        <fa-icon [icon]="plusIcon" class="options__amount-icon"></fa-icon>
+      </button>
+    </div>
+  </div>
+</section>

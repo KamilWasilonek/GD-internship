@@ -1,7 +1,7 @@
 const products = require('../assets/mocks/products.json');
 const filters = require('../assets/mocks/filters.json');
 const slideshow = require('../assets/mocks/slideshow.json');
-const advertisments = require('../assets/mocks/adv.json');
+const advertisments = require("../assets/mocks/adv.json")
 const socials = require('../assets/config/social-links.json');
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -134,7 +134,11 @@ function getAdvertisments(req, res) {
   res.json(advertisments);
 }
 
+<<<<<<< HEAD
 function getSocials(req, res) {
+=======
+function getSocials(req,res) {
+>>>>>>> 07f11d38738afcf4990dd5540eab780316b27051
   res.json(socials);
 }
 

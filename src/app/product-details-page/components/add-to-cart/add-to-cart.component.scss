@@ -1,0 +1,84 @@
+@import 'mixins.scss';
+@import 'variables.scss';
+
+.order-actions {
+  padding-top: 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @include sm {
+    display: block;
+  }
+
+  &__price {
+    font-family: $font-regular;
+    font-size: $font-size-subTitleSmall;
+    text-align: left;
+    color: #49525d;
+    @include sm {
+      text-align: center;
+    }
+
+    & span {
+      font-family: $font-bold;
+    }
+  }
+
+  &__actions {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @include xl {
+      width: 55%;
+    }
+
+    @include lg {
+      width: 70%;
+    }
+
+    @include sm {
+      margin-top: 2rem;
+      width: 100%;
+      display: block;
+    }
+  }
+
+  &__action-icons {
+    width: 40%;
+    display: block;
+
+    @include sm {
+      margin: 0 auto;
+    }
+  }
+
+  &__order-btn {
+    padding: 0.8rem 2.5rem;
+    background: $title-color;
+    color: #fff;
+    font-size: $font-size-subTitleSmall;
+    border-color: $title-color;
+    border-radius: 2rem;
+    cursor: pointer;
+
+    @include sm {
+      margin: 2rem auto 0 auto;
+      display: block;
+    }
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+    &:active,
+    &:focus {
+      outline-color: $title-color;
+    }
+  }
+}
