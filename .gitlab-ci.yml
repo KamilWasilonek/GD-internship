@@ -15,6 +15,7 @@ stages:
   - linting
   - tests
   - build-aot
+  - build-prod
   - deploy
 
 linting:
@@ -24,8 +25,17 @@ linting:
 
 build-aot:
   stage: build-aot
-  script: 
+  script:
     - npm run build-aot
+  except:
+    - dev
+
+build-prod:
+  stage: build-prod
+  only:
+    - dev
+  script:
+    - npm run postinstall
 
 tests:
   stage: tests
@@ -34,7 +44,7 @@ tests:
 
 deploy:
   stage: deploy
-  only: 
+  only:
     - dev
-  script: 
+  script:
     - git push -f https://heroku:$KEY@git.heroku.com/project-angular-gd.git HEAD:master

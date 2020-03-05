@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { SocialIcon } from '@app/shared/interfaces/social-icon.interface';
-import { SocialsService } from '@app/shared/services/socials.service';
+import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
+
+import { ISocialIcon } from '@app/shared/interfaces/social-icon.interface';
+import * as fromStore from '@app/@store';
+import * as fromSocialIcons from '@app/@store/social-icons';
 
 @Component({
   selector: 'app-socials',
@@ -8,14 +12,13 @@ import { SocialsService } from '@app/shared/services/socials.service';
   styleUrls: ['./socials.component.scss'],
 })
 export class SocialsComponent implements OnInit {
-  socials: SocialIcon[];
-  lastLink: number;
-  constructor(private socialsService: SocialsService) {}
+  socialIconsState$: Observable<ISocialIcon[]>;
 
-  ngOnInit() {
-    this.socialsService.getSocialLinks().subscribe(data => {
-      this.socials = data;
-      this.lastLink = this.socials.length - 1;
-    });
+  constructor(private readonly store: Store<fromStore.AppState>) {}
+
+  ngOnInit(): void {
+    this.socialIconsState$ = this.store.pipe(select(fromSocialIcons.selectSocialIconsData));
+
+    this.store.dispatch(new fromSocialIcons.LoadSocialIconsAction());
   }
 }

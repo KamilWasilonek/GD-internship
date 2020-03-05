@@ -1,9 +1,13 @@
-import { Component, OnInit, DoCheck, OnDestroy, ViewChild, ElementRef } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { takeUntil } from 'rxjs/operators';
+import { Subject, Observable } from 'rxjs';
+
 import { JoinUserService } from '../../../shared/services/join-user.service';
-import { UserSubscription } from './user-subscription';
 import { validateEmail } from '@app/shared/functions/validations';
-import { Subscription } from 'rxjs';
+import { Store, select } from '@ngrx/store';
+import * as fromStore from '@app/@store';
+import * as fromJoinUs from '@app/@store/join-us';
 
 @Component({
   selector: 'app-join-us',
@@ -12,45 +16,46 @@ import { Subscription } from 'rxjs';
 })
 export class JoinUsComponent implements OnInit, OnDestroy {
   @ViewChild('email', { static: false }) email: ElementRef;
-
   subscriptionForm: FormGroup;
-  submitted = false;
-  userSubscription: UserSubscription;
-  serverMessage = '';
-  isSubscriptionCreated = false;
+  unsubscribe$ = new Subject<void>();
 
-  constructor(private fb: FormBuilder, private joinService: JoinUserService) {}
-  subscription: Subscription;
-  ngOnInit() {
+  submitted = false;
+
+  joinUsState$: Observable<fromJoinUs.JoinUsState>;
+
+  constructor(
+    private readonly fb: FormBuilder,
+    private readonly store: Store<fromStore.AppState>,
+    private readonly joinService: JoinUserService
+  ) {}
+
+  ngOnInit(): void {
     this.subscriptionForm = this.fb.group({
       email: ['', [Validators.required, validateEmail]],
     });
-    this.subscription = this.joinService.linkIsClicked.subscribe(() => {
+
+    this.joinService.linkIsClicked.pipe(takeUntil(this.unsubscribe$)).subscribe(() => {
       this.email.nativeElement.focus();
     });
+
+    this.joinUsState$ = this.store.pipe(select(fromJoinUs.selectState));
   }
 
-  public onSubmit() {
-    this.serverMessage = '';
-    this.isSubscriptionCreated = false;
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+  }
+
+  public onSubmit(): void {
     this.submitted = true;
-    if (this.subscriptionForm.valid) {
-      this.userSubscription = {
-        email: this.subscriptionForm.controls.email.value,
-      };
-      this.joinService.createSubscription(this.userSubscription).subscribe(
-        () => {
-          this.serverMessage = 'Subscription created';
-          this.isSubscriptionCreated = true;
-        },
-        serverErrors => {
-          this.serverMessage = serverErrors.error.message;
-        }
-      );
+    if (!this.subscriptionForm.valid) {
+      return;
     }
-  }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.store.dispatch(
+      new fromJoinUs.JoinUserAction({
+        email: this.subscriptionForm.controls.email.value,
+      })
+    );
   }
 }

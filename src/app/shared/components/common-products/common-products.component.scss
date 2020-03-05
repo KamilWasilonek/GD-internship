@@ -1,0 +1,41 @@
+@import 'mixins.scss';
+@import 'variables.scss';
+
+:host {
+  margin-bottom: 8rem;
+  display: block;
+  @include lg {
+    margin-bottom: 6rem;
+  }
+}
+.common-products {
+  &__paragraph {
+    @include paragraph;
+    margin-top: 3rem;
+    text-align: center;
+  }
+
+  &__product-items {
+    margin-top: 8rem;
+    display: grid;
+    gap: 4rem;
+    grid-template: 1fr / repeat(4, 1fr);
+
+    @include xl {
+      gap: 2rem;
+    }
+
+    @include lg {
+      margin-top: 5rem;
+      grid-template: 1fr / repeat(3, 1fr);
+    }
+
+    @include md {
+      grid-template: 1fr / repeat(2, 1fr);
+    }
+
+    @include sm {
+      grid-template: 1fr / 1fr;
+    }
+  }
+}

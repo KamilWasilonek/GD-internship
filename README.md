@@ -1,4 +1,4 @@
-# Internship project
+# GDInternshipAngularProject
 
 The project was carried out during the internship. The project was conducted by three interns and supervisors who reviewed the code
 

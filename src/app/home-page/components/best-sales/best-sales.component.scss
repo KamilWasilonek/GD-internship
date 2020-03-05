@@ -21,10 +21,14 @@
     margin-top: 8rem;
     display: grid;
     grid-template: 1fr / repeat(3, 1fr);
-    grid-gap: 2rem;
+    grid-gap: 4rem;
 
     @include lg {
       margin-top: 5rem;
+      grid-template: 1fr / repeat(3, 1fr);
+    }
+
+    @include md {
       grid-template: 1fr / repeat(2, 1fr);
     }
 

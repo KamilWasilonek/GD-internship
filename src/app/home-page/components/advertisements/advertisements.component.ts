@@ -1,56 +1,94 @@
-import { Component, OnDestroy } from '@angular/core';
-import { IAdvertisment } from '@app/shared/interfaces/adv.interface';
-import { delay } from 'rxjs/operators';
-import { Subscription, interval } from 'rxjs';
-import { AdvertismentsService } from '@app/shared/services/advertisments.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { delay, takeUntil } from 'rxjs/operators';
+import { Subscription, interval, Subject } from 'rxjs';
+
+import { AdvertismentExternalService } from '@app/shared/services/advertisements-external.service';
+import { IAdvExternal } from '@app/shared/interfaces/adv-external.interface';
+import { IAdvInternal } from '@app/shared/interfaces/adv-internal.interface';
+import { AdvertisementsService } from '@app/shared/services/advertisements.service';
 
 @Component({
   selector: 'app-advertisements',
   templateUrl: './advertisements.component.html',
   styleUrls: ['./advertisements.component.scss'],
 })
-export class AdvertisementsComponent implements OnDestroy {
-  advertisments: IAdvertisment[];
-  sliderInterval: Subscription;
-  spinner = {
-    message: 'Loading latest products',
-    isError: false,
-  };
-  currentIndex = 0;
-  isDataLoading = true;
+export class AdvertisementsComponent implements OnInit, OnDestroy {
+  advertisementsExternal: IAdvExternal[];
+  advertisments: IAdvInternal[];
+  sliderInterval: Subscription[] = [];
+  spinners = [
+    {
+      message: 'Loading latest products',
+      isError: false,
+    },
+    { message: 'Loading recommended products', isError: false },
+  ];
+  currentIndex: number[] = [0, 0];
+  isDataLoading: boolean[] = [true, true];
 
-  constructor(private advertismentsService: AdvertismentsService) {
+  destroy$: Subject<boolean> = new Subject<boolean>();
+
+  constructor(
+    private readonly advertismentsService: AdvertisementsService,
+    private readonly advExternalService: AdvertismentExternalService
+  ) {}
+
+  ngOnInit(): void {
     this.advertismentsService
       .getAdvertisments()
-      .pipe(delay(2000))
+      .pipe(
+        delay(2000),
+        takeUntil(this.destroy$)
+      )
       .subscribe(
         advertisments => {
           this.advertisments = advertisments;
         },
-        error => {
-          this.spinner = {
+        _error => {
+          this.spinners[0] = {
             message: 'Can not load latest products',
             isError: true,
           };
         },
         () => {
-          this.isDataLoading = false;
-          this.startSliderInterval();
+          this.isDataLoading[0] = false;
+          this.startSliderInterval(0, this.advertisments);
+        }
+      );
+
+    this.advExternalService
+      .getAdvertismentExternal()
+      .pipe(
+        delay(2000),
+        takeUntil(this.destroy$)
+      )
+      .subscribe(
+        data => {
+          this.advertisementsExternal = data;
+        },
+        _error => {
+          this.spinners[1].isError = true;
+          this.isDataLoading[1] = false;
+        },
+        () => {
+          this.isDataLoading[1] = false;
+          this.startSliderInterval(1, this.advertisementsExternal);
         }
       );
   }
 
-  ngOnDestroy() {
-    if (this.sliderInterval !== undefined) {
-      this.sliderInterval.unsubscribe();
-    }
+  ngOnDestroy(): void {
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 
-  public startSliderInterval() {
-    this.sliderInterval = interval(5000).subscribe(() => {
-      if (this.currentIndex++ >= this.advertisments.length - 1) {
-        this.currentIndex = 0;
-      }
-    });
+  public startSliderInterval(id: number, arr: Array<IAdvExternal | IAdvInternal>): void {
+    this.sliderInterval[id] = interval(5000)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(() => {
+        if (this.currentIndex[id]++ >= arr.length - 1) {
+          this.currentIndex[id] = 0;
+        }
+      });
   }
 }

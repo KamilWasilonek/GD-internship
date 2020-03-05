@@ -30,10 +30,22 @@
 .gallery {
   flex-basis: 40%;
   margin-right: 10%;
-
   @include lg {
     margin: 0 auto;
     display: block;
     width: 70%;
+  }
+}
+.common-products__heading {
+  @include heading;
+  font-size: $font-size-subTitleBig;
+  span {
+    color: $title-color;
+  }
+}
+.related-products {
+  padding-top: 12rem;
+  @include lg {
+    padding-top: 8rem;
   }
 }

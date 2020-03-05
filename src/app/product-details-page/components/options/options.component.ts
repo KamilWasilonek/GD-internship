@@ -1,17 +1,16 @@
-import { IProductOptions } from '@app/shared/interfaces/product-detail/product-options.interface';
-import { ProductStateService } from '@app/shared/services/product-details/product-state.service';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
-import { ProductOrderService } from '@app/shared/services/product-details/product-order.service';
-import { counter } from '@fortawesome/fontawesome-svg-core';
+
+import { IProductOptions } from '@app/shared/interfaces/product-detail/product-options.interface';
 
 @Component({
   selector: 'app-options',
   templateUrl: './options.component.html',
   styleUrls: ['./options.component.scss'],
 })
-export class OptionsComponent implements OnInit {
+export class OptionsComponent implements OnInit, OnChanges {
   @Input() productOptions: IProductOptions;
+  @Output() readonly changeOption = new EventEmitter<string>();
 
   sizes: string[];
   productAmount: number;
@@ -19,7 +18,7 @@ export class OptionsComponent implements OnInit {
   actualSize: string;
   prevActiveSizeElement: HTMLElement;
 
-  actualAmount = 1;
+  actualAmount: number;
   isMinAmount = false;
   isMaxAmount = false;
   isProductAvailable: boolean;
@@ -27,51 +26,33 @@ export class OptionsComponent implements OnInit {
   plusIcon = faPlus;
   minusIcon = faMinus;
 
-  constructor(private stateService: ProductStateService, private orderService: ProductOrderService) {}
-
   ngOnInit(): void {
-    if (this.productOptions) {
-      this.stateService.changeOptionsState(true);
-
-      this.sizes = this.productOptions.sizes;
-      this.actualSize = this.sizes[0];
-      this.orderService.changeOrderSize(this.actualSize);
-
-      this.productAmount = this.productOptions.amountInStock;
-
-      if (this.productAmount !== 0) {
-        this.orderService.changeOrderQuantity(this.actualAmount);
-      }
-
-      this.isProductAvailable = !!this.productAmount;
-
-      if (this.productAmount === 1) {
-        this.isMaxAmount = true;
-      }
-      this.isMinAmount = true;
+    if (!this.productOptions) {
+      return;
     }
+    this.changeOption.emit('options');
+  }
+
+  ngOnChanges(): void {
+    this.productAmount = this.productOptions.amountInStock;
+    this.sizes = this.productOptions.sizes;
+    this.actualSize = this.productOptions.choosenDetails.size;
+    this.actualAmount = this.productOptions.choosenDetails.quantity;
+    this.isProductAvailable = !!this.productAmount;
+
+    this.isMinAmount = this.actualAmount === 1;
+    this.isMaxAmount = this.actualAmount >= this.productAmount;
   }
 
   takeSize(size: string): void {
-    this.actualSize = size;
-    this.orderService.changeOrderSize(this.actualSize);
+    this.changeOption.emit(size);
   }
 
   increaseAmount(): void {
-    if (++this.actualAmount === this.productAmount) {
-      this.isMaxAmount = true;
-    } else {
-      this.isMinAmount = false;
-    }
-    this.orderService.changeOrderQuantity(this.actualAmount);
+    this.changeOption.emit('increase');
   }
 
   decreaseAmount(): void {
-    if (--this.actualAmount === 1) {
-      this.isMinAmount = true;
-    } else {
-      this.isMaxAmount = false;
-    }
-    this.orderService.changeOrderQuantity(this.actualAmount);
+    this.changeOption.emit('decrease');
   }
 }

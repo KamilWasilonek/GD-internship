@@ -1,98 +1,93 @@
-import { ISlide } from '@app/shared/interfaces/banner.interface';
-import { Component, OnDestroy, SecurityContext } from '@angular/core';
-import { interval, Subscription } from 'rxjs';
-import { DomSanitizer } from '@angular/platform-browser';
-import { SliderService } from '@app/shared/services/slider.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+
+import { takeUntil, tap } from 'rxjs/operators';
+import { interval, Subscription, Subject, Observable } from 'rxjs';
+
+import { Store, select } from '@ngrx/store';
+
+import * as fromStore from '../../store';
+import * as fromSlider from '../../store/slider';
 
 @Component({
   selector: 'app-banner',
   templateUrl: './banner.component.html',
   styleUrls: ['./banner.component.scss'],
 })
-export class BannerComponent implements OnDestroy {
-  isDataLoading = true;
-  slides: ISlide[];
-  currentSlideIndex: number;
-  backgroundImage: string;
-  sliderHttpObserver: Subscription;
+export class BannerComponent implements OnDestroy, OnInit {
+  isImagesLoading = true;
+  animationOption = 'opacity';
+  imageNumberToLoad: number;
+  currentSlideIndex = 0;
+  unsubscribe$ = new Subject<void>();
   sliderInterval: Subscription;
+
   spinner = {
     message: 'Loading latest articles',
     isError: false,
   };
 
-  title: string;
-  proposition: string;
-  description: string;
-  price: string;
+  sliderState$: Observable<fromSlider.SliderState>;
 
-  constructor(private sliderService: SliderService, private sanitizer: DomSanitizer) {
-    this.sliderHttpObserver = this.sliderService.getSlideshow().subscribe(
-      slideshow => {
-        this.slides = slideshow;
-      },
-      error => {
-        this.spinner = {
-          message: 'Can not load latest products',
-          isError: true,
-        };
-      },
-      () => {
-        this.currentSlideIndex = 0;
-        this.backgroundImage = this.sanitizeImage(this.slides[this.currentSlideIndex].img);
-        this.startSliderInterval();
-      }
+  slidesAmount: number;
+
+  constructor(private readonly store: Store<fromStore.HomePageState>) {}
+
+  ngOnInit(): void {
+    this.sliderState$ = this.store.pipe(
+      select(fromSlider.selectState),
+      tap(sliderSate => {
+        if (sliderSate.isFailed) {
+          this.spinner = {
+            message: 'Can not load latest products',
+            isError: true,
+          };
+        } else if (sliderSate.data.length) {
+          this.slidesAmount = this.imageNumberToLoad = sliderSate.data.length;
+        }
+      })
     );
+
+    this.store.dispatch(new fromSlider.LoadSliderAction());
   }
 
-  ngOnDestroy() {
-    if (this.sliderInterval !== undefined) {
-      this.sliderInterval.unsubscribe();
-    }
-    if (this.sliderHttpObserver !== undefined) {
-      this.sliderHttpObserver.unsubscribe();
-    }
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 
-  public showNextSlide(event?: MouseEvent): void {
-    if (event !== undefined && this.sliderInterval !== undefined) {
-      this.sliderInterval.unsubscribe();
-    }
-    if (this.currentSlideIndex++ >= this.slides.length - 1) {
+  showNextSlide(event?: MouseEvent): void {
+    this.checkEvent(event);
+    if (this.currentSlideIndex++ >= this.slidesAmount - 1) {
       this.currentSlideIndex = 0;
     }
-    this.backgroundImage = this.sanitizeImage(this.slides[this.currentSlideIndex].img);
   }
 
-  public showPrevSlide(event?: MouseEvent): void {
-    if (event !== undefined && this.sliderInterval !== undefined) {
-      this.sliderInterval.unsubscribe();
-    }
+  showPrevSlide(event?: MouseEvent): void {
+    this.checkEvent(event);
     if (this.currentSlideIndex-- === 0) {
-      this.currentSlideIndex = this.slides.length - 1;
+      this.currentSlideIndex = this.slidesAmount - 1;
     }
-    this.backgroundImage = this.sanitizeImage(this.slides[this.currentSlideIndex].img);
   }
 
   startSliderInterval(): void {
-    this.sliderInterval = interval(5000).subscribe(() => {
-      this.showNextSlide();
-    });
+    this.sliderInterval = interval(5000)
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(() => {
+        this.showNextSlide();
+      });
   }
 
-  public makeOrder(): void {
-    console.log('Ordered');
+  imageLoaded(): void {
+    this.imageNumberToLoad--;
+    if (this.imageNumberToLoad === 0) {
+      this.isImagesLoading = false;
+      this.startSliderInterval();
+    }
   }
 
-  public setSlideContent(index: number): void {
-    this.title = this.slides[index].title;
-    this.proposition = this.slides[index].proposition;
-    this.description = this.slides[index].description;
-    this.price = this.slides[index].price;
-    this.isDataLoading = false;
-  }
-
-  public sanitizeImage(url: string): string {
-    return this.sanitizer.sanitize(SecurityContext.URL, url);
+  checkEvent(event: MouseEvent): void {
+    if (event !== undefined && this.sliderInterval !== undefined) {
+      this.sliderInterval.unsubscribe();
+    }
   }
 }

@@ -1,23 +1,29 @@
 <section class="adv">
   <div class="adv__content-box">
-    <app-spinner [spinner]="spinner" *ngIf="isDataLoading" class="adv__spinner"></app-spinner>
+    <app-spinner [spinner]="spinners[0]" *ngIf="isDataLoading[0]" class="adv__spinner"></app-spinner>
 
-    <div *ngIf="!isDataLoading" class="adv__sale-box">
+    <div *ngIf="!isDataLoading[0]" class="adv__sale-box">
       <!-- Sale icon -->
       <img class="adv__sale-icon" src="../../../../assets/img/sale.png" alt="Sale" />
 
       <!-- Details -->
       <div class="adv__details">
-        <h2 class="adv__title">{{ advertisments[currentIndex].title }}</h2>
-        <h4 class="adv__description">{{ advertisments[currentIndex].description }}</h4>
+        <h2 class="adv__title">{{ advertisments[currentIndex[0]].title }}</h2>
+        <h4 class="adv__description">{{ advertisments[currentIndex[0]].description }}</h4>
       </div>
 
       <!-- Price -->
       <div class="adv__order-box">
         <img class="adv__order-icon" src="../../../../assets/icons/add-to-cart-ico@3x.png" alt="Order" />
-        <h2 class="adv__price">{{ advertisments[currentIndex].price }}$</h2>
+        <h2 class="adv__price">{{ advertisments[currentIndex[0]].price }}$</h2>
       </div>
     </div>
   </div>
-  <img class="adv__free-area" src="../../../../assets/img/adv_area.png" alt="Order" />
+  <div class="adv__free-area">
+    <app-spinner [spinner]="spinners[1]" *ngIf="isDataLoading[1]" class="adv__spinner"></app-spinner>
+    <img *ngIf="spinners[1].isError" class="adv__free-area-dummy" src="../../../../assets/img/adv_area.png" alt="Order" />
+    <app-advertisement-external *ngIf="!spinners[1].isError && !isDataLoading[1]" class="adv__free-area-container">
+      <iframe class="adv__free-area-adv" [src]="advertisementsExternal[currentIndex[1]].link | sanitize: 'link'"> </iframe>
+    </app-advertisement-external>
+  </div>
 </section>

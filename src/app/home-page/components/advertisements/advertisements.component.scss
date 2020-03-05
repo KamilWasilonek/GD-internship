@@ -7,6 +7,7 @@
 
 .adv {
   display: flex;
+  justify-content: space-between;
 
   @include xl {
     display: block;
@@ -17,12 +18,16 @@
   }
 
   &__content-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex-basis: 100%;
     margin-right: 2%;
     min-height: 10rem;
     background: #ffffff;
 
     @include xl {
+      width: 100%;
       margin-right: 0;
       margin-bottom: 2rem;
     }
@@ -75,11 +80,27 @@
   }
 
   &__free-area {
-    display: block;
-    max-width: 55rem;
+    width: 33%;
+    background: #ffffff;
 
     @include xl {
       margin: 0 auto;
+      width: 50%;
     }
+  }
+
+  &__free-area-dummy,
+  &__free-area-adv {
+    width: 100%;
+    display: block;
+  }
+
+  &__free-area-dummy {
+    height: 100%;
+  }
+
+  &__free-area-adv {
+    height: 10rem;
+    border: none;
   }
 }

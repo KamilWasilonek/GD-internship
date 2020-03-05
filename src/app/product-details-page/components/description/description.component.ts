@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+
 import { IProductDescription } from '@app/shared/interfaces/product-detail/product-description.interface';
-import { ProductStateService } from '@app/shared/services/product-details/product-state.service';
 
 @Component({
   selector: 'app-description',
@@ -9,12 +9,12 @@ import { ProductStateService } from '@app/shared/services/product-details/produc
 })
 export class DescriptionComponent implements OnInit {
   @Input() productDescription: IProductDescription;
+  @Output() readonly loadingStatus = new EventEmitter<string>();
 
-  constructor(private stateService: ProductStateService) {}
-
-  ngOnInit() {
-    if (this.stateService) {
-      this.stateService.changeDescriptionState(true);
+  ngOnInit(): void {
+    if (!this.productDescription) {
+      return;
     }
+    this.loadingStatus.emit('description');
   }
 }

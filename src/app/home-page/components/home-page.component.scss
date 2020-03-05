@@ -5,6 +5,10 @@
   background: $main-background-color;
 }
 
+.hidden {
+  display: none;
+}
+
 .homepage {
   padding-top: 12rem;
 
@@ -14,27 +18,49 @@
 
   &__view-more {
     display: block;
-    margin-bottom: 12rem;
+    margin: 6rem 0 2rem 0;
     @include lg {
       margin-bottom: 8rem;
     }
   }
-
-  &__arrivals {
-    margin-bottom: 8rem;
-    display: block;
-
-    @include lg {
-      margin-bottom: 6rem;
-    }
-  }
-
-  &__best-sales {
+  &__wish-list {
     margin-top: 12rem;
+    margin-bottom: 5rem;
     display: block;
 
     @include sm {
       margin-top: 0;
     }
+  }
+}
+.common-products__heading {
+  @include heading;
+  font-size: $font-size-subTitleBig;
+  span {
+    color: $title-color;
+  }
+}
+.wish-list {
+  &__spinner {
+    padding: 8rem 0 0 0;
+  }
+
+  &__items {
+    display: grid;
+    grid-template: 1fr / repeat(3, 1fr);
+    grid-gap: 2rem;
+
+    @include lg {
+      margin-top: 5rem;
+      grid-template: 1fr / repeat(2, 1fr);
+    }
+
+    @include sm {
+      grid-template: 1fr / 1fr;
+    }
+  }
+
+  &__item {
+    display: block;
   }
 }

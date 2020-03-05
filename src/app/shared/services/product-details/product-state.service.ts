@@ -5,16 +5,14 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class ProductStateService {
-  private productStates = {
+  private readonly productStates = {
     gallery: false,
     description: false,
     options: false,
     addToCart: false,
   };
-  private isChildrenLoaded = new BehaviorSubject(false);
+  private readonly isChildrenLoaded = new BehaviorSubject(false);
   currentState = this.isChildrenLoaded.asObservable();
-
-  constructor() {}
 
   changeGalleryState(state: boolean): void {
     this.productStates.gallery = state;
@@ -36,10 +34,10 @@ export class ProductStateService {
     this.updateLoadingStatus();
   }
 
-  updateLoadingStatus() {
+  updateLoadingStatus(): void {
     this.isChildrenLoaded.next(
       Object.values(this.productStates).every(status => {
-        return status === true;
+        return status;
       })
     );
   }

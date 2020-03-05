@@ -7,14 +7,11 @@
   justify-content: space-between;
   background: #fff;
 
-  @include xl {
+  @include md {
     display: block;
   }
 
-  &__description,
-  &__sign-form {
-    display: flex;
-    align-items: center;
+  &__description {
     flex-basis: 50%;
   }
 
@@ -22,7 +19,11 @@
     flex-basis: 50%;
 
     @include xl {
-      justify-content: center;
+      display: block;
+    }
+
+    @include md {
+      text-align: center;
     }
   }
 
@@ -32,6 +33,14 @@
     color: $title-color;
     font-size: $font-size-subTitleSmall;
     text-align: left;
+
+    @include xl {
+      margin-bottom: 1rem;
+    }
+
+    @include md {
+      text-align: center;
+    }
   }
 
   &__sub-title {
@@ -40,22 +49,28 @@
   }
 
   &__sign-form {
+    flex-basis: 50%;
+
+    @include md {
+      margin-top: 3rem;
+    }
+  }
+
+  &__form-fields {
+    display: flex;
+    align-items: center;
     justify-content: space-between;
 
-    @include xl {
-      display: block;
-      text-align: center;
+    @include md {
+      justify-content: space-evenly;
+      margin-bottom: 1rem;
     }
   }
 
   &__email-box {
     display: flex;
     align-items: center;
-    justify-content: center;
-
-    @include xl {
-      margin: 2rem 0;
-    }
+    justify-content: space-between;
   }
 
   &__email-icon {
@@ -80,36 +95,40 @@
 
   &__email-error,
   &__email-success {
-    margin-left: 1rem;
-    padding: 0.8rem;
+    width: max-content;
+    padding: 0.8rem 0;
     font-size: $font-size-small;
+    font-style: italic;
     text-align: center;
+
+    @include md {
+      margin: 0 auto;
+    }
   }
 
   &__email-error {
-    background: #ffbaba;
     color: #d8000c;
   }
 
   &__email-success {
-    background: #5aa944;
-    color: #fff;
+    color: #5aa944;
   }
 
   &__sign-btn {
-    padding: 2rem;
+    padding: 1.5rem;
     background: $title-color;
     color: #fff;
     font-size: $font-size-small;
     border: none;
+    cursor: pointer;
 
     &:active,
     &:focus {
       outline-color: $title-color;
     }
 
-    @include xl {
-      padding: 1.5rem;
+    @include sm {
+      padding: 1rem 1.5rem;
     }
   }
 }
