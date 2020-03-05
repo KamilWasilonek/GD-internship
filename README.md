@@ -1,4 +1,17 @@
-# GDInternshipAngularProject
+# Internship project
+
+The project was carried out during the internship. The project was conducted by three interns and supervisors who reviewed the code
+
+The project was developed using Angular and his most important functionalities such as:
+- TypeScript
+- Components architecture
+- Directives
+- Pipes
+- Routing
+- Forms
+- Services
+- RxJS
+- NgRx
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.2.0.
 
